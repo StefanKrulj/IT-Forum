@@ -162,6 +162,21 @@ function UserDetails(user){
 	        });
 }
 
+
+
+
+
+
+$(function () {
+  $('#name').val("Kukuruza Van Diek");
+  $('#title').val("CEO");
+  $('#email').val("c");
+  $('#tlf').val("86251436");
+  $('#linkedin').val("LinkedinUrl");
+  $('#txtArea').val("Jeg er direktør i et stort firma, der sælger hash og nøgler");
+  
+});
+
 /*
 LogoUrl : {
 			type : String,
