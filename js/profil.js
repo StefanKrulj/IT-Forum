@@ -15,7 +15,9 @@ $('#logind').html("<a href='#pageUserDetail'><img src='img/imgLog.jpg' /></a><di
 	$('#logind').bind('touchstart mousedown', function(e) {
 					
 					sessionStorage.selectedId = localStorage.profilID;
-					sessionStorage.profileSelected = true;
+
+					sessionStorage.profileSelected = '1';
+
 				});
   
 //$(".ui-grid-b").grid("refresh"); 
