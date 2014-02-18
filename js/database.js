@@ -220,6 +220,33 @@ $(document).ready(function() {
 		}
 		//Attendees: { type: Array, required: false, inverseProperty: "User" },
 	});
+	
+		$data.Entity.extend("News", {
+		Id : {
+			type : "int",
+			key : true,
+			computed : true
+		},
+		
+		NewsDate : {
+			type : String,
+			required : true,
+			maxLength : 100
+		},
+	
+		NewsTitle : {
+			type : String,
+			required : true,
+			maxLength : 100
+		},
+		
+		NewsText : {
+			type : String,
+			required : false,
+			maxLength : 3000
+		}
+		
+	});
 
 	$data.EntityContext.extend("ITForumDatabase", {
 
@@ -234,6 +261,10 @@ $(document).ready(function() {
 		Events : {
 			type : $data.EntitySet,
 			elementType : Event
+		},
+		News: {
+			type: $data.EntitySet,
+			elementType : News
 		}
 	});
 
@@ -494,7 +525,33 @@ $(document).ready(function() {
 			EanNo : 567824254525
 			// ContactPerson: { type: "User", required: true, inverseProperty: "Member" }
 		});
+		
+		itForumDatabase.News.add({
+			NewsDate : "19-02-2014",
+			NewsTitle : "Lego giver energi til hjernen",
+			NewsText: "Ny forskning viser, at it-udviklere, vil have godt af at bruge minimum en time om dagen på at bygge med legoklodser..."
+		});
+		
+			itForumDatabase.News.add({
+			NewsDate : "18-02-2014",
+			NewsTitle : "Ny direktør for reynholm industries",
+			NewsText: "Det er netop blevet oplyst, at reynholm industries får ny direktør, da den tidligere netop er blevet anholdt, pga skattesvig..."
+		});
+		
+			itForumDatabase.News.add({
+			NewsDate : "17-02-2014",
+			NewsTitle : "Hvorfor man bare skal ansætte datamatikere",
+			NewsText: "Den finske forsker Leina Eiiiskhifkkks har for nylig afsluttet sin undersøgelse i større it-firmaer. Undersøgelsen gik ud på, hvorvidt det kan betale sig at have minimum en datamatiker ansat i sit firma. Konklusionen er, at det giver en højnet livskvalitet blandt medarbejderne, at have en datamatiker ansat..."
+		});
+		
+			itForumDatabase.News.add({
+			NewsDate : "09-01-2014",
+			NewsTitle : "Efteruddannelse i udvikling af applikationer til mobile enheder hos Erhvervsakademi LIllebælt",
+			NewsText: "Erhvervsakademiet Lillebælt har gennem længere tid eksperimenteret med undervisning i et virtuelt klasseværelse som man kan koble sig op til fra et fysisk rum, fra en PC, tablet eller smartphone. Der er også mulighed for at følge med asynkront, idet undervisningen bliver optaget. Akademiet udbyder i foråret 2014 faget 'Udvikling af mobile enheder' (med mulighed for at deltage uafhængig af tid og sted). Modulets formål er at introducere den studerende til udvikling af applikationer til mobile enheder, herunder forskelle mellem mobile applikationstyper samt de væsentlige konsekvenser teknologivalg har. Modulet kvalificerer den studerende til at kunne udvikle simple applikationer med integration med bagvedliggende systemer. Du forventes at have programmeringserfaring og et vist kenskab til objektorienteret sprog som fx Java eller C#. Faget vil i den konkrete afvikling blive baseret på udvikling til Microsoft Windows Phone med følgende værktøjer - Visual Studio - .NET - C# Der vil blive stillet studielicenser til rådighed for disse værktøjer (Visual Studio). Opstart torsdag den 30. januar (uge 5) og herefter planlagt til torsdag i uge 7, 9, 11, 13, 15, 17 og 19. Tidsrum 17-21. Underviser: Bjørk Boye Busch Deltagergebyr kr. 2.850 Vejledning og yderligere informationer kan fås hos Jørn Vesterdal på 63129161 og hos Bjørk Boye Busch på 63129162"
 
+		});
+		
+	
 		itForumDatabase.saveChanges();
 
 		//UI with jQuery
@@ -510,11 +567,25 @@ $(document).ready(function() {
 				//bliver kaldt antalgange der er tilbage i listen mange gange
 				sessionStorage.selectedId = $(this).attr('data-id');
 });
+});
 	
 			//$('#eventList').listview("refresh");
+			
+		itForumDatabase.News
+		//.include("Event")
+		.forEach(function(itNews) {
 
 			
-		});
+			$('#newsList').append("<li data-id='" + itNews.Id + "' ><a href='#pageNewsDetail'>" + itNews.NewsTitle +'</li>');
+			
+			$('#newsList').children('li').bind('touchstart mousedown', function(e) {
+			
+				sessionStorage.selectedId = $(this).attr('data-id');
+});
+});
+
+			
+		
 		
 	/*
 	
@@ -531,54 +602,61 @@ $(document).ready(function() {
 
   });	
 */
-		 var value = $('#selectbox').val();
-		 
-		 if (value == "firm"){
-		
 				itForumDatabase.Members
-		//.include("Event")
+	
 		.forEach(function(Member) {
 
-			//$('#eventList').append('<li>test</li>');
-			$('#userMemberList').append("<li data-id='" + Member.Id + "' ><a href='#pageMemberDetail'>" + Member.Name +'</li>');
 			
-			$('#userMemberList').children('li').bind('touchstart mousedown', function(e) {
-				//alert('Selected Name=' + $(this).attr('data-id'));
-				//bliver kaldt antalgange der er tilbage i listen mange gange
-				sessionStorage.selectedId = $(this).attr('data-id');
-});
-	
-			//$('#eventList').listview("refresh");
+			$('#userMemberList').append("<li data-id='" + Member.Id + "' ><a href='#pageMemberDetail'>" + Member.Name + '</li>');
 
-			
+			$('#userMemberList').children('li').bind('touchstart mousedown', function(e) {
+				sessionStorage.selectedId = $(this).attr('data-id');
+			});
+
 		});
 		
+		$('#selectbox').change(function() {
+			$('#userMemberList li').remove();
+			if($('#selectbox option:selected').val()=="user"){
+			itForumDatabase.Users
+			
+			
+			.forEach(function(User) {
+
+				
+				$('#userMemberList').append("<li data-id='" + User.Id + "' ><a href='#pageUserDetail'>" + User.FirstName + ' ' + User.LastName + '</li>');
+
+				$('#userMemberList').children('li').bind('touchstart mousedown', function(e) {
+					
+					sessionStorage.selectedId = $(this).attr('data-id');
+				});
+				
+
+				$('#userMemberList').listview("refresh");
+
+			});
 		}
-		 $('#selectbox').change(function(){
-		if (value=="user"){
-		alert("user");
-		  
-				itForumDatabase.Users
-		//.include("Event")
-		.forEach(function(User) {
+			else{
 
-			//$('#eventList').append('<li>test</li>');
-			$('#userMemberList').append("<li data-id='" + User.Id + "' ><a href='#pageUserDetail'>" + User.FirstName + ' ' + User.LastName + '</li>');
+			itForumDatabase.Members
 			
-			$('#userMemberList').children('li').bind('touchstart mousedown', function(e) {
-				//alert('Selected Name=' + $(this).attr('data-id'));
-				//bliver kaldt antalgange der er tilbage i listen mange gange
-				sessionStorage.selectedId = $(this).attr('data-id');
-});
+			.forEach(function(Member) {
+
+				
+				$('#userMemberList').append("<li data-id='" + Member.Id + "' ><a href='#pageMemberDetail'>" + Member.Name + '</li>');
+
+				$('#userMemberList').children('li').bind('touchstart mousedown', function(e) {
+					
+					sessionStorage.selectedId = $(this).attr('data-id');
+				});
+				$('#userMemberList').listview("refresh");
+
+			});
+	}
+		});
+
 	
-			//$('#eventList').listview("refresh");
 
-			
-		});
-			}
-		});
-		
-		
 	
 		
 	});
@@ -586,19 +664,22 @@ $(document).ready(function() {
 
 
 
-$(document).on('pagebeforeshow', '#pageDetailEvent', function(){       
+$(document).on('pagebeforeshow', '#pageDetailEvent', function(){      
 
 itForumDatabase.onReady(function() {
 
 		itForumDatabase.Events
-        .filter(function(event) {return event.Id == sessionStorage.selectedId})
+        .filter(function(event) {return event.Id == sessionStorage.selectedId;})
         .toArray( function(events) { 
-        $("#pageDetailEvent #eventTitle").html(events.join(""));
-	        alert(events);
+        //$("#pageDetailEvent #eventTitle").html(events.join(""));
+	     //   alert(events);
+	    EventDetails(events);
 	        //$('#pageDetailEvent #eventTitle').html('My name is ' + events.attributes ;    
         
-        })     
+        });     
                 });
+                
+                
                 
                 
      /*
@@ -620,18 +701,46 @@ itForumDatabase.onReady(function() {
     
 });
 
+$(document).on('pagebeforeshow', '#pageNewsDetail', function(){       
+
+        
+itForumDatabase.onReady(function() {
+
+		itForumDatabase.News
+        .filter(function(itNews) {return itNews.Id == sessionStorage.selectedId;})
+        .toArray( function(neews) { 
+	    NewsDetails(neews);
+        
+        });     
+                });    
+});
 
 $(document).on('pagebeforeshow', '#pageMemberDetail', function(){       
 
         
-    $('#pageMemberDetail #profileTitle').html('My name is ' + sessionStorage.selectedId); 
-    
+itForumDatabase.onReady(function() {
+
+		itForumDatabase.Members
+        .filter(function(member) {return member.Id == sessionStorage.selectedId;})
+        .toArray( function(members) { 
+	    MemberDetails(members);
+        
+        });     
+                });    
 });
 
 $(document).on('pagebeforeshow', '#pageUserDetail', function(){       
 
         
-    $('#pageUserDetail #userTitle').html('My name is ' + sessionStorage.selectedId); 
+    itForumDatabase.onReady(function() {
+
+		itForumDatabase.Users
+        .filter(function(user) {return user.Id == sessionStorage.selectedId;})
+        .toArray( function(users) { 
+	    UserDetails(users);
+        
+        });     
+                });    
     
 });
 

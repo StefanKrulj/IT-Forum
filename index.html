@@ -11,13 +11,15 @@
 		<meta name="description" content="">
 		<meta name="author" content="Stefan">
 
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="js/custom-init.js"></script>
 		<script src="http://include.jaydata.org/jaydata.js"></script>
+		<script type="text/javascript" src="js/profil.js"></script>
 		<script type="text/javascript" src="js/database.js"></script>
+		<script type="text/javascript" src="js/detailpages.js"></script>
 		<script id="newsEntryTemplate" type="text/html">
 			<div class="newsEntry row clear margin10">
 			<div class="fleft iblock span4"><label>${Value }</label></div>
@@ -35,19 +37,19 @@
 			<div data-role="panel" id="panel01">
 				<ul data-role="listview" data-inset="true">
 					<li>
-						<a href="#">Acura</a>
+						<a href="#">Log ud</a>
 					</li>
 					<li>
-						<a href="#">Audi</a>
+						<a href="#">Notifikationer</a>
 					</li>
 					<li>
-						<a href="#">BMW</a>
+						<a href="#">Gør ting</a>
 					</li>
 					<li>
-						<a href="#">Cadillac</a>
+						<a href="#">Ændre ting</a>
 					</li>
 					<li>
-						<a href="#">Ferrari</a>
+						<a href="#">Whatever ting</a>
 					</li>
 				</ul>
 			</div><!-- /panel -->
@@ -68,7 +70,7 @@
 				<br />
 
 				<div class="ui-grid-b">
-					<div class="ui-block-a">
+					<div id="logind" class="ui-block-a">
 						<a href="#page02"><img src="img/imgLog.jpg" /></a>
 						<div class="imgCaption">
 							Log ind
@@ -87,19 +89,19 @@
 						</div>
 					</div>
 					<div class="ui-block-a">
-						<a href="#page04"><img src="img/imgNews.jpg" /></a>
+						<a href="#pageNews"><img src="img/imgNews.jpg" /></a>
 						<div class="imgCaption">
 							Nyheder
 						</div>
 					</div>
-					<div class="ui-block-b">
-						<a href="#"><img src="img/imgBeMem.png" /></a>
+					<div id="blivmedlem" class="ui-block-b">
+						<a href="http://www.itforum.dk/indmeldelse.asp"><img src="img/imgBeMem.png" /></a>
 						<div class="imgCaption">
 							Blev medlem
 						</div>
 					</div>
 					<div class="ui-block-c">
-						<a href="#"><img src="img/imgCon.jpg" /></a>
+						<a href="http://www.itforum.dk/kontakt.asp"><img src="img/imgCon.jpg" /></a>
 						<div class="imgCaption">
 							Kontakt
 						</div>
@@ -109,16 +111,16 @@
 						.ui-grid-b img {
 							width: 100%;
 							height: auto;
-							margin: 10px;
+							margin: 10%;
 						}
 						.ui-grid-b div {
-							padding: 10px;
+							padding: 6%;
 						}
 						.imgCaption {
 							width: 100%;
 							text-align: center;
-							font-size: 20px;
-							margin-top: 20px;
+							font-size: 80%;
+							margin-top: 5%;
 						}
 					</style>
 				</div>
@@ -213,7 +215,8 @@
 				</a>
 			</div>
 		</div>
-		<div data-role="page" id="page04" data-title="Page 4">
+		
+		<div data-role="page" id="pageNews" data-title="Page 4">
 			<div data-role="header">
 				<h1>Nyheder</h1>
 
@@ -224,6 +227,19 @@
 				<ul id="newsList" data-role="listview" data-filter="true" data-filter-placeholder="Whatever" data-inset="true"></ul>
 			</div>
 		</div>
+		<div data-role="page" id="pageNewsDetail" data-title="Page 4">
+			<div data-role="header">
+				<h1>Nyheds Detaljer</h1>
+
+				<a href="#pageNews" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+			</div>
+			<div data-role="content">
+				<div id="newsAttributes">
+
+				</div>
+			</div>
+		</div>
+			
 		<div data-role="page" id="pageEvent" data-title="Page 4">
 			<div data-role="header">
 				<h1>Arrangementer</h1>
@@ -235,6 +251,7 @@
 				<ul id="eventList" data-role="listview" data-filter="true" data-filter-placeholder="Whatever" data-inset="true"></ul>
 			</div>
 		</div>
+		
 		<div data-role="page" id="pageDetailEvent" data-title="Page 4">
 			<div data-role="header">
 				<h1>Arrangement Detaljer</h1>
@@ -243,7 +260,7 @@
 			</div>
 
 			<div data-role="content">
-				<div id="eventTitle">
+				<div id="eventAttributes">
 
 				</div>
 			</div>
@@ -282,21 +299,22 @@
 			</div>
 
 			<div data-role="content">
-				<div id="profileTitle">
+				<div id="memberAttributes">
 
 				</div>
 			</div>
 		</div>
 		
-				<div data-role="page" id="pageUserDetail" data-title="Page 4">
+				
+		<div data-role="page" id="pageUserDetail" data-title="Page 4">
 			<div data-role="header">
 				<h1>Bruger Detaljer</h1>
 
-				<a href="#pageMember" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+				<a id="userBack" href="#pageMember" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
 			</div>
 
 			<div data-role="content">
-				<div id="userTitle">
+				<div id="userAttributes">
 
 				</div>
 			</div>
