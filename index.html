@@ -125,8 +125,20 @@
 					</style>
 				</div>
 
+			</div>
+		</div>
+		<div data-role="page" id="pageLogin" data-title="Page Login">
+			<div data-role="header">
+				<h1>Login</h1>
+
+				<a href="#page01" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+
+			</div>
+
+			<div data-role="content">
 				
 			</div>
+		</div>
 		</div>
 		<div data-role="page" id="page02" data-title="Page 2">
 			<div data-role="header">
@@ -215,7 +227,7 @@
 				</a>
 			</div>
 		</div>
-		
+
 		<div data-role="page" id="pageNews" data-title="Page 4">
 			<div data-role="header">
 				<h1>Nyheder</h1>
@@ -239,7 +251,7 @@
 				</div>
 			</div>
 		</div>
-			
+
 		<div data-role="page" id="pageEvent" data-title="Page 4">
 			<div data-role="header">
 				<h1>Arrangementer</h1>
@@ -251,7 +263,7 @@
 				<ul id="eventList" data-role="listview" data-filter="true" data-filter-placeholder="Whatever" data-inset="true"></ul>
 			</div>
 		</div>
-		
+
 		<div data-role="page" id="pageDetailEvent" data-title="Page 4">
 			<div data-role="header">
 				<h1>Arrangement Detaljer</h1>
@@ -273,24 +285,20 @@
 				<a href="#page01" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
 			</div>
 
-			
 			<div data-role="content">
-     <select name="selectbox" id="selectbox">
-         
-        <option value="firm">Virksomhed</option>
-        <option value="user">Bruger</option>
-    </select>
-    	<div data-role="content">
-				<ul id="userMemberList" data-role="listview" data-filter="true" data-filter-placeholder="Whatever" data-inset="true"></ul>
-				
-			</div>
-   </div>
+				<select name="selectbox" id="selectbox">
 
-		
-			
+					<option value="firm">Virksomhed</option>
+					<option value="user">Bruger</option>
+				</select>
+				<div data-role="content">
+					<ul id="userMemberList" data-role="listview" data-filter="true" data-filter-placeholder="Whatever" data-inset="true"></ul>
+
+				</div>
+			</div>
+
 		</div>
-		
-		
+
 		<div data-role="page" id="pageMemberDetail" data-title="Page 4">
 			<div data-role="header">
 				<h1>Virksomhed Detaljer</h1>
@@ -304,8 +312,7 @@
 				</div>
 			</div>
 		</div>
-		
-				
+
 		<div data-role="page" id="pageUserDetail" data-title="Page 4">
 			<div data-role="header">
 				<h1>Bruger Detaljer</h1>
@@ -319,6 +326,6 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</body>
 </html>
