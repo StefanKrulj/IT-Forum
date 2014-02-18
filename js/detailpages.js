@@ -132,7 +132,7 @@ function UserDetails(user){
 			 $("#pageUserDetail #userAttributes").append("<a href='#page03' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Indstillinger</a>");
 			 
 			if (sessionStorage.profileSelected == true){
-			alert("trfgdfg");
+			
 			$("#userBack").attr("href", "#page01");
 							
 				sessionStorage.profileSelected = false;
