@@ -11,7 +11,7 @@ if (localStorage.profilID)
 
 
  
-$('#logind').html("<a href='#pageUserDetail'><img src='img/imgLog.jpg' /></a><div class='imgCaption'>Profil</div>");
+$('#logind').html("<a href='#pageUserDetail'><img src='img/imgprofile.jpg' /></a><div class='imgCaption'>Profil</div>");
 	$('#logind').bind('touchstart mousedown', function(e) {
 					
 					sessionStorage.selectedId = localStorage.profilID;
@@ -19,6 +19,8 @@ $('#logind').html("<a href='#pageUserDetail'><img src='img/imgLog.jpg' /></a><di
 					sessionStorage.profileSelected = '1';
 
 				});
+				
+$('#blivmedlem').html("<a href='#pageNetworking'><img src='img/imgnetw.jpg' /></a><div class='imgCaption'>Networking</div>");				
   
 //$(".ui-grid-b").grid("refresh"); 
 
