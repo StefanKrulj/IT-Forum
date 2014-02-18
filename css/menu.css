@@ -1,17 +1,31 @@
-body {
-	.ui-grid-c img{
-		width: 100%;
-		height: auto;
-		margin: 10px;
-	}
-	.ui-grid-c div{
-		padding: 10px;
-		
-	}
-	.imgCaption{
-		width: 100%;
-		text-align: center;
-		font-size: 12px;
-		margin-top: 20px;
-	}
+.ui-grid-b img {
+	width: 100%;
+	height: auto;
+	margin: 10%;
+}
+.ui-grid-b div {
+	padding: 6%;
+}
+.imgCaption {
+	width: 100%;
+	text-align: center;
+	font-size: 100%;
+	margin-top: 5%;
+}
+
+
+#content{
+	margin: 0%;
+	border: 0%;
+	background-color: white ;
+	
+	
+}
+#logo{
+	
+	width: 100%;
+	margin: 0%;
+	
+	
+	
 }
