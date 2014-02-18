@@ -129,13 +129,13 @@ function UserDetails(user){
 	 
 		$("#pageUserDetail #userAttributes").empty();
 		if( us.Id == localStorage.profilID){
-			 $("#pageUserDetail #userAttributes").append("<a href='#page03' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Indstillinger</a>");
+			 $("#pageUserDetail #userAttributes").append("<a href='#editProfile' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Rediger bruger</a>");
 			 
-			if (sessionStorage.profileSelected == true){
-			alert("trfgdfg");
+			if (sessionStorage.profileSelected == '1'){
+			
 			$("#userBack").attr("href", "#page01");
 							
-				sessionStorage.profileSelected = false;
+				sessionStorage.profileSelected = '0';
 			}
 			
 		}
