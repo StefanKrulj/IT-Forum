@@ -122,6 +122,14 @@ function MemberDetails(member){
 	  });
 }
 
+$('#btnSaveEdit').onclick(function UserSave(user){
+	user.forEach(function(us){
+		
+	});
+	
+	
+});
+
 function UserDetails(user){
 		
 
@@ -147,17 +155,22 @@ function UserDetails(user){
 			
 		}		
 		
-        $("#pageUserDetail #userAttributes").append("<h2 id='userFirstName'>Navn: " + us.FirstName + " " + us.LastName + "</h2>" );
-        $("#pageUserDetail #userAttributes").append("<h3 id='userTitle'>Titel: " + us.Title + "</h3>" );
-       
-        $("#pageUserDetail #userAttributes").append("<a href=" + us.LinkedInUrl + ">LinkedinUrl</a>");
-		$("#pageUserDetail #userAttributes").append("<p id='userProfileText'> Profiltekst: " + us.ProfileText + "</p>" );
-		$("#pageUserDetail #userAttributes").append("<p id='userPhoneNo'>Arbejdstelefon: " + us.PhoneNo + "</p>" );	
-		$("#pageUserDetail #userAttributes").append("<p id='userMobileNo'>Mobiltelefon: " + us.MobileNo + "</p>" );	
-		$("#pageUserDetail #userAttributes").append("<p id='userEmail'>emailadresse: " + us.Email + "</p>" );	
+        $("#pageUserDetail #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.FirstName + " " + us.LastName + "</h2></td></tr></table>" );
+        $("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + us.Title + "</h3></td></tr></table>" );
+        
+        $("#pageUserDetail #userAttributes").append("<table><tr><td><a href=" + us.LinkedInUrl + ">LinkedinUrl</a></td></tr></table>");
+		$("#pageUserDetail #userAttributes").append("<p id='userProfileText'> " + us.ProfileText + "</p>" );
+		$("#pageUserDetail #userAttributes").append("<p id='userPhoneNo'> " + us.PhoneNo + "</p>" );	
+		$("#pageUserDetail #userAttributes").append("<p id='userMobileNo'> " + us.MobileNo + "</p>" );	
+		$("#pageUserDetail #userAttributes").append("<p id='userEmail'> " + us.Email + "</p>" );	
 			
 	       
-	        
+	          $('#name').val($('#userFirstName').text());
+  			  $('#title').val($('#userTitle').text());
+  		      $('#emailEdit').val($('#userEmail').text());
+  			  $('#tlf').val($('#userPhoneNo').text());
+  			  $('#linkedin').val($("#LinkedinUrl").text());
+  			  $('#txtArea').val($('#userProfileText').text());
 	        
 	        });
 }
@@ -167,15 +180,12 @@ function UserDetails(user){
 
 
 
-$(function () {
-  $('#name').val("Kukuruza Van Diek");
-  $('#title').val("CEO");
-  $('#email').val("c");
-  $('#tlf').val("86251436");
-  $('#linkedin').val("LinkedinUrl");
-  $('#txtArea').val("Jeg er direktør i et stort firma, der sælger hash og nøgler");
+//s$(function () {
+	
+
+
   
-});
+//});
 
 /*
 LogoUrl : {
