@@ -131,15 +131,28 @@ function UserDetails(user){
 		if( us.Id == localStorage.profilID){
 			 $("#pageUserDetail #userAttributes").append("<a href='#editProfile' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Rediger bruger</a>");
 			 
+<<<<<<< HEAD
 			if (sessionStorage.profileSelected == '1'){
 			
 			$("#userBack").attr("href", "#page01");
 							
 				sessionStorage.profileSelected = '0';
 			}
+=======
+			if (sessionStorage.profileSelected == "1"){
+
+			$("#userBack").attr("href", "#page01");
+							
+				sessionStorage.profileSelected = "0";
+			}else {
+		
+			$("#userBack").attr("href", "#pageMember");
+>>>>>>> f4b8cb2384dda50d8598cd09581a6515c5eef0d1
 			
 		}
-		
+
+			
+		}		
 		
         $("#pageUserDetail #userAttributes").append("<h2 id='userFirstName'>Navn: " + us.FirstName + " " + us.LastName + "</h2>" );
         $("#pageUserDetail #userAttributes").append("<h3 id='userTitle'>Titel: " + us.Title + "</h3>" );
