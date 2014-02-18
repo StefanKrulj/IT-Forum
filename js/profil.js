@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
-localStorage.profilID = "logout";
+localStorage.profilID = 1;
 
-var profilid = parseInt(localStorage.profilID);
-if (typeof profilid == 'number')
+if (localStorage.profilID)
   {
   
 
