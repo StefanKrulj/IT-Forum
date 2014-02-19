@@ -4,18 +4,18 @@ $(document).ready(function() {
 	
 	function checkLogin(){
 		if (localStorage.profilID == 'loggedOut') {
-			$('#logind').hide();
-			$('#profil').show();
+			$('#logind').show();
+			$('#profil').hide();
 			
-			$('#blivmedlem').hide();
-			$('#networking').show();
+			$('#blivmedlem').show();
+			$('#networking').hide();
 		}
 		else{
-			$('#profil').hide();
-			$('#logind').show();
+			$('#profil').show();
+			$('#logind').hide();
 			
-			$('#networking').hide();
-			$('#blivmedlem').show();
+			$('#networking').show();
+			$('#blivmedlem').hide();
 			
 			$('#profil').bind('touchstart mousedown', function(e) {
 
@@ -52,7 +52,7 @@ $(document).ready(function() {
 	});
 	
 	$('#loginBtn').on("click",function(){
-		localStorage.profilID = 1;
+		localStorage.profilID = '1';
 		
 		checkLogin();
 		
