@@ -1,33 +1,70 @@
 $(document).ready(function() {
+	
+	checkLogin();
+	
+	function checkLogin(){
+		if (localStorage.profilID == 'loggedOut') {
+			$('#logind').hide();
+			$('#profil').show();
+			
+			$('#blivmedlem').hide();
+			$('#networking').show();
+		}
+		else{
+			$('#profil').hide();
+			$('#logind').show();
+			
+			$('#networking').hide();
+			$('#blivmedlem').show();
+			
+			$('#profil').bind('touchstart mousedown', function(e) {
 
-localStorage.profilID = 1;
+			sessionStorage.selectedId = localStorage.profilID;
+			sessionStorage.profileSelected = '1';
+		});
+		}
+	}
 
-if (localStorage.profilID)
-  {
-  
+	// if (localStorage.loggedIn == 'true') {
+// 		
+		// $('#profil').bind('touchstart mousedown', function(e) {
+// 
+			// sessionStorage.selectedId = localStorage.profilID;
+			// sessionStorage.profileSelected = '1';
+		// });
+// 	
+		// $(".ui-grid-b").grid("refresh");
+	// } else {
+// 
+		// $(".ui-grid-b").grid("refresh");
+	// }
+	
+	$('#logoutBtn').on("click",function(){
+		localStorage.profilID = 'loggedOut';
+		
+		checkLogin();
+		
+		// jQuery.mobile.changePage(window.location.href, {
+        // allowSamePageTransition: true,
+        // transition: 'none',
+        // reloadPage: true
+    	// });
+	});
+	
+	$('#loginBtn').on("click",function(){
+		localStorage.profilID = 1;
+		
+		checkLogin();
+		
+		// jQuery.mobile.changePage(window.location.href, {
+        // allowSamePageTransition: true,
+        // transition: 'none',
+        // reloadPage: true
+    	// });
+	});
+	
+	// $('#settings').on('click', 'li', function() {
+        // alert("Works"); // id of clicked li by directly accessing DOMElement property
+    // });
 
-  $('#blivmedlem').html("<h2>test2<h2/>");
-
-
- 
-$('#logind').html("<a href='#pageUserDetail'><img src='img/imgprofile.jpg' /></a><div class='imgCaption'>Profil</div>");
-	$('#logind').bind('touchstart mousedown', function(e) {
-					
-					sessionStorage.selectedId = localStorage.profilID;
-
-					sessionStorage.profileSelected = '1';
-
-				});
-				
-$('#blivmedlem').html("<a href='#pageNetworking'><img src='img/imgnetw.jpg' /></a><div class='imgCaption'>Networking</div>");				
-  
-//$(".ui-grid-b").grid("refresh"); 
-
-  }
-else
-  {
-  }
-
-
-
-});
+}); 

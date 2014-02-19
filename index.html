@@ -34,9 +34,9 @@
 		<div data-role="page" id="page01" data-title="Page 1">
 
 			<div data-role="panel" id="panel01">
-				<ul data-role="listview" data-inset="true">
+				<ul id="settings" data-role="listview" data-inset="true">
 					<li>
-						<a href="#">Log ud</a>
+						<a id="logoutBtn" href="#">Log ud</a>
 					</li>
 					<li>
 						<a href="#">Notifikationer</a>
@@ -71,14 +71,20 @@
 							Log ind
 						</div>
 					</div>
+					<div id="profil" class="ui-block-a">
+						<a href='#pageUserDetail'><img src='img/imgprofile.jpg' /></a>
+						<div class='imgCaption'>
+							Profil
+						</div>
+					</div>
 					<div class="ui-block-b">
 						<a href="#pageEvent"><img src="img/imgArr.jpg" /></a>
 						<div class="imgCaption">
 							Arrangementer
 						</div>
 					</div>
-					<div class="ui-block -c">
-						<a href="#pageMember"><img src="img/imgmem.jpg" /></a>
+					<div class="ui-block-c">
+						<a href="#pageMember"><img src="img/user-group-icon.png" /></a>
 						<div class="imgCaption">
 							Medlemmer
 						</div>
@@ -93,6 +99,12 @@
 						<a href="http://www.itforum.dk/indmeldelse.asp"><img src="img/imgBeMem.png" /></a>
 						<div class="imgCaption">
 							Blev medlem
+						</div>
+					</div>
+					<div id="networking" class="ui-block-b">
+						<a href='#pageNetworking'><img src='img/imgnetw.jpg' /></a>
+						<div class='imgCaption'>
+							Networking
 						</div>
 					</div>
 					<div class="ui-block-c">
@@ -146,7 +158,9 @@
 					<input type="button" class="btn btn-default" accesskey="l" id="create_btn" name="create" value="Opret bruger" />
 					</a>
 
-					<input type="button" class="btn btn-default" accesskey="l" id="login_btn" name="login" value="Login" />
+					<a href="page01">
+					<input type="button" class="btn btn-default" accesskey="l" id="loginBtn" name="login" value="Login" />
+					</a>
 
 				</div>
 			</div>
