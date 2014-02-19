@@ -159,10 +159,10 @@ function UserDetails(user){
         $("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + us.Title + "</h3></td></tr></table>" );
         
         $("#pageUserDetail #userAttributes").append("<table><tr><td><a href=" + us.LinkedInUrl + ">LinkedinUrl</a></td></tr></table>");
-		$("#pageUserDetail #userAttributes").append("<p id='userProfileText'> " + us.ProfileText + "</p>" );
-		$("#pageUserDetail #userAttributes").append("<p id='userPhoneNo'> " + us.PhoneNo + "</p>" );	
-		$("#pageUserDetail #userAttributes").append("<p id='userMobileNo'> " + us.MobileNo + "</p>" );	
-		$("#pageUserDetail #userAttributes").append("<p id='userEmail'> " + us.Email + "</p>" );	
+		$("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + us.ProfileText + "</p></h3></td></tr></table>" );
+		$("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Arbejdstelefon:</h3></td><td><p id='userPhoneNo'> " + us.PhoneNo + "</p></td></tr></table>" );	
+		$("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + us.MobileNo + "</p></td></tr></table>" );	
+		$("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + us.Email + "</p></td></tr></table>" );	
 			
 	       
 	          $('#name').val($('#userFirstName').text());
