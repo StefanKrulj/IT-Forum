@@ -25,7 +25,7 @@
 		<script type="text/javascript" src="js/detailpages.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
 
-		<!--<link rel="stylesheet" type="text/css" href="css/home.css" />-->
+		<link rel="stylesheet" type="text/css" href="css/home.css" />
 		<link rel="stylesheet" type="text/css" href="css/menu.css" />
 
 	</head>
@@ -211,10 +211,8 @@
 				<br />
 				<br />
 				<a href="login.html">
-				<input type="button" class="btn btn-default" accesskey="l" id="cancel_btn" name="cancel" value="Annuller" />
-				</a>
-				<a href="createUser.html">
-				<input type="button" class="btn btn-default" accesskey="2" id="save_btn" name="save" value="Gem" />
+				<a href="index.html" data-role="button" data-inline="true">Annuller</a>
+				<a href="index.html" data-role="button" data-inline="true">Gem</a>
 				</a>
 			</div>
 		</div>
@@ -240,12 +238,12 @@
 
 				Om dig:
 				<textarea id="txtArea" rows="100" cols="100"></textarea>							
-
-				<input type="button" class="btn btn-default" accesskey="2" id="save_btn" name="save" value="Gem"  />
-
-				<input type="button" class="btn btn-default" accesskey="l" id="cancel_btn" name="cancel" value="Annuller"/>
-
-			</div>
+				</div>
+				
+				<a href="#pageUserDetail" data-direction="reverse" data-transition="slide" data-role="button" class="custom-btn" data-inline="true">Annuller</a>
+				<a data-role="button" class="custom-btn" data-inline="true">Gem</a>
+				
+			
 		</div>
 		<div data-role="page" id="pageNews" data-title="Page 4">
 			<div data-role="header">
