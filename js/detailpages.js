@@ -10,7 +10,9 @@ function EventDetails(event){
         $("#pageDetailEvent #eventAttributes").append("<p id='eventData'> Den " + eve.EventDate + " kl: "+ eve.StartTime + " - " + eve.EndTime + "</p>" ); 
         $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.EventLocation + "</p>" );
         $("#pageDetailEvent #eventAttributes").append("<p id='eventDescription'>" + eve.Description + "</p>" );
+		$("#pageDetailEvent #eventAttributes").append("<a href='#pagePaticipantsList' id='participants_btn' name='participants' class='ui-btn'>Deltagere</a>" );
 		
+
        // $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.StartTime + "</p" );
        // $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.EventLocation + "</p" );
        // $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.EventLocation + "</p" );
@@ -23,121 +25,17 @@ function EventDetails(event){
 	        });
 }
 
-function NewsDetails(itNews){
-
-	itNews.forEach(function(news) { 
-	
-	         $("#pageNewsDetail #newsAttributes").empty();
-
-        $("#pageNewsDetail #newsAttributes").append("<h2 id='newsTitle'>" + news.NewsTitle + "</h2>" );
-        $("#pageNewsDetail #newsAttributes").append("<p id='newsDate'> Den " + news.NewsDate + "</p>" ); 
-        
-        $("#pageNewsDetail #newsAttributes").append("<p id='newsDescription'>" + news.NewsText + "</p>" );
-		
-               
-	        
-	        
-	        
-	        });
-}
-
-/*
-	type : String,
-			required : true,
-			maxLength : 100
-		},
-		RegistrationDeadline : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		EventLocation : {
-			type : String,
-			required : true,
-			maxLenght : 100
-		},
-		StartTime : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		EndTime : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		Arranger : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		Description : {
-			type : String,
-			required : true,
-			maxLength : 3000
-		},
-		Tags : {
-			type : String,
-			required : false,
-			maxLength : 450
-		},
-		Program : {
-			type : String,
-			required : false,
-			maxLength : 1000
-		},
-		EventUrl : {
-			type : String,
-			required : false,
-			maxLength : 200
-		},
-		Price : {
-*/
 
 
-function MemberDetails(member){
-		//alert("kommer jheg her?")
 
-
-	member.forEach(function(mem) { 
-		$("#pageMemberDetail #memberAttributes").empty();
-		
-			//Size : 50,
-			//Price : 100,
-			
-			//ZipCode : 8700,
-			//Town : "Horsens",
-			//PhoneNo : 87452632,
-			//EanNo : 458742145477588
-        $("#pageMemberDetail #memberAttributes").append("<h2 id='memberName'> Navn: " + mem.Name + "</h2>" );	
-        $("#pageMemberDetail #memberAttributes").append("<h3 id='memberAddress'>" + mem.Address + "</h3>" );
-        $("#pageMemberDetail #memberAttributes").append("<h3 id='memberZipCode'>" + mem.ZipCode + " " +  mem.Town +"</h3>" );
-       	//$("#pageMemberDetail #memberAttributes").append("<h3 id='memberZipCode'>" + mem.ZipCode + " " +  mem.Town +"</h3>" );
-       //	$("#pageMemberDetail #memberAttributes").append("<h3 id='memberZipCode'>" + mem.ZipCode + " " +  mem.Town +"</h3>" );
-       	
-        //$("#pageMemberDetail #memberAttributes").append("<a href=" + mem.WebPage + ">WebPage</a>"); 
-
-        //$("#pageMemberDetail #memberAttributes").append("<p id='memberProfileText'>" + mem.ProfileText + "</p>" );
- 
-	  });
-}
-
-$('#btnSaveEdit').onclick(function UserSave(user){
-	user.forEach(function(us){
-		
-	});
-	
-	
-});
 
 function UserDetails(user){
 		
-
 	user.forEach(function(us) {
 	 
-		$("#pageUserDetail #userAttributes").empty();
+		$("#pagePaticipantsDetail #userAttributes").empty();
 		if( us.Id == localStorage.profilID){
-			 $("#pageUserDetail #userAttributes").append("<a href='#editProfile' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Rediger bruger</a>");
+			 $("#pagePaticipantsDetail #userAttributes").append("<a href='#editProfile' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Rediger bruger</a>");
 			 
 
 			if (sessionStorage.profileSelected == "1"){
@@ -147,7 +45,7 @@ function UserDetails(user){
 				sessionStorage.profileSelected = "0";
 			}else {
 		
-			$("#userBack").attr("href", "#pageMember");
+			$("#userBack").attr("href", "#pagePaticipantsList");
 
 			
 		}
@@ -155,14 +53,14 @@ function UserDetails(user){
 			
 		}		
 		
-        $("#pageUserDetail #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.FirstName + " " + us.LastName + "</h2></td></tr></table>" );
-        $("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + us.Title + "</h3></td></tr></table>" );
+        $("#pagePaticipantsDetail #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.FirstName + " " + us.LastName + "</h2></td></tr></table>" );
+        $("#pagePaticipantsDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + us.Title + "</h3></td></tr></table>" );
         
-        $("#pageUserDetail #userAttributes").append("<table><tr><td><a href=" + us.LinkedInUrl + ">LinkedinUrl</a></td></tr></table>");
-		$("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + us.ProfileText + "</p></h3></td></tr></table>" );
-		$("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Arbejdstelefon:</h3></td><td><p id='userPhoneNo'> " + us.PhoneNo + "</p></td></tr></table>" );	
-		$("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + us.MobileNo + "</p></td></tr></table>" );	
-		$("#pageUserDetail #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + us.Email + "</p></td></tr></table>" );	
+        $("#pagePaticipantsDetail #userAttributes").append("<table><tr><td><a href=" + us.LinkedInUrl + ">LinkedinUrl</a></td></tr></table>");
+		$("#pagePaticipantsDetail #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + us.ProfileText + "</p></h3></td></tr></table>" );
+		$("#pagePaticipantsDetail #userAttributes").append("<table><tr><td><h3>Arbejdstelefon:</h3></td><td><p id='userPhoneNo'> " + us.PhoneNo + "</p></td></tr></table>" );	
+		$("#pagePaticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + us.MobileNo + "</p></td></tr></table>" );	
+		$("#pagePaticipantsDetail #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + us.Email + "</p></td></tr></table>" );	
 			
 	       
 	          $('#name').val($('#userFirstName').text());

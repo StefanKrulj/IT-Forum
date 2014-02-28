@@ -64,7 +64,7 @@
 				<br />
 				<br />
 
-				<div class="ui-grid-b">
+				<div class="ui-grid-a">
 					<div id="logind" class="ui-block-a">
 						<a href="#page02"><img src="img/imgLog.jpg" /></a>
 						<div class="imgCaption">
@@ -72,7 +72,7 @@
 						</div>
 					</div>
 					<div id="profil" class="ui-block-a">
-						<a href='#pageUserDetail'><img src='img/imgprofile.jpg' /></a>
+						<a href='#pagePaticipantsDetail'><img src='img/imgprofile.jpg' /></a>
 						<div class='imgCaption'>
 							Profil
 						</div>
@@ -83,31 +83,20 @@
 							Arrangementer
 						</div>
 					</div>
-					<div class="ui-block-c">
-						<a href="#pageMember"><img src="img/user-group-icon.png" /></a>
-						<div class="imgCaption">
-							Medlemmer
-						</div>
-					</div>
-					<div class="ui-block-a">
-						<a href="#pageNews"><img src="img/imgNews.jpg" /></a>
-						<div class="imgCaption">
-							Nyheder
-						</div>
-					</div>
-					<div id="blivmedlem" class="ui-block-b">
+				
+					<div id="blivmedlem" class="ui-block-a">
 						<a href="http://www.itforum.dk/indmeldelse.asp"><img src="img/imgBeMem.png" /></a>
 						<div class="imgCaption">
 							Blev medlem
 						</div>
 					</div>
-					<div id="networking" class="ui-block-b">
+					<div id="networking" class="ui-block-a">
 						<a href='#pageNetworking'><img src='img/imgnetw.jpg' /></a>
 						<div class='imgCaption'>
 							Networking
 						</div>
 					</div>
-					<div class="ui-block-c">
+					<div class="ui-block-b">
 						<a href="http://www.itforum.dk/kontakt.asp"><img src="img/imgCon.jpg" /></a>
 						<div class="imgCaption">
 							Kontakt
@@ -165,111 +154,7 @@
 				</div>
 			</div>
 		</div>
-		<div data-role="page" id="page03" data-title="Page 3">
-			<div data-role="header">
-				<h1>Opret bruger</h1>
-
-				<a href="#page02" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
-			</div>
-
-			<div data-role="content">
-				<select class="form-control">
-					<option>Firma1</option>
-					<option>Firma2</option>
-					<option>Firma3</option>
-					<option>Firma4</option>
-					<option>Firma5</option>
-				</select>
-				<br />
-				<a href="http://www.itforum.dk/indmeldelse.asp">
-				<input type="button" class="btn btn-default" id="new_btn" name="new" value="Mit firma er ikke medlem" />
-				</a>
-				<br />
-				<br />
-				<label for="InputPassword">Password</label>
-				<input type="password" class="form-control" name="password" id="password" placeholder="Password" />
-				<br />
-
-				<label for="InputFornavn">Fornavn</label>
-				<input type="text" class="form-control" name="navn" id="navn" placeholder="Fornavn" />
-				<br />
-
-				<label for="InputEfternavn">Efternavn</label>
-				<input type="text" class="form-control" name="efternavn" id="efternavn" placeholder="Efternavn" />
-				<br />
-
-				<label for="InputEmail">Email</label>
-				<input type="email" class="form-control" name="email" id="email" placeholder="Email" />
-				<br />
-
-				<label for="InputTlf">Tlf.nr</label>
-				<input type="tel" class="form-control" name="telefon" id="telefon" placeholder="Telefon" />
-				<br />
-				<label>
-					<input type="checkbox" value="">
-					Modtag nyhedsbrev </label>
-				<br />
-				<br />
-				<a href="login.html">
-				<a href="index.html" data-role="button" data-inline="true">Annuller</a>
-				<a href="index.html" data-role="button" data-inline="true">Gem</a>
-				</a>
-			</div>
-		</div>
-
-		<div data-role="page" id="editProfile" data-title="Page 3">
-			<div data-role="header">
-				<h1>Rediger bruger</h1>
-
-				<a href="#pageUserDetail" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
-			</div>
-
-			<div data-role="content">
-				<label for="InputName">Navn</label>										
- 				<input type="text" class="form-control" name="name" id="name" placeholder="" />
-				<label for="InputTitle">Titel</label>
-				<input type="text" class="form-control" name="title" id="title" placeholder="" />
-				<label for="InputEmail">Email</label>
-				<input type="text" class="form-control" name="email" id="emailEdit" placeholder="" />
-				<label for="InputTlf">Tlf</label>
-				<input type="tel" class="form-control" name="tlf" id="tlf" placeholder="" />
-				<label for="InputLinkedin">Linkedin</label>
-				<input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="" />
-
-				Om dig:
-				<textarea id="txtArea" rows="100" cols="100"></textarea>							
-				</div>
-				
-				<a href="#pageUserDetail" data-direction="reverse" data-transition="slide" data-role="button" class="custom-btn" data-inline="true">Annuller</a>
-				<a data-role="button" class="custom-btn" data-inline="true">Gem</a>
-				
-			
-		</div>
-		<div data-role="page" id="pageNews" data-title="Page 4">
-			<div data-role="header">
-				<h1>Nyheder</h1>
-
-				<a href="#page01" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
-			</div>
-
-			<div data-role="content">
-				<ul id="newsList" data-role="listview" data-filter="true" data-filter-placeholder="Whatever" data-inset="true"></ul>
-			</div>
-		</div>
-
-		<div data-role="page" id="pageNewsDetail" data-title="Page 4">
-			<div data-role="header">
-				<h1>Nyheds Detaljer</h1>
-
-				<a href="#pageNews" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
-			</div>
-			<div data-role="content">
-				<div id="newsAttributes">
-
-				</div>
-			</div>
-		</div>
-
+		
 		<div data-role="page" id="pageEvent" data-title="Page 4">
 			<div data-role="header">
 				<h1>Arrangementer</h1>
@@ -296,46 +181,29 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="pageMember" data-title="Page 5">
+		<div data-role="page" id="pagePaticipantsList" data-title="Page 5">
 			<div data-role="header">
-				<h1>Medlemmer</h1>
+				<h1>Deltagere</h1>
 
 				<a href="#page01" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
 			</div>
 
-			<div data-role="content">
-				<select name="selectbox" id="selectbox">
-
-					<option value="firm">Virksomhed</option>
-					<option value="user">Bruger</option>
-				</select>
+			
 				<div data-role="content">
-					<ul id="userMemberList" data-role="listview" data-filter="true" data-filter-placeholder="Whatever" data-inset="true"></ul>
+					<ul id="paticipantsList" data-role="listview" data-filter="true" data-filter-placeholder="Whatever" data-inset="true"></ul>
 
 				</div>
-			</div>
+			
 
 		</div>
 
-		<div data-role="page" id="pageMemberDetail" data-title="Page 4">
-			<div data-role="header">
-				<h1>Virksomhed Detaljer</h1>
+	
 
-				<a href="#pageMember" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
-			</div>
-
-			<div data-role="content">
-				<div id="memberAttributes">
-
-				</div>
-			</div>
-		</div>
-
-		<div data-role="page" id="pageUserDetail" data-title="Page 4">
+		<div data-role="page" id="pagePaticipantsDetail" data-title="Page 4">
 			<div data-role="header">
 				<h1>Bruger Detaljer</h1>
 
-				<a id="userBack" href="#pageMember" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+				<a id="userBack" href="#pagePaticipantsList" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
 			</div>
 
 			<div data-role="content">

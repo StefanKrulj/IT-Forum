@@ -1,88 +1,6 @@
 $(document).ready(function() {
 	//NB på computed!!!!
-	$data.Entity.extend("Member", {
-		Id : {
-			type : "int",
-			key : true,
-			computed : true
-		},
-		LogoUrl : {
-			type : String,
-			required : false,
-			maxLength : 500
-		},
-		WebPage : {
-			type : String,
-			required : false,
-			maxLength : 500
-		},
-		Name : {
-			type : String,
-			required : true,
-			maxLength : 200
-		},
-		ProfileText : {
-			type : String,
-			required : false,
-			maxLength : 3000
-		},
-		CoreCompetencies : {
-			type : String,
-			required : false,
-			maxLength : 3000
-		},
-		Branche : {
-			type : String,
-			required : false,
-			maxLength : 100
-		},
-		Tags : {
-			type : String,
-			required : false,
-			maxLength : 450
-		},
-		Size : {
-			type : "int",
-			required : true,
-			maxLength : 20
-		},
-		Price : {
-			type : "int",
-			required : true,
-			maxLength : 10
-		},
-		Address : {
-			type : String,
-			required : true,
-			maxLength : 200
-		},
-		ZipCode : {
-			type : "int",
-			required : true,
-			maxLength : 4
-		},
-		Town : {
-			type : String,
-			required : true,
-			maxLength : 20
-		},
-		PhoneNo : {
-			type : "int",
-			required : true,
-			maxLength : 8
-		},
-		EanNo : {
-			type : "int",
-			required : true,
-			maxLength : 12
-		}
-		// ContactPerson: { type: "User", required: true, inverseProperty: "Member" }
-
-		//Task: { type: String, required: true, maxLength: 200 },
-		//DueDate: { type: Date },
-		//Completed: { type: Boolean },
-
-	});
+	
 
 	$data.Entity.extend("User", {
 		Id : {
@@ -221,32 +139,7 @@ $(document).ready(function() {
 		//Attendees: { type: Array, required: false, inverseProperty: "User" },
 	});
 	
-		$data.Entity.extend("News", {
-		Id : {
-			type : "int",
-			key : true,
-			computed : true
-		},
 		
-		NewsDate : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-	
-		NewsTitle : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		
-		NewsText : {
-			type : String,
-			required : false,
-			maxLength : 3000
-		}
-		
-	});
 
 	$data.EntityContext.extend("ITForumDatabase", {
 
@@ -254,18 +147,10 @@ $(document).ready(function() {
 			type : $data.EntitySet,
 			elementType : User
 		},
-		Members : {
-			type : $data.EntitySet,
-			elementType : Member
-		},
 		Events : {
 			type : $data.EntitySet,
 			elementType : Event
 		},
-		News: {
-			type: $data.EntitySet,
-			elementType : News
-		}
 	});
 
 	var itForumDatabase = new ITForumDatabase({
@@ -460,96 +345,6 @@ $(document).ready(function() {
 			//Events: { type: Array, elementType: Event, inverseProperty: "Person" }
 		});
 
-		itForumDatabase.Members.add({
-			LogoUrl : "www.nicedevice.dk",
-			WebPage : "www.herrejemini.dk",
-			Name : "Verdens bedste it",
-			ProfileText : "Verdens bedste it, er et itfirma, der kun har det bedste af det bedste.",
-			CoreCompetencies : "Alt",
-			Branche : "It",
-			Tags : "mobile, c#, java, sql osv osv osv",
-			Size : 4500,
-			Price : 100,
-			Address : "Kernekompetencevej 18",
-			ZipCode : 8800,
-			Town : "Viborg",
-			PhoneNo : 84523698,
-			EanNo : 4568890460465
-			// ContactPerson: { type: "User", required: true, inverseProperty: "Member" }
-		});
-
-		itForumDatabase.Members.add({
-			Name : "Jeg kan li' it",
-			Size : 20,
-			Price : 100,
-			Address : "Wilsonvej 18",
-			ZipCode : 8500,
-			Town : "Grenå",
-			PhoneNo : 87127852,
-			EanNo : 458742458757578
-			// ContactPerson: { type: "User", required: true, inverseProperty: "Member" }
-		});
-
-		itForumDatabase.Members.add({
-			Name : "Hinnerup data",
-			Size : 50,
-			Price : 100,
-			Address : "Grønnegaardsvej 7",
-			ZipCode : 8700,
-			Town : "Horsens",
-			PhoneNo : 87452632,
-			EanNo : 458742145477588
-			// ContactPerson: { type: "User", required: true, inverseProperty: "Member" }
-		});
-
-		itForumDatabase.Members.add({
-			Name : "HR programmering",
-			Size : 200,
-			Price : 100,
-			Address : "Industrivej 4",
-			ZipCode : 8600,
-			Town : "Silkeborg",
-			PhoneNo : 87125463,
-			EanNo : 458742145245072
-			//  ContactPerson: { type: "User", required: true, inverseProperty: "Member" }
-		});
-
-		itForumDatabase.Members.add({
-			Name : "GetTogether",
-			Size : 100,
-			Price : 100,
-			Address : "Vesselbjergvej 18",
-			ZipCode : 8370,
-			Town : "Hadsten",
-			PhoneNo : 86154823,
-			EanNo : 567824254525
-			// ContactPerson: { type: "User", required: true, inverseProperty: "Member" }
-		});
-		
-		itForumDatabase.News.add({
-			NewsDate : "19-02-2014",
-			NewsTitle : "Lego giver energi til hjernen",
-			NewsText: "Ny forskning viser, at it-udviklere, vil have godt af at bruge minimum en time om dagen på at bygge med legoklodser..."
-		});
-		
-			itForumDatabase.News.add({
-			NewsDate : "18-02-2014",
-			NewsTitle : "Ny direktør for reynholm industries",
-			NewsText: "Det er netop blevet oplyst, at reynholm industries får ny direktør, da den tidligere netop er blevet anholdt, pga skattesvig..."
-		});
-		
-			itForumDatabase.News.add({
-			NewsDate : "17-02-2014",
-			NewsTitle : "Hvorfor man bare skal ansætte datamatikere",
-			NewsText: "Den finske forsker Leina Eiiiskhifkkks har for nylig afsluttet sin undersøgelse i større it-firmaer. Undersøgelsen gik ud på, hvorvidt det kan betale sig at have minimum en datamatiker ansat i sit firma. Konklusionen er, at det giver en højnet livskvalitet blandt medarbejderne, at have en datamatiker ansat..."
-		});
-		
-			itForumDatabase.News.add({
-			NewsDate : "09-01-2014",
-			NewsTitle : "Efteruddannelse i udvikling af applikationer til mobile enheder hos Erhvervsakademi LIllebælt",
-			NewsText: "Erhvervsakademiet Lillebælt har gennem længere tid eksperimenteret med undervisning i et virtuelt klasseværelse som man kan koble sig op til fra et fysisk rum, fra en PC, tablet eller smartphone. Der er også mulighed for at følge med asynkront, idet undervisningen bliver optaget. Akademiet udbyder i foråret 2014 faget 'Udvikling af mobile enheder' (med mulighed for at deltage uafhængig af tid og sted). Modulets formål er at introducere den studerende til udvikling af applikationer til mobile enheder, herunder forskelle mellem mobile applikationstyper samt de væsentlige konsekvenser teknologivalg har. Modulet kvalificerer den studerende til at kunne udvikle simple applikationer med integration med bagvedliggende systemer. Du forventes at have programmeringserfaring og et vist kenskab til objektorienteret sprog som fx Java eller C#. Faget vil i den konkrete afvikling blive baseret på udvikling til Microsoft Windows Phone med følgende værktøjer - Visual Studio - .NET - C# Der vil blive stillet studielicenser til rådighed for disse værktøjer (Visual Studio). Opstart torsdag den 30. januar (uge 5) og herefter planlagt til torsdag i uge 7, 9, 11, 13, 15, 17 og 19. Tidsrum 17-21. Underviser: Bjørk Boye Busch Deltagergebyr kr. 2.850 Vejledning og yderligere informationer kan fås hos Jørn Vesterdal på 63129161 og hos Bjørk Boye Busch på 63129162"
-
-		});
 		
 	
 		itForumDatabase.saveChanges();
@@ -571,89 +366,32 @@ $(document).ready(function() {
 	
 			//$('#eventList').listview("refresh");
 			
-		itForumDatabase.News
-		//.include("Event")
-		.forEach(function(itNews) {
 
-			
-			$('#newsList').append("<li data-id='" + itNews.Id + "' ><a href='#pageNewsDetail'>" + itNews.NewsTitle +'</li>');
-			
-			$('#newsList').children('li').bind('touchstart mousedown', function(e) {
-			
-				sessionStorage.selectedId = $(this).attr('data-id');
-});
-});
 
 			
 		
-		
-	/*
-	
-	 var value = $('#selectbox').val();
-    $("ul").find("li").hide();
-    $("ul").find("li."+value).show();
-    
-    
-     $('#selectbox').change(function(){
- 
-    var value = $('#selectbox').val();
-    $("ul").find("li").hide();
-    $("ul").find("li."+value).show();
 
-  });	
-*/
-				itForumDatabase.Members
-	
-		.forEach(function(Member) {
 
-			
-			$('#userMemberList').append("<li data-id='" + Member.Id + "' ><a href='#pageMemberDetail'>" + Member.Name + '</li>');
-
-			$('#userMemberList').children('li').bind('touchstart mousedown', function(e) {
-				sessionStorage.selectedId = $(this).attr('data-id');
-			});
-
-		});
-		
-		$('#selectbox').change(function() {
-			$('#userMemberList li').remove();
-			if($('#selectbox option:selected').val()=="user"){
 			itForumDatabase.Users
 			
 			
 			.forEach(function(User) {
 
 				
-				$('#userMemberList').append("<li data-id='" + User.Id + "' ><a href='#pageUserDetail'>" + User.FirstName + ' ' + User.LastName + '</li>');
+				$('#paticipantsList').append("<li data-id='" + User.Id + "' ><a href='#pagePaticipantsDetail'>" + User.FirstName + ' ' + User.LastName + '</li>');
 
-				$('#userMemberList').children('li').bind('touchstart mousedown', function(e) {
+				$('#paticipantsList').children('li').bind('touchstart mousedown', function(e) {
 					
 					sessionStorage.selectedId = $(this).attr('data-id');
 				});
 				
 
-				$('#userMemberList').listview("refresh");
+				//$('#paticipantsList').listview("refresh");
 
 			});
-		}
-			else{
-
-			itForumDatabase.Members
+		
 			
-			.forEach(function(Member) {
-
-				
-				$('#userMemberList').append("<li data-id='" + Member.Id + "' ><a href='#pageMemberDetail'>" + Member.Name + '</li>');
-
-				$('#userMemberList').children('li').bind('touchstart mousedown', function(e) {
-					
-					sessionStorage.selectedId = $(this).attr('data-id');
-				});
-				$('#userMemberList').listview("refresh");
-
-			});
-	}
-		});
+		
 
 	
 
@@ -701,35 +439,10 @@ itForumDatabase.onReady(function() {
     
 });
 
-$(document).on('pagebeforeshow', '#pageNewsDetail', function(){       
 
-        
-itForumDatabase.onReady(function() {
 
-		itForumDatabase.News
-        .filter(function(itNews) {return itNews.Id == sessionStorage.selectedId;})
-        .toArray( function(neews) { 
-	    NewsDetails(neews);
-        
-        });     
-                });    
-});
 
-$(document).on('pagebeforeshow', '#pageMemberDetail', function(){       
-
-        
-itForumDatabase.onReady(function() {
-
-		itForumDatabase.Members
-        .filter(function(member) {return member.Id == sessionStorage.selectedId;})
-        .toArray( function(members) { 
-	    MemberDetails(members);
-        
-        });     
-                });    
-});
-
-$(document).on('pagebeforeshow', '#pageUserDetail', function(){       
+$(document).on('pagebeforeshow', '#pagePaticipantsDetail', function(){       
 
         
     itForumDatabase.onReady(function() {
