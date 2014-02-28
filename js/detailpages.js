@@ -11,7 +11,6 @@ function EventDetails(event){
         $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.EventLocation + "</p>" );
         $("#pageDetailEvent #eventAttributes").append("<p id='eventDescription'>" + eve.Description + "</p>" );
 		$("#pageDetailEvent #eventAttributes").append("<a href='#pagePaticipantsList' id='participants_btn' name='participants' class='ui-btn'>Deltagere</a>" );
-		
 
        // $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.StartTime + "</p" );
        // $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.EventLocation + "</p" );
@@ -38,21 +37,23 @@ function UserDetails(user){
 			 $("#pagePaticipantsDetail #userAttributes").append("<a href='#editProfile' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Rediger bruger</a>");
 			 
 
-			if (sessionStorage.profileSelected == "1"){
+		if (sessionStorage.profileSelected == "1"){
 
+			alert("profil selected 1");
 			$("#userBack").attr("href", "#page01");
 							
 				sessionStorage.profileSelected = "0";
 			}else {
-		
+				
+		alert("profil selected 0");
 			$("#userBack").attr("href", "#pagePaticipantsList");
 
 			
 		}
-
 			
 		}		
 		
+
         $("#pagePaticipantsDetail #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.FirstName + " " + us.LastName + "</h2></td></tr></table>" );
         $("#pagePaticipantsDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + us.Title + "</h3></td></tr></table>" );
         
