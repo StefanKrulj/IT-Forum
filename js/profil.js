@@ -1,9 +1,11 @@
 $(document).ready(function() {
 	
+
+	
 	checkLogin();
 	
 	function checkLogin(){
-		if (localStorage.profilID == 'loggedOut') {
+		if (localStorage.getItem("profile") == 'loggedOut'|| localStorage.getItem("profile") === null) {
 			$('#logind').show();
 			$('#profil').hide();
 			
@@ -19,8 +21,9 @@ $(document).ready(function() {
 			
 			$('#profil').bind('touchstart mousedown', function(e) {
 
-			sessionStorage.selectedId = localStorage.profilID;
+			sessionStorage.selectedId = localStorage.getItem("profile");
 			sessionStorage.profileSelected = '1';
+			
 		});
 		}
 	}
@@ -40,7 +43,7 @@ $(document).ready(function() {
 	// }
 	
 	$('#logoutBtn').on("click",function(){
-		localStorage.profilID = 'loggedOut';
+		localStorage.setItem("profile", "loggedOut");
 		
 		checkLogin();
 		
@@ -52,7 +55,8 @@ $(document).ready(function() {
 	});
 	
 	$('#loginBtn').on("click",function(){
-		localStorage.profilID = '1';
+		localStorage.setItem("profile", "1");
+		
 		
 		checkLogin();
 		

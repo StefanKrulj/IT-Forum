@@ -1,31 +1,28 @@
 .ui-grid-a img {
-	width: 100%;
+	width: 75%;
 	height: auto;
 	margin: 10%;
 }
+
 .ui-grid-a div {
 	padding: 6%;
 }
+
 .imgCaption {
-	width: 100%;
+	width: 75%;
 	text-align: center;
 	font-size: 100%;
 	margin-top: 5%;
 }
 
-
 #content{
 	margin: 0%;
 	border: 0%;
 	background-color: white ;
-	
-	
 }
+
 #logo{
 	
 	width: 100%;
-	margin: 0%;
-	
-	
-	
+	margin: 0%;	
 }

@@ -155,7 +155,7 @@ $(document).ready(function() {
 
 	var itForumDatabase = new ITForumDatabase({
 		 provider: 'webSql', 
-		 databaseName: 'MyITFDatabase', 
+		 databaseName: 'ITFDatabase', 
 		 dbCreation: $data.storageProviders.DbCreationType.DropAllExistingTables 
 
 	});
