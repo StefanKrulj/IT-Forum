@@ -60,6 +60,7 @@ $(document).ready(function() {
 		
 		checkLogin();
 		
+		
 		// jQuery.mobile.changePage(window.location.href, {
         // allowSamePageTransition: true,
         // transition: 'none',

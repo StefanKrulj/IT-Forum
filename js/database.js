@@ -66,80 +66,96 @@ $(document).ready(function() {
 	});
 
 	$data.Entity.extend("Event", {
-		Id : {
-			type : "int",
-			key : true,
-			computed : true
-		},
-		Name : {
+		title : {
 			type : String,
-			required : true,
-			maxLength : 563
-		},
-		EventDate : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		Type : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		RegistrationDeadline : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		EventLocation : {
-			type : String,
-			required : true,
-			maxLenght : 100
-		},
-		StartTime : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		EndTime : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		Arranger : {
-			type : String,
-			required : true,
-			maxLength : 100
-		},
-		Description : {
-			type : String,
-			required : true,
-			maxLength : 3000
-		},
-		Tags : {
-			type : String,
-			required : false,
-			maxLength : 450
-		},
-		Program : {
-			type : String,
-			required : false,
+			//required : true,
 			maxLength : 1000
 		},
-		EventUrl : {
+		subtitle : {
 			type : String,
-			required : false,
-			maxLength : 200
+			//required : true,
+			maxLength : 1000
 		},
-		Price : {
+		date : {
 			type : String,
-			required : false,
-			maxLength : 450
+			//required : true,
+			maxLength : 1000
+		},
+		location : {
+			type : String,
+			//required : true,
+			maxLength : 1000
+		},
+		type : {
+			type : String,
+			//required : true,
+			maxLength : 1000
+		},
+		description : {
+			type : String,
+			//required : true,
+			maxLength : 20000
+		},
+		url1 : {
+			type : String,
+			//required : true,
+			maxLength : 1000
+		},
+		url2 : {
+			type : String,
+			//required : true,
+			maxLength : 1000
+		},
+		tags : {
+			type : Array,
+			elementType: String
+			//required : true,
+			//maxLength : 1000
+		},
+		eventid : {
+			type : "int",
+			key : true
+			//computed : false
+		},
+		organiser : {
+			type : String,
+			//required : true,
+			maxLength : 1000
+		},
+		deadline : {
+			type : String,
+			//required : true,
+			maxLength : 1000
+		},
+		starttime : {
+			type : String,
+			//required : true,
+			maxLength : 1000
+		},
+		endtime : {
+			type : String,
+			//required : true,
+			maxLength : 1000
+		},
+		image : {
+			type : String,
+			//required : true,
+			maxLength : 1000
+		},
+		lessons : {
+			type : Array,
+			elementType : String
+			//required : true,
+			//maxLength : 1000
+		},
+		// IKKE ET ARRAY
+		prices : {
+			type : Array,
+			elementType : String
+			//required : true,
+			//maxLength : 1000
 		}
-		//Attendees: { type: Array, required: false, inverseProperty: "User" },
 	});
-	
-		
 
 	$data.EntityContext.extend("ITForumDatabase", {
 
@@ -163,47 +179,67 @@ $(document).ready(function() {
 
 
 	itForumDatabase.onReady(function() {
+		
+		itForumDatabase.Events.add({
+				title : "eventsArray[i].title",
+				subtitle : "eventsArray[i].subtitle",
+				//date : "eventsArray[i].date",
+				location : "eventsArray[i].location",
+				type : "eventsArray[i].type",
+				description : "eventsArray[i].description",
+				url1 : "eventsArray[i].url1",
+				url2 : "eventsArray[i].url2",
+				//tags : for()
+				eventid : 1,
+				organiser : "eventsArray[i].organiser",
+				deadline : "eventsArray[i].deadline",
+				starttime : "eventsArray[i].starttime",
+				endtime : "eventsArray[i].endtime",
+				image : "eventsArray[i].image"
+				//lessons : eventsArray[i].lessons
+				//prices : eventsArray[i].prices
+		});
 
 		//Create related data
-		itForumDatabase.Events.add({
-			Name : "Hvordan bliver jeg en bedre bankrøver?",
-			EventDate : "18-02-2014",
-			Type : "Networking",
-			RegistrationDeadline : "01-01-2014",
-			EventLocation : "Hårbyvej 28, 8660 Skanderborg",
-			StartTime : "14:00",
-			EndTime : "14:01",
-			Arranger : "Karin Madsen",
-			Description : "Dette kursus handler om hvordan du kan blive en bedre bankrøver. Der er mange forskellige faktorer der spiller ind. I kurset indgår der også workshops - hvis vi har tid - røver vi en rigtig bank"
-		});
-
-		itForumDatabase.Events.add({
-			Name : "Lær at grine med elefanter",
-			EventDate : "18-03-2014",
-			Type : "Selvlearning",
-			RegistrationDeadline : "01-02-2014",
-			EventLocation : "Lokesvej 23, 8600 Silkeborg",
-			StartTime : "14:12",
-			EndTime : "14:41",
-			Arranger : "Viggo Erichsson",
-			Description : "Ha hahahahahahah ha ha ha haha aha ha ha hah ah ah ahahahahahahahahahahahah he heheheheheheheheh hahahahahy hihihihihihihihihih høhøhøhøhøhøhøhøhøhøhøhøhøhøh aaaaaaaaahhhhh hahahahah"
-			//Task: "Your task",
-			//Person: new Person({Name: 'Peter'});
-		});
-
-		itForumDatabase.Events.add({
-			Name : "Da spiderman reddede mit liv",
-			EventDate : "18-05-2014",
-			Type : "Fortælling",
-			RegistrationDeadline : "01-04-2014",
-			EventLocation : "Hjortensgade 15, 8000 Aarhus C",
-			StartTime : "14:45",
-			EndTime : "14:58",
-			Arranger : "Kirsten Dunst",
-			Description : "Hør det spændende foredrag af Kirsten Dunst, om  hvordan hun blev reddet af den sagnomspundne spiderman. Det bliver edderspændende - husk kleenex, da det også bliver en tåreperser"
-			//Task: "Your task",
-			//Person: new Person({Name: 'Peter'});
-		});
+		// itForumDatabase.Events.add({
+			// Name : "Hvordan bliver jeg en bedre bankrøver?",
+			// EventDate : "18-02-2014",
+			// Type : "Networking",
+			// RegistrationDeadline : "01-01-2014",
+			// EventLocation : "Hårbyvej 28, 8660 Skanderborg",
+			// StartTime : "14:00",
+			// EndTime : "14:01",
+			// Arranger : "Karin Madsen",
+			// Description : "Dette kursus handler om hvordan du kan blive en bedre bankrøver. Der er mange forskellige faktorer der spiller ind. I kurset indgår der også workshops - hvis vi har tid - røver vi en rigtig bank"
+		// });
+// 
+		// itForumDatabase.Events.add({
+			// Name : "Lær at grine med elefanter",
+			// EventDate : "18-03-2014",
+			// Type : "Selvlearning",
+			// RegistrationDeadline : "01-02-2014",
+			// EventLocation : "Lokesvej 23, 8600 Silkeborg",
+			// StartTime : "14:12",
+			// EndTime : "14:41",
+			// Arranger : "Viggo Erichsson",
+			// Description : "Ha hahahahahahah ha ha ha haha aha ha ha hah ah ah ahahahahahahahahahahahah he heheheheheheheheh hahahahahy hihihihihihihihihih høhøhøhøhøhøhøhøhøhøhøhøhøhøh aaaaaaaaahhhhh hahahahah"
+			// //Task: "Your task",
+			// //Person: new Person({Name: 'Peter'});
+		// });
+// 
+		// itForumDatabase.Events.add({
+			// Name : "Da spiderman reddede mit liv",
+			// EventDate : "18-05-2014",
+			// Type : "Fortælling",
+			// RegistrationDeadline : "01-04-2014",
+			// EventLocation : "Hjortensgade 15, 8000 Aarhus C",
+			// StartTime : "14:45",
+			// EndTime : "14:58",
+			// Arranger : "Kirsten Dunst",
+			// Description : "Hør det spændende foredrag af Kirsten Dunst, om  hvordan hun blev reddet af den sagnomspundne spiderman. Det bliver edderspændende - husk kleenex, da det også bliver en tåreperser"
+			// //Task: "Your task",
+			// //Person: new Person({Name: 'Peter'});
+		//});
 
 		itForumDatabase.Users.add({
 			FirstName : "Kukuruza",
