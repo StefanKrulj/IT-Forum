@@ -373,10 +373,16 @@ $(document).ready(function() {
 			itForumDatabase.Events
 			//.include("Event")
 			.forEach(function(Event) {
-				alert("test Event");
+				
 				//$('#eventList').append('<li>test</li>');
-				$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'>" + Event.title + '</li>');
-
+				if (!Event.image == "") {
+					
+				$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image  + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p class='ui-li-aside'><strong>Tilmeldt</strong></p></a></li>");
+				} else{
+					
+				$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p class='ui-li-aside'><strong>Tilmeldt</strong></p></a></li>");
+				
+				};
 				$('#eventList').children('li').bind('touchstart mousedown', function(e) {
 					//alert('Selected Name=' + $(this).attr('data-id'));
 					//bliver kaldt antalgange der er tilbage i listen mange gange
