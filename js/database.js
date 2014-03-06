@@ -179,7 +179,7 @@ $(document).ready(function() {
 
 
 	itForumDatabase.onReady(function() {
-		
+		getEventsJSON();
 		itForumDatabase.Events.add({
 				title : "eventsArray[i].title",
 				subtitle : "eventsArray[i].subtitle",
@@ -391,7 +391,7 @@ $(document).ready(function() {
 		.forEach(function(Event) {
 
 			//$('#eventList').append('<li>test</li>');
-			$('#eventList').append("<li data-id='" + Event.Id + "' ><a href='#pageDetailEvent'>" + Event.Name +'</li>');
+			$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'>" + Event.title +'</li>');
 			
 			$('#eventList').children('li').bind('touchstart mousedown', function(e) {
 				//alert('Selected Name=' + $(this).attr('data-id'));
@@ -443,7 +443,7 @@ $(document).on('pagebeforeshow', '#pageDetailEvent', function(){
 itForumDatabase.onReady(function() {
 
 		itForumDatabase.Events
-        .filter(function(event) {return event.Id == sessionStorage.selectedId;})
+        .filter(function(event) {return event.eventid == sessionStorage.selectedId;})
         .toArray( function(events) { 
         //$("#pageDetailEvent #eventTitle").html(events.join(""));
 	     //   alert(events);
