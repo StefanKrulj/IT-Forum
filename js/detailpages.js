@@ -4,11 +4,17 @@ function EventDetails(event) {
 
 		$("#pageDetailEvent #eventAttributes").empty();
 
-		$("#pageDetailEvent #eventAttributes").append("<h2 id='eventTitle'>" + eve.Name + "</h2>");
-		$("#pageDetailEvent #eventAttributes").append("<p id='eventData'> Den " + eve.EventDate + " kl: " + eve.StartTime + " - " + eve.EndTime + "</p>");
-		$("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.EventLocation + "</p>");
-		$("#pageDetailEvent #eventAttributes").append("<p id='eventDescription'>" + eve.Description + "</p>");
-		$("#pageDetailEvent #eventAttributes").append("<a href='#pagePaticipantsList' id='participants_btn' name='participants' class='ui-btn'>Deltagere</a>");
+		$("#pageDetailEvent #eventAttributes").append("<h2 id='eventTitle'>" + eve.title + "</h2>");
+		$("#pageDetailEvent #eventAttributes").append("<img id='eventImage' src=" + eve.image +  "alt='some_text'>");
+		
+		$("#pageDetailEvent #eventAttributes").append("<h3 id='eventSubTitle'>" + eve.subtitle + "</h3>");
+		//$("#pageDetailEvent #eventAttributes").append("<p id='eventData'> Den " + eve.date + " kl: " + eve.starttime + " - " + eve.endtime + "</p>");
+		$("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.location + "</p>");
+		$("#pageDetailEvent #eventAttributes").append("<p id='eventDescription'>" + eve.description + "</p>");
+		
+		
+		
+		//$("#pageDetailEvent #eventAttributes").append("<a href='#pagePaticipantsList' id='participants_btn' name='participants' class='ui-btn'>Deltagere</a>");
 
 		// $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.StartTime + "</p" );
 		// $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.EventLocation + "</p" );
