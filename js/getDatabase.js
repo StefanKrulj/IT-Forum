@@ -1,32 +1,24 @@
 $(document).ready(function() {
 	
-	var eventsArray = [];
+	getEventsJSON();
 	
-	// getEventsJSON();
 	
-	// getEventsJSONArray();
-// 	
-	// function getEventsJSONArray () {
-		// var result = "http://www.itforum.dk/ws/appapi.asp?method=getevents";
-	  	// var array = JSON.parse(result);
-	  	// alert("" + array[0].title);
-	// }
 	
-	// function getEventsJSON() {
-  		// $.ajax({ 			
-   				// url : "http://www.itforum.dk/ws/appapi.asp?method=getevents",
-   				// dataType : "jsonp",
-   				// success : function(parsed_json) {
-   					// alert("getEventsJSON");
-    				// alert("Title:" + parsed_json[0].title);
-//     				
-//     				
-   				// },
-   				// error: function(){
-    				// alert('failure');
-  				// } 
-  		// });
- 	// }
+	function getEventsJSON() {
+  		$.ajax({ 			
+   				url : "http://www.itforum.dk/ws/appapi.asp?method=getevents",
+   				dataType : "jsonp",
+   				success : function(parsed_json) {
+   					alert("getEventsJSON");
+    				alert("Title:" + parsed_json[0].title);
+    				
+    				
+   				},
+   				error: function(){
+    				alert('failure');
+  				} 
+  		});
+ 	}
  	
  	function saveEvents(e) {
  		itForumDatabase.onReady(function() {
@@ -50,8 +42,6 @@ $(document).ready(function() {
 				// //prices : eventsArray[i].prices
 			});
 		});
-		
-		alert("" + e.getString("title"));
 	}
-		
+
 });

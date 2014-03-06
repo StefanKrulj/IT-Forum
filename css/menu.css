@@ -1,5 +1,5 @@
 .ui-grid-a img {
-	width: 75%;
+	width: 100%;
 	height: auto;
 	margin: 10%;
 }
@@ -9,7 +9,7 @@
 }
 
 .imgCaption {
-	width: 75%;
+	width: 100%;
 	text-align: center;
 	font-size: 100%;
 	margin-top: 5%;
