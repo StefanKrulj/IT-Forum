@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	//NB på computed!!!!
 	
+	var eventsArray=[];
+	
 
 	$data.Entity.extend("User", {
 		Id : {
@@ -65,6 +67,10 @@ $(document).ready(function() {
 		// Events: { type: Array, elementType: Event, inverseProperty: "Person" }
 	});
 
+	/*
+	 * Events
+	 */
+
 	$data.Entity.extend("Event", {
 		title : {
 			type : String,
@@ -113,7 +119,7 @@ $(document).ready(function() {
 			//maxLength : 1000
 		},
 		eventid : {
-			type : "int",
+			type : String,
 			key : true
 			//computed : false
 		},
@@ -180,25 +186,97 @@ $(document).ready(function() {
 
 	itForumDatabase.onReady(function() {
 		
-		itForumDatabase.Events.add({
-				title : "eventsArray[i].title",
-				subtitle : "eventsArray[i].subtitle",
-				//date : "eventsArray[i].date",
-				location : "eventsArray[i].location",
-				type : "eventsArray[i].type",
-				description : "eventsArray[i].description",
-				url1 : "eventsArray[i].url1",
-				url2 : "eventsArray[i].url2",
-				//tags : for()
-				eventid : 1,
-				organiser : "eventsArray[i].organiser",
-				deadline : "eventsArray[i].deadline",
-				starttime : "eventsArray[i].starttime",
-				endtime : "eventsArray[i].endtime",
-				image : "eventsArray[i].image"
-				//lessons : eventsArray[i].lessons
-				//prices : eventsArray[i].prices
-		});
+		getEventsJSON();
+		
+		function getEventsJSON() {
+  			$.ajax({ 			
+   				url : "http://www.itforum.dk/ws/appapi.asp?method=getevents",
+   				dataType : "jsonp",
+   				success : function(parsed_json) {
+    				eventsArray = parsed_json;
+    				alert("lenght" + eventsArray.length);
+    				saveEvents();
+   				},
+   				error: function(){
+    				alert('failure to access api');
+  				} 
+  			});
+ 		}
+ 		function saveEvents() {
+ 		for(var i in eventsArray){
+ 			 //alert("Test Title: " + eventsArray[i].title);
+ 			// alert("Test ID: " + eventsArray[i].eventid);
+ 			var event = new Event();
+ 			event.title = eventsArray[i].title;
+ 			event.subtitle = eventsArray[i].subtitle;
+ 			event.date = eventsArray[i].date;
+			event.location = eventsArray[i].location;
+			event.type = eventsArray[i].type;
+			event.description = eventsArray[i].description;
+			event.url1 = eventsArray[i].url1;
+			event.url2 = eventsArray[i].url2;				
+			// tags = eventsArray[i].tags;
+			event.eventid = eventsArray[i].eventid;
+			event.organiser = eventsArray[i].organiser;
+			event.deadline = eventsArray[i].deadline;
+			event.starttime = eventsArray[i].starttime;
+			event.endtime = eventsArray[i].endtime;
+			event.image = eventsArray[i].image;
+			// event.lessons = eventsArray[i].lessons;
+			// event.prices = eventsArray[i].prices;
+ 			
+ 			itForumDatabase.Events.add(event);
+    	}
+    	itForumDatabase.saveChanges();
+    }
+    	
+		
+		// function saveEvents(e) {
+			// // alert("test: " + e.title);
+			// // alert("test: " + e.eventid);
+			// itForumDatabase.onReady(function() {
+ 			// itForumDatabase.Events.add({
+				// title : e.title,
+				// subtitle : eventsArray[i].subtitle,
+				// date : eventsArray[i].date,
+				// location : eventsArray[i].location,
+				// type : eventsArray[i].type,
+				// description : eventsArray[i].description,
+				// url1 : eventsArray[i].url1,
+				// url2 : eventsArray[i].url2,
+				// tags : for()
+				// eventid : e.eventid
+				// organiser : eventsArray[i].organiser,
+				// deadline : eventsArray[i].deadline,
+				// starttime : eventsArray[i].starttime,
+				// endtime : eventsArray[i].endtime,
+				// image : eventsArray[i].image
+				// lessons : eventsArray[i].lessons
+				// prices : eventsArray[i].prices
+				// });
+		// });
+	// }
+// 		
+		// itForumDatabase.Events.add({
+				// title : "eventsArray[i].title",
+				// // subtitle : "eventsArray[i].subtitle",
+				// // //date : "eventsArray[i].date",
+				// // location : "eventsArray[i].location",
+				// // type : "eventsArray[i].type",
+				// // description : "eventsArray[i].description",
+				// // url1 : "eventsArray[i].url1",
+				// // url2 : "eventsArray[i].url2",
+				// // //tags : for()
+				// eventid : "1",
+				// // organiser : "eventsArray[i].organiser",
+				// // deadline : "eventsArray[i].deadline",
+				// // starttime : "eventsArray[i].starttime",
+				// // endtime : "eventsArray[i].endtime",
+				// // image : "eventsArray[i].image"
+				// // //lessons : eventsArray[i].lessons
+				// // //prices : eventsArray[i].prices
+		// });
+		
 
 		//Create related data
 		// itForumDatabase.Events.add({
