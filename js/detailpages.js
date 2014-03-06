@@ -5,7 +5,7 @@ function EventDetails(event) {
 		$("#pageDetailEvent #eventAttributes").empty();
 
 		$("#pageDetailEvent #eventAttributes").append("<h2 id='eventTitle'>" + eve.title + "</h2>");
-		$("#pageDetailEvent #eventAttributes").append("<img id='eventImage' src=" + eve.image +  "alt='some_text'>");
+		$("#pageDetailEvent #eventAttributes").append("<img id='eventImage' src=" + eve.image +  " alt='some_text'>");
 		
 		$("#pageDetailEvent #eventAttributes").append("<h3 id='eventSubTitle'>" + eve.subtitle + "</h3>");
 		//$("#pageDetailEvent #eventAttributes").append("<p id='eventData'> Den " + eve.date + " kl: " + eve.starttime + " - " + eve.endtime + "</p>");
