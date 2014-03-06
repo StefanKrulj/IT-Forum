@@ -190,7 +190,6 @@ $(document).ready(function() {
 				dataType : "jsonp",
 				success : function(parsed_json) {
 					eventsArray = parsed_json;
-					// alert("lenght" + eventsArray.length);
 					saveEvents();
 				},
 				error : function() {
@@ -373,7 +372,6 @@ $(document).ready(function() {
 			itForumDatabase.Events
 			//.include("Event")
 			.forEach(function(Event) {
-				alert("test Event");
 				//$('#eventList').append('<li>test</li>');
 				$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'>" + Event.title + '</li>');
 
