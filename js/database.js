@@ -24,7 +24,6 @@ $(document).ready(function() {
 			required : true,
 			maxLength : 100
 		},
-		//Company: { type: "Member", required: true, inverseProperty: "User" },
 		LinkedInUrl : {
 			type : String,
 			required : true,
@@ -163,15 +162,15 @@ $(document).ready(function() {
 	});
 
 	$data.EntityContext.extend("ITForumDatabase", {
-
-		Users : {
-			type : $data.EntitySet,
-			elementType : User
-		},
 		Events : {
 			type : $data.EntitySet,
 			elementType : Event
 		},
+		Users : {
+			type : $data.EntitySet,
+			elementType : User
+		},
+		
 	});
 
 	var itForumDatabase = new ITForumDatabase({
@@ -190,7 +189,6 @@ $(document).ready(function() {
 				dataType : "jsonp",
 				success : function(parsed_json) {
 					eventsArray = parsed_json;
-					// alert("lenght" + eventsArray.length);
 					saveEvents();
 				},
 				error : function() {
@@ -373,7 +371,6 @@ $(document).ready(function() {
 			itForumDatabase.Events
 			//.include("Event")
 			.forEach(function(Event) {
-				
 				//$('#eventList').append('<li>test</li>');
 				if (!Event.image == "") {
 					
@@ -414,29 +411,9 @@ $(document).ready(function() {
 			itForumDatabase.Events.filter(function(event) {
 				return event.eventid == sessionStorage.selectedId;
 			}).toArray(function(events) {
-				//$("#pageDetailEvent #eventTitle").html(events.join(""));
-				//   alert(events);
 				EventDetails(events);
-				//$('#pageDetailEvent #eventTitle').html('My name is ' + events.attributes ;
-
 			});
 		});
-
-		/*
-
-		itForumDatabase.Events
-		.filter(Event.Id == sessionStorage.selectedId)
-		.toArray( function(events) {
-		$("#pageDetailEvent #eventTitle").html(events.join(""));
-		alert(events)
-		//$('#pageDetailEvent #eventTitle').html('My name is ' + events.attributes ;
-
-		})
-		});
-
-		*/
-
-		//$('#pageDetailEvent #eventTitle').html('My name is ' + sessionStorage.selectedId);
 
 	});
 

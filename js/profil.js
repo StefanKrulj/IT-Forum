@@ -1,8 +1,20 @@
 $(document).ready(function() {
 	
-
-	
 	checkLogin();
+	
+	function login (username, password) {
+			$.ajax({
+				url : "http://www.itforum.dk/ws/appapi.asp?method=getchallenge&login="+ username +"",
+				dataType : "jsonp",
+				success : function(parsed_json) {
+					alert('success got challenge');
+				},
+				error : function() {
+					alert('failure to access api');
+				}
+			});
+		
+	}
 	
 	function checkLogin(){
 		if (localStorage.getItem("profile") == 'loggedOut'|| localStorage.getItem("profile") === null) {
@@ -27,49 +39,20 @@ $(document).ready(function() {
 		});
 		}
 	}
-
-	// if (localStorage.loggedIn == 'true') {
-// 		
-		// $('#profil').bind('touchstart mousedown', function(e) {
-// 
-			// sessionStorage.selectedId = localStorage.profilID;
-			// sessionStorage.profileSelected = '1';
-		// });
-// 	
-		// $(".ui-grid-b").grid("refresh");
-	// } else {
-// 
-		// $(".ui-grid-b").grid("refresh");
-	// }
+	
+	$('#loginBtn').on("click",function(){
+		
+		localStorage.setItem("profile", "1");
+		
+		checkLogin();
+		
+	});
 	
 	$('#logoutBtn').on("click",function(){
 		localStorage.setItem("profile", "loggedOut");
 		
 		checkLogin();
 		
-		// jQuery.mobile.changePage(window.location.href, {
-        // allowSamePageTransition: true,
-        // transition: 'none',
-        // reloadPage: true
-    	// });
 	});
-	
-	$('#loginBtn').on("click",function(){
-		localStorage.setItem("profile", "1");
-		
-		
-		checkLogin();
-		
-		
-		// jQuery.mobile.changePage(window.location.href, {
-        // allowSamePageTransition: true,
-        // transition: 'none',
-        // reloadPage: true
-    	// });
-	});
-	
-	// $('#settings').on('click', 'li', function() {
-        // alert("Works"); // id of clicked li by directly accessing DOMElement property
-    // });
 
 }); 
