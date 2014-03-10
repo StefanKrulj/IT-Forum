@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="js/database.js"></script>
 		<script type="text/javascript" src="js/detailpages.js"></script>
 		<script type="text/javascript" src="js/getDatabase.js"></script>
+		<script type="text/javascript" src="CryptoJS v3.1.2/sha1.js"></script>
 		<script src="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="css/home.css" />
@@ -30,7 +31,7 @@
 	</head>
 
 	<body class="container" >
-		<div data-role="page" id="page01"  data-title="Page 1">
+		<div data-role="page" id="pageMenu"  data-title="Page 1">
 
 			<div data-role="panel" id="panel01">
 				<ul id="settings" data-role="listview" data-inset="true">
@@ -66,7 +67,7 @@
 
 				<div class="ui-grid-a">
 					<div id="logind" class="ui-block-a">
-						<a href="#page02"><img src="img/imgLog.jpg" /></a>
+						<a href="#pageLogin"><img src="img/imgLog.jpg" /></a>
 						<div class="imgCaption">
 							Log ind
 						</div>
@@ -105,24 +106,24 @@
 				</div>
 			</div>
 		</div>
-		<div data-role="page" id="pageLogin" data-title="Page Login">
+		<!--<div data-role="page" id="pageLogin" data-title="Page Login">
 			<div data-role="header">
 				<h1>Login</h1>
 
-				<a href="#page01" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+				<a href="#pageMenu" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
 
 			</div>
 
 			<div data-role="content">
 
 			</div>
+		</div>-->
 		</div>
-		</div>
-		<div data-role="page" id="page02" data-title="Page 2">
+		<div data-role="page" id="pageLogin" data-title="Page 2">
 			<div data-role="header">
 				<h1>Login</h1>
 
-				<a href="#page01" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+				<a href="#pageMenu" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
 
 			</div>
 
@@ -130,12 +131,13 @@
 				<div id="loginform">
 
 					<label for="InputEmail">Email adresse</label>
-					<input type="email" class="form-control" id="email" placeholder="Email"/>
+					<input type="email" class="form-control" id="username" placeholder="yourname@email.com"/>
 
 					<br />
 
 					<label for="InputPassword">Password</label>
 					<input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+					<label id="loginError"></label>
 					<br />
 					<br />
 					<label>
@@ -143,13 +145,9 @@
 						Husk mig </label>
 					<br />
 
-					<a href="#page03">
 					<input type="button" class="btn btn-default" data-inline="true" accesskey="l" id="create_btn" name="create" value="Opret bruger" />
-					</a>
 
-					<a href="#page01">
-					<input type="button" class="btn btn-default" data-inline="true" accesskey="l" id="loginBtn" name="login" value="Login" />
-					</a>
+					<input type="submit" class="btn btn-default" data-inline="true" accesskey="l" id="loginBtn" name="login" value="Login" />
 
 				</div>
 			</div>
@@ -159,7 +157,7 @@
 			<div data-role="header">
 				<h1>Arrangementer</h1>
 
-				<a href="#page01" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+				<a href="#pageMenu" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
 			</div>
 
 			<div data-role="content">
@@ -217,7 +215,7 @@
 			<div data-role="header">
 				<h1>Networking</h1>
 
-				<a href="#page01" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+				<a href="#pageMenu" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
 			</div>
 
 			<div data-role="content">
