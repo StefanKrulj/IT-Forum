@@ -5,16 +5,20 @@ function EventDetails(event) {
 		$("#pageDetailEvent #eventAttributes").empty();
 
 		$("#pageDetailEvent #eventAttributes").append("<h2 id='eventTitle'>" + eve.title + "</h2>");
-		$("#pageDetailEvent #eventAttributes").append("<img id='eventImage' src=" + eve.image +  " alt='some_text'>");
-		
+		$("#pageDetailEvent #eventAttributes").append("<img id='eventImage' src=" + eve.image + " alt='some_text'>");
+
 		$("#pageDetailEvent #eventAttributes").append("<h3 id='eventSubTitle'>" + eve.subtitle + "</h3>");
 		//$("#pageDetailEvent #eventAttributes").append("<p id='eventData'> Den " + eve.date + " kl: " + eve.starttime + " - " + eve.endtime + "</p>");
 		$("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.location + "</p>");
 		$("#pageDetailEvent #eventAttributes").append("<p id='eventDescription'>" + eve.description + "</p>");
-		
-		
-		
-		//$("#pageDetailEvent #eventAttributes").append("<a href='#pagePaticipantsList' id='participants_btn' name='participants' class='ui-btn'>Deltagere</a>");
+
+		var user = localStorage.getItem("user");
+		var userEventArray = JSON.parse(user).events;
+		for (var i in userEventArray) {
+			if (userEventArray[i] == eve.eventid) {
+				$("#pageDetailEvent #eventAttributes").append("<a href='#pagePaticipantsList' id='participants_btn' name='participants' class='ui-btn'>Deltagere</a>");
+			}
+		}
 
 		// $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.StartTime + "</p" );
 		// $("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + eve.EventLocation + "</p" );
@@ -23,6 +27,30 @@ function EventDetails(event) {
 		//alert(eve.Name);
 
 	});
+}
+
+function ProfileDetails() {
+	var user = localStorage.getItem("user");
+	var us = JSON.parse(user);
+
+	$("#pageUser #userAttributes").empty();
+
+	$("#pageUser #userAttributes").append("<a href='#editProfile' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Rediger bruger</a>");
+
+	$("#pageUser #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.firstname + " " + us.lastname + "</h2></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td><h3>Virksomhed:</h3></td><td><a href=" + us.company + "><h3 id='userCompany'>" + us.company + "</h3></a></td></tr></table>");
+
+	$("#pageUser #userAttributes").append("<table><tr><td><a href=" + us.linkedinurl + ">LinkedinUrl</a></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + us.profile + "</p></h3></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + us.mobile + "</p></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + us.email + "</p></td></tr></table>");
+
+	// $('#name').val($('#userFirstName').text());
+	// $('#title').val($('#userTitle').text());
+	// $('#emailEdit').val($('#userEmail').text());
+	// $('#tlf').val($('#userPhoneNo').text());
+	// $('#linkedin').val($("#LinkedinUrl").text());
+	// $('#txtArea').val($('#userProfileText').text());
 }
 
 function UserDetails(user) {

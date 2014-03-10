@@ -170,7 +170,7 @@ $(document).ready(function() {
 			type : $data.EntitySet,
 			elementType : User
 		},
-		
+
 	});
 
 	var itForumDatabase = new ITForumDatabase({
@@ -371,15 +371,22 @@ $(document).ready(function() {
 			itForumDatabase.Events
 			//.include("Event")
 			.forEach(function(Event) {
-				//$('#eventList').append('<li>test</li>');
 				if (!Event.image == "") {
+
+					$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a></li>");
+				} else {
+					$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p class='ui-li-aside'><strong id='"+ Event.eventid +"'></strong></p></a></li>");
 					
-				$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image  + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p class='ui-li-aside'><strong>Tilmeldt</strong></p></a></li>");
-				} else{
-					
-				$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p class='ui-li-aside'><strong>Tilmeldt</strong></p></a></li>");
-				
-				};
+
+				}
+				var user = localStorage.getItem("user");
+				var userEventArray = JSON.parse(user).events;
+				for (var i in userEventArray) {
+					if (userEventArray[i] == Event.eventid) {
+						$('#'+Event.eventid+'').html("Tilmeldt");
+					}
+				}
+
 				$('#eventList').children('li').bind('touchstart mousedown', function(e) {
 					//alert('Selected Name=' + $(this).attr('data-id'));
 					//bliver kaldt antalgange der er tilbage i listen mange gange
@@ -388,6 +395,7 @@ $(document).ready(function() {
 			});
 			$('#eventList').listview("refresh");
 		}
+
 
 		itForumDatabase.Users.forEach(function(User) {
 
@@ -429,6 +437,11 @@ $(document).ready(function() {
 			});
 
 		});
+
+	});
+
+	$(document).on('pagebeforeshow', '#pageUser', function() {
+		ProfileDetails();
 
 	});
 

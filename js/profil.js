@@ -6,12 +6,12 @@ $(document).ready(function() {
 
 	function getChallenge() {
 		$.ajax({
-			url : "http://www.itforum.dk/ws/appapi.asp?method=getchallenge&login=" + $('#username').val() + "",
+			url : "http://www.itforum.dk/ws/appapi.asp?method=getchallenge&login=" + localStorage.getItem("username") + "",
 			dataType : "jsonp",
 			success : function(parsed_json) {
 				// alert('success got challenge');
 				// alert("Challenge: " + parsed_json.challenge);
-				var hash = CryptoJS.SHA1(parsed_json.challenge + CryptoJS.SHA1($('#username').val() + "" + $('#password').val()));
+				var hash = CryptoJS.SHA1(parsed_json.challenge + CryptoJS.SHA1(localStorage.getItem("username") + "" + localStorage.getItem("password")));
 				login(hash);
 			},
 			error : function() {
@@ -27,15 +27,22 @@ $(document).ready(function() {
 			dataType : "jsonp",
 			success : function(parsed_json) {
 				alert('success login: ' + parsed_json.firstname);
-				localStorage.setItem("profile", "" + parsed_json.loginguid);
+				localStorage.setItem("profile", parsed_json.loginguid);
+				localStorage.setItem("user", JSON.stringify(parsed_json));
+				var user = localStorage.getItem("user");
+				alert("" + JSON.parse(user).firstname);
 				
 				checkLogin();
 				
-				if (localStorage.getItem("profile") != "loggedOut") {
+				if (localStorage.getItem("profile") != "loggedOut"|| localStorage.getItem("profile") === null) {
 					// alert("Vi skifter side");
-					$.mobile.navigate("#page01");
+					$.mobile.navigate("#pageMenu");
+					document.getElementById('username').value = '';
+					document.getElementById('password').value = '';
+					$('#loginError').html("");
 					
 				} else {
+					alert("Else i login");
 					$('#loginError').html("1Email eller kodeord er forkert");
 				}
 			},
@@ -74,7 +81,8 @@ $(document).ready(function() {
 		if($('#username').val() == "" || $('#password').val() == ""){
 			$('#loginError').html("Email eller kodeord mangler");
 		}else{
-			alert("Vi er i else i loginbtn");
+			localStorage.setItem("username", $('#username').val());
+			localStorage.setItem("password", $('#password').val());
 			getChallenge();
 		}
 	});

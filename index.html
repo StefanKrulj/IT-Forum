@@ -22,7 +22,7 @@
 		<script type="text/javascript" src="js/database.js"></script>
 		<script type="text/javascript" src="js/detailpages.js"></script>
 		<script type="text/javascript" src="js/getDatabase.js"></script>
-		<script type="text/javascript" src="CryptoJS v3.1.2/sha1.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
 		<script src="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="css/home.css" />
@@ -73,7 +73,7 @@
 						</div>
 					</div>
 					<div id="profil" class="ui-block-a">
-						<a href='#pagePaticipantsDetail'><img src='img/imgprofile.jpg' /></a>
+						<a href='#pageUser'><img src='img/imgprofile.jpg' /></a>
 						<div class='imgCaption'>
 							Profil
 						</div>
@@ -149,6 +149,21 @@
 
 					<input type="submit" class="btn btn-default" data-inline="true" accesskey="l" id="loginBtn" name="login" value="Login" />
 
+				</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="pageUser" data-title="Page User">
+			<div data-role="header">
+				<h1>Profil</h1>
+
+				<a href="#pageMenu" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+
+			</div>
+
+			<div data-role="content">
+				<div id="userAttributes">
+					
 				</div>
 			</div>
 		</div>
