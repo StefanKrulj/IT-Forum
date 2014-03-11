@@ -2,67 +2,44 @@ $(document).ready(function() {
 	//NB på computed!!!!
 
 	var eventsArray = [];
+	var participantsArray = [];
 
-	$data.Entity.extend("User", {
-		Id : {
-			type : "int",
-			key : true,
-			computed : true
-		},
-		FirstName : {
+	$data.Entity.extend("Participant", {
+		firstname : {
 			type : String,
-			required : true,
+			// required : true,
 			maxLength : 200
 		},
-		LastName : {
+		lastname : {
 			type : String,
-			required : true,
+			// required : true,
 			maxLength : 200
 		},
-		Title : {
+		company : {
 			type : String,
-			required : true,
-			maxLength : 100
+			// required : true,
+			maxLength : 200,
 		},
-		LinkedInUrl : {
+		email : {
 			type : String,
-			required : true,
-			maxLength : 200
+			// required : true,
+			maxLength : 8
 		},
-		ProfileText : {
+		profile : {
 			type : String,
-			required : false,
+			// required : false,
 			maxLength : 3000
 		},
-		Interests : {
+		linkedinurl : {
 			type : String,
-			required : false,
-			maxLength : 500
-		},
-		PhoneNo : {
-			type : "int",
-			required : true,
-			maxLength : 8
-		},
-		MobileNo : {
-			type : "int",
-			required : true,
-			maxLength : 8
-		},
-		Email : {
-			type : String,
-			required : true,
+			// required : true,
 			maxLength : 200
 		},
-		FirstEncounter : {
+		mobile : {
 			type : String,
-			required : false,
-			maxLength : 450
-		},
-		NewsLetter : {
-			type : Boolean
+			// required : true,
+			maxLength : 8
 		}
-		// Events: { type: Array, elementType: Event, inverseProperty: "Person" }
 	});
 
 	/*
@@ -166,11 +143,10 @@ $(document).ready(function() {
 			type : $data.EntitySet,
 			elementType : Event
 		},
-		Users : {
+		Participants : {
 			type : $data.EntitySet,
-			elementType : User
-		},
-
+			elementType : Participant
+		}
 	});
 
 	var itForumDatabase = new ITForumDatabase({
@@ -197,6 +173,40 @@ $(document).ready(function() {
 			});
 		}
 
+		function startTimeDate(time) {
+			var d = new Date(parseInt(time));
+			var formattedDate = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
+			var hours = (d.getHours() < 10) ? "0" + d.getHours() : d.getHours();
+			var minutes = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes();
+			var formattedTime = hours + ":" + minutes;
+
+			formattedDate = "<strong>Arrangement tidspunkt </strong>" + formattedDate + ", fra kl. " + formattedTime;
+			return formattedDate;
+		}
+
+		function endTimeDate(starttime, endtime) {
+			var result = "";
+			var endtimeDate = new Date(parseInt(endtime));
+			var starttimeDate = new Date(parseInt(starttime));
+
+			var formattedDate = endtimeDate.getDate() + "-" + (endtimeDate.getMonth() + 1) + "-" + endtimeDate.getFullYear();
+
+			var hours = (endtimeDate.getHours() < 10) ? "0" + endtimeDate.getHours() : endtimeDate.getHours();
+			var minutes = (endtimeDate.getMinutes() < 10) ? "0" + endtimeDate.getMinutes() : endtimeDate.getMinutes();
+			var formattedTime = hours + ":" + minutes;
+
+			if (endtimeDate.getDate() == starttimeDate.getDate()) {
+				result = " til " + formattedTime;
+			} else if (endtimeDate.getDate() > starttimeDate.getDate()) {
+				formattedDate = "<br> Slut " + formattedDate + ", kl. " + formattedTime;
+				result = formattedDate;
+			} else {
+				result = "Wrong date object";
+			}
+
+			return result;
+		}
+
 		function saveEvents() {
 			for (var i in eventsArray) {
 				// alert("Test Title: " + eventsArray[i].title);
@@ -214,8 +224,11 @@ $(document).ready(function() {
 				event.eventid = eventsArray[i].eventid;
 				event.organiser = eventsArray[i].organiser;
 				event.deadline = eventsArray[i].deadline;
-				event.starttime = eventsArray[i].starttime;
-				event.endtime = eventsArray[i].endtime;
+				//XX REGEX EXPRESSION XX
+				var numberPattern = /\d+/g;
+				event.starttime = startTimeDate(eventsArray[i].starttime.match(numberPattern));
+
+				event.endtime = endTimeDate(eventsArray[i].starttime.match(numberPattern), eventsArray[i].endtime.match(numberPattern));
 				event.image = eventsArray[i].image;
 				// event.lessons = eventsArray[i].lessons;
 				// event.prices = eventsArray[i].prices;
@@ -223,167 +236,22 @@ $(document).ready(function() {
 				itForumDatabase.Events.add(event);
 			}
 			itForumDatabase.saveChanges();
-			// }
 
-			itForumDatabase.Users.add({
-				FirstName : "Kukuruza",
-				LastName : "Van Diek",
-				Title : "CEO",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "Jeg er direktør i et stort firma, der sælger hash og nøgler",
-				PhoneNo : 86251436,
-				MobileNo : 22557788,
-				Email : "crazyPonytail@gmail.com",
-				NewsLetter : false
-				//Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.Users.add({
-				FirstName : "Miska",
-				LastName : "Miheilovich",
-				Title : "Teknisk designer",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "Jeg elsker bare når det hele spiller max",
-				PhoneNo : 86287536,
-				MobileNo : 48189338,
-				Email : "ILovemyeyes@gmail.com",
-				NewsLetter : true
-				//Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.Users.add({
-				FirstName : "Dennis",
-				LastName : "Nikolaievich",
-				Title : "Underdirektør",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "Jeg lever og ånder for mit arbejde, det giver mig mening. Endvidere bliver jeg helt rørt, når jeg ser smuk kode",
-				PhoneNo : 89402533,
-				MobileNo : 27135685,
-				Email : "givemefive@gmail.com",
-				NewsLetter : true
-				//Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.Users.add({
-				FirstName : "Lars",
-				LastName : "Sølvpapegøje Madsen",
-				Title : "Scrummaster",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "At arbejde er at leve",
-				PhoneNo : 87253698,
-				MobileNo : 45667425,
-				Email : "MeinNaseIstSehrKrum@gmail.com",
-				NewsLetter : true
-				// Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.Users.add({
-				FirstName : "Nina",
-				LastName : "Gorkova",
-				Title : "Klunser",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "My milkshake brings all the boys to my yard",
-				PhoneNo : 86782514,
-				MobileNo : 25124585,
-				Email : "otteogfyrre@gmail.com",
-				NewsLetter : true
-				// Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.Users.add({
-				FirstName : "Mads",
-				LastName : "Sørensen",
-				Title : "appudvikler",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "Native apps FTW!!!",
-				PhoneNo : 86745896,
-				MobileNo : 22336585,
-				Email : "madsen@gmail.com",
-				NewsLetter : true
-				//Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.Users.add({
-				FirstName : "Sergei",
-				LastName : "Absalonovich",
-				Title : "Businessman",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "Fem bananer i hatten er bedre end en hat af fem bananer",
-				PhoneNo : 87586214,
-				MobileNo : 26254785,
-				Email : "jatak@gmail.com",
-				NewsLetter : true
-				// Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.Users.add({
-				FirstName : "Petra",
-				LastName : "Ibrahimovich",
-				Title : "Supporter",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "Have you tried turning it off and then on again?",
-				PhoneNo : 86785241,
-				MobileNo : 27126987,
-				Email : "fembananer@gmail.com",
-				NewsLetter : false
-				// Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.Users.add({
-				FirstName : "Michael",
-				LastName : "Petersen",
-				Title : "Slave",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "Jeg lever og ånder for mit arbejde, det giver mig mening. Endvidere bliver jeg helt rørt, når jeg ser smuk kode",
-				PhoneNo : 86402536,
-				MobileNo : 25784210,
-				Email : "gimmeyourheartaftermidtnight@gmail.com",
-				NewsLetter : false
-				// Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.Users.add({
-				FirstName : "Flemming",
-				LastName : "Knutsson",
-				Title : "Productowner",
-				//Company: { type: "Member", required: true, inverseProperty: "User" },
-				LinkedInUrl : "www.linkedin.dk",
-				ProfileText : "Programmering er en livsstil",
-				PhoneNo : 64402578,
-				MobileNo : 22458763,
-				Email : "Fugle@gmail.com",
-				NewsLetter : true
-				//Events: { type: Array, elementType: Event, inverseProperty: "Person" }
-			});
-
-			itForumDatabase.saveChanges();
-
-			//UI with jQuery
 			itForumDatabase.Events
 			//.include("Event")
 			.forEach(function(Event) {
 				if (!Event.image == "") {
 
-					$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a></li>");
+					$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a></li>");
 				} else {
-					$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p class='ui-li-aside'><strong id='"+ Event.eventid +"'></strong></p></a></li>");
-					
+					$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a></li>");
 
 				}
 				var user = localStorage.getItem("user");
 				var userEventArray = JSON.parse(user).events;
 				for (var i in userEventArray) {
 					if (userEventArray[i] == Event.eventid) {
-						$('#'+Event.eventid+'').html("Tilmeldt");
+						$('#' + Event.eventid + '').html("Tilmeldt");
 					}
 				}
 
@@ -398,20 +266,39 @@ $(document).ready(function() {
 		}
 
 
-		itForumDatabase.Users.forEach(function(User) {
+		itForumDatabase.Participants.forEach(function(Participant) {
+			alert("Each Participant" + Participant.firstname);
 
-			$('#paticipantsList').append("<li data-id='" + User.Id + "' ><a href='#pagePaticipantsDetail'>" + User.FirstName + ' ' + User.LastName + '</li>');
+			// $('#participantsList').append("<li data-id='" + User.Id + "' ><a href='#pageParticipantsDetail'>" + User.FirstName + ' ' + User.LastName + '</li>');
+			//
+			// $('#participantsList').children('li').bind('touchstart mousedown', function(e) {
+			//
+			// sessionStorage.selectedId = $(this).attr('data-id');
+			// });
 
-			$('#paticipantsList').children('li').bind('touchstart mousedown', function(e) {
-
-				sessionStorage.selectedId = $(this).attr('data-id');
-			});
-
-			//$('#paticipantsList').listview("refresh");
+			//$('#participantsList').listview("refresh");
 
 		});
 
 	});
+
+	function getParticipentsJSON(eventid, callback) {
+		var user = localStorage.getItem("user");
+		var userLoginguid = JSON.parse(user).loginguid;
+		$.ajax({
+			url : "http://www.itforum.dk/ws/appapi.asp?method=getparticipants&guid=" + userLoginguid + "&eventid=" + eventid + "",
+			dataType : "jsonp",
+			success : function(parsed_json) {
+				participantsArray.length = 0;
+				participantsArray = parsed_json;
+				callback();
+			},
+			error : function() {
+				alert('failure to access "getparticipants" api');
+			}
+		});
+	}
+
 
 	$(document).on('pagebeforeshow', '#pageDetailEvent', function() {
 
@@ -426,18 +313,33 @@ $(document).ready(function() {
 
 	});
 
-	$(document).on('pagebeforeshow', '#pagePaticipantsDetail', function() {
-
-		itForumDatabase.onReady(function() {
-
-			itForumDatabase.Users.filter(function(user) {
-				return user.Id == sessionStorage.selectedId;
-			}).toArray(function(users) {
-				UserDetails(users);
-
+	$(document).on('pageshow', '#pageDetailEvent', function() {
+		getParticipentsJSON(sessionStorage.selectedId, function() {
+       		setParticipantArray();
+    	});
+		
+	});
+	
+	function setParticipantArray () {
+		$("#ParticipentsList").empty();
+		
+	  	for(i in participantsArray){
+			$('#ParticipentsList').append("<li data-id='" + i + "' ><a href='#pageParticipentsDetail'>" + participantsArray[i].firstname + ' ' + participantsArray[i].lastname + '</li>');
+			
+			$('#ParticipentsList').children('li').bind('touchstart mousedown', function(e) {
+				// sessionStorage.setItem("participant", JSON.stringify(participantsArray[i]));
+			
+				sessionStorage.selectedId = $(this).attr('data-id');
 			});
 
-		});
+			// $('#ParticipentsList').listview("refresh");
+		}
+		
+		$('#ParticipentsList').listview("refresh");
+	}
+
+	$(document).on('pagebeforeshow', '#pageParticipentsDetail', function() {
+		ParticipentDetails(participantsArray);
 
 	});
 
