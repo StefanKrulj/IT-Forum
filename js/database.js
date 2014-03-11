@@ -393,6 +393,7 @@ $(document).ready(function() {
 					sessionStorage.selectedId = $(this).attr('data-id');
 				});
 			});
+			//test
 			$('#eventList').listview("refresh");
 		}
 
