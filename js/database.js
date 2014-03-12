@@ -5,7 +5,12 @@ $(document).ready(function() {
 	var participantsArray = [];
 
 	$data.Entity.extend("Participant", {
-		firstname : {
+		id : {
+			type : "int",
+			// required : true,
+			key : true,
+			computed : true
+		},firstname : {
 			type : String,
 			// required : true,
 			maxLength : 200
@@ -148,9 +153,23 @@ $(document).ready(function() {
 			elementType : Participant
 		}
 	});
+	
+	navigator.sayswho=  (function(){
+    var N= navigator.appName, ua= navigator.userAgent, tem,
+    M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*([\d\.]+)/i);
+    if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+    M= M? [M[1], M[2]]:[N, navigator.appVersion, '-?'];
+    return M.join(' ');
+ 	})();
+//  	
+ 	var browserString = navigator.appCodeName;
+ 	// var browserSubstring = browserString.subString(0,2);
+ 	alert("Browser: " + browserString);
+ 	// alert("Browser: " + browserSubstring);
 
 	var itForumDatabase = new ITForumDatabase({
 		provider : 'webSql',
+		// provider : 'indexedDb',
 		databaseName : 'ITFDatabase',
 		dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
 
@@ -240,6 +259,7 @@ $(document).ready(function() {
 			itForumDatabase.Events
 			//.include("Event")
 			.forEach(function(Event) {
+				alert("event: " + Event.eventid);
 				if (!Event.image == "") {
 
 					$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a></li>");
