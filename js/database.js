@@ -154,26 +154,76 @@ $(document).ready(function() {
 		}
 	});
 	
-	navigator.sayswho=  (function(){
-    var N= navigator.appName, ua= navigator.userAgent, tem,
-    M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*([\d\.]+)/i);
-    if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
-    M= M? [M[1], M[2]]:[N, navigator.appVersion, '-?'];
-    return M.join(' ');
- 	})();
+	// navigator.sayswho=  (function(){
+    // var N= navigator.appName, ua= navigator.userAgent, tem,
+    // M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*([\d\.]+)/i);
+    // if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+    // M= M? [M[1], M[2]]:[N, navigator.appVersion, '-?'];
+    // return M.join(' ');
+ 	// })();
 //  	
- 	var browserString = navigator.appCodeName;
+ 	// var browserString = navigator.appCodeName;
  	// var browserSubstring = browserString.subString(0,2);
- 	alert("Browser: " + browserString);
+ 	// alert("Browser: " + browserString);
  	// alert("Browser: " + browserSubstring);
+ 	
+ 	/*
+ 	 * isMobile checker for browser platform
+ 	 * Skal testes 
+ 	 */
+ 	
+	var isMobile = {
+		Android : function() {
+			return navigator.userAgent.match(/Android/i);
+		},
+		BlackBerry : function() {
+			return navigator.userAgent.match(/BlackBerry/i);
+		},
+		iOS : function() {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+		Opera : function() {
+			return navigator.userAgent.match(/Opera Mini/i);
+		},
+		Windows : function() {
+			return navigator.userAgent.match(/IEMobile/i);
+		},
+		any : function() {
+			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		}
+	}; 
+	
+	if( isMobile.Android() ) alert('Android');
+	if( isMobile.iOS() ) alert('iOS');
+	if( isMobile.Windows() ) alert('Windows');
+	
+	if (isMobile.Windows()) {
+		alert("Er inde i if Mobile Windows");
+		var itForumDatabase = new ITForumDatabase({
+			// provider : 'webSql',
+			provider : 'indexedDb',
+			databaseName : 'ITFDatabase',
+			dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
 
-	var itForumDatabase = new ITForumDatabase({
-		provider : 'webSql',
-		// provider : 'indexedDb',
-		databaseName : 'ITFDatabase',
-		dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
+		});
+	} else {
+		alert("Er inde i else Mobile Windows dvs alle andre");
+		var itForumDatabase = new ITForumDatabase({
+			// provider : 'webSql',
+			provider : 'indexedDb',
+			databaseName : 'ITFDatabase',
+			dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
 
-	});
+		});
+	}
+
+	// var itForumDatabase = new ITForumDatabase({
+		// provider : 'webSql',
+		// // provider : 'indexedDb',
+		// databaseName : 'ITFDatabase',
+		// dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
+		// 
+	// });
 
 	itForumDatabase.onReady(function() {
 		getEventsJSON();
@@ -187,7 +237,7 @@ $(document).ready(function() {
 					saveEvents();
 				},
 				error : function() {
-					alert('failure to access api');
+					alert('failure to access "getevents" api');
 				}
 			});
 		}
@@ -259,7 +309,7 @@ $(document).ready(function() {
 			itForumDatabase.Events
 			//.include("Event")
 			.forEach(function(Event) {
-				alert("event: " + Event.eventid);
+				// alert("event: " + Event.eventid);
 				if (!Event.image == "") {
 
 					$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a></li>");
@@ -267,13 +317,17 @@ $(document).ready(function() {
 					$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a></li>");
 
 				}
-				var user = localStorage.getItem("user");
-				var userEventArray = JSON.parse(user).events;
-				for (var i in userEventArray) {
-					if (userEventArray[i] == Event.eventid) {
-						$('#' + Event.eventid + '').html("Tilmeldt");
+				
+				if (localStorage.getItem("user") != null) {
+					var user = localStorage.getItem("user");
+					var userEventArray = JSON.parse(user).events;
+					for (var i in userEventArray) {
+						if (userEventArray[i] == Event.eventid) {
+							$('#' + Event.eventid + '').html("Tilmeldt");
+						}
 					}
 				}
+
 
 				$('#eventList').children('li').bind('touchstart mousedown', function(e) {
 					//alert('Selected Name=' + $(this).attr('data-id'));
