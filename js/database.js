@@ -200,17 +200,17 @@ $(document).ready(function() {
 	if (isMobile.Windows()) {
 		alert("Er inde i if Mobile Windows");
 		var itForumDatabase = new ITForumDatabase({
-			// provider : 'webSql',
-			provider : 'indexedDb',
+		 // provider : 'webSql',
+			 provider : 'indexedDb',
 			databaseName : 'ITFDatabase',
 			dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
 
 		});
 	} else {
-		alert("Er inde i else Mobile Windows dvs alle andre");
+		// alert("Er inde i else Mobile Windows dvs alle andre");
 		var itForumDatabase = new ITForumDatabase({
-			// provider : 'webSql',
-			provider : 'indexedDb',
+			 provider : 'webSql',
+			//provider : 'indexedDb',
 			databaseName : 'ITFDatabase',
 			dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
 
