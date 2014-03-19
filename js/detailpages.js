@@ -35,7 +35,7 @@ function ProfileDetails() {
 
 	$("#pageUser #userAttributes").empty();
 
-	$("#pageUser #userAttributes").append("<a href='#editProfile' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Rediger bruger</a>");
+	$("#pageUser #userAttributes").append("<a href='http://www.itforum.dk/' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Rediger bruger</a>");
 
 	$("#pageUser #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.firstname + " " + us.lastname + "</h2></td></tr></table>");
 	$("#pageUser #userAttributes").append("<table><tr><td><h3>Virksomhed:</h3></td><td><a href=" + us.company + "><h3 id='userCompany'>" + us.company + "</h3></a></td></tr></table>");
@@ -63,8 +63,9 @@ function ParticipentDetails(participantsArray) {
 		$("#pageParticipentsDetail #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + participent.firstname + " " + participent.lastname + "</h2></td></tr></table>");
 		// De har ingen title
 		// $("#pageParticipentsDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + participent.title + "</h3></td></tr></table>");
-
-		$("#pageParticipentsDetail #userAttributes").append("<table><tr><td><a href=" + participent.linkedinurl + ">LinkedinUrl</a></td></tr></table>");
+		if(participent.linkedinurl != ""){
+					$("#pageParticipentsDetail #userAttributes").append("<a href="+ participent.linkedinurl + ">LinkedinUrl</a>");
+		}
 		$("#pageParticipentsDetail #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + participent.profile + "</p></h3></td></tr></table>");
 		// MÅ IKKE VISES
 		// $("#pageParticipentsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participent.mobile + "</p></td></tr></table>");

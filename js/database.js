@@ -153,24 +153,6 @@ $(document).ready(function() {
 			elementType : Participant
 		}
 	});
-	
-	// navigator.sayswho=  (function(){
-    // var N= navigator.appName, ua= navigator.userAgent, tem,
-    // M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*([\d\.]+)/i);
-    // if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
-    // M= M? [M[1], M[2]]:[N, navigator.appVersion, '-?'];
-    // return M.join(' ');
- 	// })();
-//  	
- 	// var browserString = navigator.appCodeName;
- 	// var browserSubstring = browserString.subString(0,2);
- 	// alert("Browser: " + browserString);
- 	// alert("Browser: " + browserSubstring);
- 	
- 	/*
- 	 * isMobile checker for browser platform
- 	 * Skal testes 
- 	 */
  	
 	var isMobile = {
 		Android : function() {
@@ -216,14 +198,6 @@ $(document).ready(function() {
 
 		});
 	}
-
-	// var itForumDatabase = new ITForumDatabase({
-		// provider : 'webSql',
-		// // provider : 'indexedDb',
-		// databaseName : 'ITFDatabase',
-		// dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
-		// 
-	// });
 
 	itForumDatabase.onReady(function() {
 		getEventsJSON();
