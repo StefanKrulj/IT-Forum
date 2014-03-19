@@ -209,8 +209,12 @@ $(document).ready(function() {
 	} else {
 		// alert("Er inde i else Mobile Windows dvs alle andre");
 		var itForumDatabase = new ITForumDatabase({
-			 provider : 'webSql',
+			provider : 'webSql',
 			//provider : 'indexedDb',
+
+			provider : 'webSql',
+			// provider : 'indexedDb',
+
 			databaseName : 'ITFDatabase',
 			dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
 
