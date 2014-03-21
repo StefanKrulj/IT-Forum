@@ -175,12 +175,12 @@ $(document).ready(function() {
 		}
 	}; 
 	
-	if( isMobile.Android() ) alert('Android');
-	if( isMobile.iOS() ) alert('iOS');
-	if( isMobile.Windows() ) alert('Windows');
+	// if( isMobile.Android() ) alert('Android');
+	// if( isMobile.iOS() ) alert('iOS');
+	// if( isMobile.Windows() ) alert('Windows');
 	
 	if (isMobile.Windows()) {
-		alert("Er inde i if Mobile Windows");
+		// alert("Er inde i if Mobile Windows");
 		var itForumDatabase = new ITForumDatabase({
 		 // provider : 'webSql',
 			 provider : 'indexedDb',
@@ -193,9 +193,6 @@ $(document).ready(function() {
 		var itForumDatabase = new ITForumDatabase({
 			provider : 'webSql',
 			//provider : 'indexedDb',
-
-			provider : 'webSql',
-			// provider : 'indexedDb',
 
 			databaseName : 'ITFDatabase',
 			dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
@@ -319,7 +316,7 @@ $(document).ready(function() {
 
 
 		itForumDatabase.Participants.forEach(function(Participant) {
-			alert("Each Participant" + Participant.firstname);
+			// alert("Each Participant" + Participant.firstname);
 
 			// $('#participantsList').append("<li data-id='" + User.Id + "' ><a href='#pageParticipantsDetail'>" + User.FirstName + ' ' + User.LastName + '</li>');
 			//
