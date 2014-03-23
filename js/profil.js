@@ -26,11 +26,11 @@ $(document).ready(function() {
 			url : "http://www.itforum.dk/ws/appapi.asp?method=login&response=" + hash + "",
 			dataType : "jsonp",
 			success : function(parsed_json) {
-				alert('success login: ' + parsed_json.firstname);
+				// alert('success login: ' + parsed_json.firstname);
 				localStorage.setItem("profile", parsed_json.loginguid);
 				localStorage.setItem("user", JSON.stringify(parsed_json));
 				var user = localStorage.getItem("user");
-				alert("" + JSON.parse(user).firstname);
+				// alert("" + JSON.parse(user).firstname);
 				
 				checkLogin();
 				

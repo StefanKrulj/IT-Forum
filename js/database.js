@@ -153,24 +153,6 @@ $(document).ready(function() {
 			elementType : Participant
 		}
 	});
-	
-	// navigator.sayswho=  (function(){
-    // var N= navigator.appName, ua= navigator.userAgent, tem,
-    // M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*([\d\.]+)/i);
-    // if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
-    // M= M? [M[1], M[2]]:[N, navigator.appVersion, '-?'];
-    // return M.join(' ');
- 	// })();
-//  	
- 	// var browserString = navigator.appCodeName;
- 	// var browserSubstring = browserString.subString(0,2);
- 	// alert("Browser: " + browserString);
- 	// alert("Browser: " + browserSubstring);
- 	
- 	/*
- 	 * isMobile checker for browser platform
- 	 * Skal testes 
- 	 */
  	
 	var isMobile = {
 		Android : function() {
@@ -193,37 +175,30 @@ $(document).ready(function() {
 		}
 	}; 
 	
-	if( isMobile.Android() ) alert('Android');
-	if( isMobile.iOS() ) alert('iOS');
-	if( isMobile.Windows() ) alert('Windows');
+	// if( isMobile.Android() ) alert('Android');
+	// if( isMobile.iOS() ) alert('iOS');
+	// if( isMobile.Windows() ) alert('Windows');
 	
 	if (isMobile.Windows()) {
-		alert("Er inde i if Mobile Windows");
+		// alert("Er inde i if Mobile Windows");
 		var itForumDatabase = new ITForumDatabase({
-			// provider : 'webSql',
-			provider : 'indexedDb',
+		 // provider : 'webSql',
+			 provider : 'indexedDb',
 			databaseName : 'ITFDatabase',
 			dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
 
 		});
 	} else {
-		alert("Er inde i else Mobile Windows dvs alle andre");
+		// alert("Er inde i else Mobile Windows dvs alle andre");
 		var itForumDatabase = new ITForumDatabase({
 			provider : 'webSql',
-			// provider : 'indexedDb',
+			//provider : 'indexedDb',
+
 			databaseName : 'ITFDatabase',
 			dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
 
 		});
 	}
-
-	// var itForumDatabase = new ITForumDatabase({
-		// provider : 'webSql',
-		// // provider : 'indexedDb',
-		// databaseName : 'ITFDatabase',
-		// dbCreation : $data.storageProviders.DbCreationType.DropAllExistingTables
-		// 
-	// });
 
 	itForumDatabase.onReady(function() {
 		getEventsJSON();
@@ -341,7 +316,7 @@ $(document).ready(function() {
 
 
 		itForumDatabase.Participants.forEach(function(Participant) {
-			alert("Each Participant" + Participant.firstname);
+			// alert("Each Participant" + Participant.firstname);
 
 			// $('#participantsList').append("<li data-id='" + User.Id + "' ><a href='#pageParticipantsDetail'>" + User.FirstName + ' ' + User.LastName + '</li>');
 			//
