@@ -205,7 +205,23 @@
 
 			<div data-role="content">
 				<div id="networkingAttributes">
-					<input type="submit" onclick="sendNotification()" value="TRYK!" class="search" />
+					<div data-role="footer" data-position="fixed"><textarea name="textarea" id="messageTextArea"></textarea><input type="submit" onclick="sendNotification()" value="TRYK!" class="search" /></div>
+				</div>
+			</div>
+		</div>
+
+	<div data-role="page" id="pageMessages" data-title="pageMessages">
+			<div data-role="header">
+				<h1>Conversations</h1>
+
+				<a href="#pageNetworking" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+			</div>
+
+			<div data-role="content">
+				<div id="messagesAttributes">
+					<div data-role="footer" data-position="fixed"><div data-role="fieldcontain"><textarea name="textarea" id="messageTextArea"></textarea><input type="submit" onclick="sendNotification()" value="TRYK!" class="search" /></div></div>
+					
+					
 				</div>
 			</div>
 		</div>

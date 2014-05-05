@@ -24,6 +24,8 @@ function pushRegister() {
 	}
 }
 
+
+
 /*
  * Success/error handlers
  */
@@ -89,3 +91,9 @@ function sendNotification () {
 		}
 	});
 }
+
+
+
+
+
+
