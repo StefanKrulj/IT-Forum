@@ -31,7 +31,7 @@ var isMobile = {
  */
 var itForumDatabase = {};
 
-function createLocalDatabase(callback) {
+function createLocalDatabase() {
 	console.log("Creating Database");
 
 	/*
@@ -153,7 +153,6 @@ function createLocalDatabase(callback) {
 
 		});
 	}
-	callback();
 }
 
 /*
@@ -215,12 +214,12 @@ function setLocalEvents(eventsArray) {
 		event.deadline = eventsArray[i].deadline;
 		//XX REGEX EXPRESSION XX
 		var numberPattern = /\d+/g;
-		event.starttime = startTimeDate(eventsArray[i].starttime.match(numberPattern));
+		// event.starttime = startTimeDate(eventsArray[i].starttime.match(numberPattern));
 
-		event.endtime = endTimeDate(eventsArray[i].starttime.match(numberPattern), eventsArray[i].endtime.match(numberPattern));
+		// event.endtime = endTimeDate(eventsArray[i].starttime.match(numberPattern), eventsArray[i].endtime.match(numberPattern));
 		event.image = eventsArray[i].image;
 		// event.lessons = eventsArray[i].lessons;
-		event.prices = eventsArray[i].prices;
+		// event.prices = eventsArray[i].prices;
 
 		// alert(JSON.stringify(eventsArray[i].prices));
 		// for (var price in eventsArray[i].prices) {
@@ -243,7 +242,7 @@ function getLocalEvents() {
 
 	itForumDatabase.Events.forEach(function(Event) {
 		if (!Event.image == "") {
-			$('#eventList').append("<li data-id='" + startDate(Event.eventid) + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
+			$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
 		} else {
 			$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
 		}
@@ -261,8 +260,10 @@ function getLocalEvents() {
 		$('#eventList').children('li').bind('touchstart mousedown', function(e) {
 			sessionStorage.selectedId = $(this).attr('data-id');
 		});
+		
+		// $('#eventList').listview("refresh");
 	});
-	$('#eventList').listview('refresh');
+	$('#eventList').listview("refresh");
 }
 
 function getParticipants(participantsArray, eventid) {
@@ -273,8 +274,9 @@ function getParticipants(participantsArray, eventid) {
 		$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'>" + participantsArray[i].firstname + ' ' + participantsArray[i].lastname + '</li>');
 
 		$('#ParticipantsList').children('li').bind('touchstart mousedown', function(e) {
-			sessionStorage.setItem("participant", JSON.stringify(participantsArray[i]));
-			sessionStorage.selectedId = $(this).attr('data-id');
+			// sessionStorage.setItem("participant", JSON.stringify(participantsArray[i]));
+			sessionStorage.selectedParIndex = $('#ParticipantsList').children('li').index(this);
+			// sessionStorage.selectedId2 = $(this).attr('data-id');
 		});
 		$("#ParticipantsList").trigger("create");
 		//$('#ParticipantsList').listview('refresh');
@@ -299,13 +301,14 @@ $(document).on('pagebeforeshow', '#pageDetailEvent', function() {
 });
 
 $(document).on('pageshow', '#pageDetailEvent', function() {
-	itForumDatabase.onReady(function() {
-		getRemoteParticipants(sessionStorage.selectedId);
-	});
+	// itForumDatabase.onReady(function() {
+	alert("" + sessionStorage.selectedId);
+	getRemoteParticipants(sessionStorage.selectedId);
+	// });
 });
 
 $(document).on('pagebeforeshow', '#pageParticipantsDetail', function() {
-	ParticipantDetails(participantsArraydfhdhfjfjhfj);
+	ParticipantDetails(participantsArray);
 
 });
 

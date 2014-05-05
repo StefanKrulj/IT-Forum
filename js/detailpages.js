@@ -5,7 +5,7 @@ function EventDetails(events) {
 		$("#pageDetailEvent #eventAttributes").empty();
 
 		$("#pageDetailEvent #eventAttributes").append("<h2 id='eventTitle'>" + event.title + "</h2>");
-		$("#pageDetailEvent #eventAttributes").append("<img id='eventImage' src=" + event.image + " alt='some_text'>");
+		$("#pageDetailEvent #eventAttributes").append("<img id='eventImage' src=" + event.image + ">");
 		$("#pageDetailEvent #eventAttributes").append("<h3 id='eventSubTitle'>" + event.subtitle + "</h3>");
 		$("#pageDetailEvent #eventAttributes").append(event.starttime);
 		$("#pageDetailEvent #eventAttributes").append(event.endtime);
@@ -24,7 +24,7 @@ function EventDetails(events) {
 				}
 			}
 			if (participating == "false"){
-					$("#pageDetailEvent #eventAttributes").append("<a href='" + event.url1 + "&guid=" + login + "' class='ui-btn'>Deltag i arrangementet</a>");
+					$("#pageDetailEvent #eventAttributes").append("<a href='" + event.url2 + "&guid=" + login + "' class='ui-btn'>Deltag i arrangementet</a>");
 			}
 			
 		} else{
@@ -53,17 +53,19 @@ function ProfileDetails() {
 
 function ParticipantDetails(participantsArray) {
 
-	var participant = participantsArray[parseInt(sessionStorage.selectedId)];
+	var par = participantsArray[parseInt(sessionStorage.selectedParIndex)];
+	var participant = par;
+
 
 	$("#pageParticipantsDetail #userAttributes").empty();
 
-	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + participant.firstname + " " + participnt.lastname + "</h2></td></tr></table>");
+	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + participant.firstname + " " + participant.lastname + "</h2></td></tr></table>");
 	// De har ingen title
 	// $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + participant.title + "</h3></td></tr></table>");
 	if (participant.linkedinurl != "") {
 		$("#pageParticipantsDetail #userAttributes").append("<a href=" + participant.linkedinurl + ">LinkedinUrl</a>");
 	}
-	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + participnt.profile + "</p></h3></td></tr></table>");
+	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + participant.profile + "</p></h3></td></tr></table>");
 	// MÅ IKKE VISES
 	// $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
 	// $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + participant.email + "</p></td></tr></table>");

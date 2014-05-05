@@ -1,14 +1,88 @@
 /*
  * Mobile Page Transition
  */
-$(document).bind("mobileinit", function() {
-	$.mobile.defaultPageTransition = "slide";
-});
+$.mobile.defaultPageTransition = "slide";
 
 /*
- * Wait for device API libraries to load
+*
+*/
+// var app = {
+// // Application Constructor
+// initialize : function() {
+// this.bindEvents();
+// },
+// // Bind Event Listeners
+// //
+// // Bind any events that are required on startup. Common events are:
+// // 'load', 'deviceready', 'offline', and 'online'.
+// bindEvents : function() {
+// /*
+// * Wait for device API libraries to load
+// */
+// document.addEventListener("deviceready", onDeviceReady, false);
+// },
+// // deviceready Event Handler
+// //
+// // The scope of 'this' is the event. In order to call the 'receivedEvent'
+// // function, we must explicity call 'app.receivedEvent(...);'
+// onDeviceReady : function() {
+// /*
+// * Device APIs are available
+// */
+// app.receivedEvent('deviceready');
+//
+// document.addEventListener("pause", onPause, false);
+// document.addEventListener("resume", onResume, false);
+//
+// FastClick.attach(document.body);
+//
+// initiateDatabase();
+// alert("ffs");
+// getNewEvents();
+//
+// },
+// // Update DOM on a Received Event
+// receivedEvent : function(id) {
+// var parentElement = document.getElementById(id);
+// var listeningElement = parentElement.querySelector('.listening');
+// var receivedElement = parentElement.querySelector('.received');
+//
+// listeningElement.setAttribute('style', 'display:none;');
+// receivedElement.setAttribute('style', 'display:block;');
+//
+// console.log('Received Event: ' + id);
+// },
+//
+// onPause : function () {
+//
+// },
+//
+// onResume : function () {
+//
+// },
+// };
+
+//TODO Alt under her skal være udkommenteret
+
+/*
+* Mobile Page Transition
+*/
+// $.mobile.defaultPageTransition = "slide";
+
+/*
+ * Is run as the last javascript = Starting the app method
  */
-document.addEventListener("deviceready", onDeviceReady, false);
+function onLoad() {
+	/*
+	 * Wait for device API libraries to load
+	 */
+	document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+// /*
+// * Wait for device API libraries to load
+// */
+// document.addEventListener("deviceready", onDeviceReady, false);
 
 /*
  * Device APIs are available
@@ -19,35 +93,11 @@ function onDeviceReady() {
 
 	// FastClick
 	FastClick.attach(document.body);
+	
+	pushRegister();
 
-	// Native dialogs TODO Ser ikke ud til at virke
-	if (navigator.notification) {// Override default HTML alert with native dialog
-		window.alert = function(message) {
-			navigator.notification.alert(message, // message
-			null, // callback
-			"ITForum", // title
-			'OK' // buttonName
-			);
-		};
-	}
-	initiateDatabase(function() {
-		// Hide splashscreen
-		if (navigator.splashscreen != undefined) {
-			navigator.splashscreen.hide();
-		}
-	});
-}
-
-function successHandler(result) {
-	console.log("successfully registered with AeroGear push server : " + result);
-}
-
-function errorHandler(error) {
-	console.log("Error in registering with AeroGear push server : " + error);
-}
-
-function onNotification(e) {
-	showNotification(e.alert);
+	initiateDatabase();
+	getNewEvents();
 }
 
 /*
@@ -62,7 +112,6 @@ function onPause() {
  */
 function onResume() {
 	// Handle the resume event
-	getNewEvents();
 }
 
 /*
@@ -93,23 +142,20 @@ function online() {
  */
 function getNewEvents() {
 	if (online()) {
-		console.log("online");
-		getLocalEvents(function() {
-			getRemoteEvents();
-		});
+		alert("online");
 		getRemoteEvents();
 	} else {
-		console.log("offline");
+		alert("offline");
 		getLocalEvents();
 	}
 }
 
 /*
- * TODO Dette er til test på browser, metoden ovenover er til mobile platformen
- */
-function getNewEvents() {
-	getRemoteEvents();
-}
+* TODO Dette er til test på browser, metoden ovenover er til mobile platformen
+*/
+// function getNewEvents() {
+// getRemoteEvents();
+// }
 
 /*
  * create Jaydata database.
@@ -121,11 +167,10 @@ function initiateDatabase() {
 	});
 }
 
-
-$('#pageEvent').on('pageshow', function() {
-	try {
-		$('#eventList').listview('refresh');
-	} catch (e) {
-		$('#eventList').listview();
-	}
-});
+// $('#pageEvent').on('pageshow', function() {
+// try {
+// $('#eventList').listview('refresh');
+// } catch (e) {
+// $('#eventList').listview();
+// }
+// });

@@ -19,6 +19,12 @@ function getRemoteEvents() {
 	});
 }
 
+var participantsArray;
+
+// function getParArr () {
+  // return participantsArray;
+// }
+
 /*
  * Webservice get participants by eventid
  */
@@ -29,7 +35,7 @@ function getRemoteParticipants(eventid) {
 		url : "http://www.itforum.dk/ws/appapi.asp?method=getparticipants&guid=" + userLoginguid + "&eventid=" + eventid + "",
 		dataType : "jsonp",
 		success : function(parsed_json) {
-			var participantsArray = parsed_json;
+			participantsArray = parsed_json;
 			getParticipants(participantsArray, eventid);
 		},
 		error : function() {
