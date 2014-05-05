@@ -70,9 +70,19 @@ $.mobile.defaultPageTransition = "slide";
 // $.mobile.defaultPageTransition = "slide";
 
 /*
- * Wait for device API libraries to load
+ * Is run as the last javascript = Starting the app method
  */
-document.addEventListener("deviceready", onDeviceReady, false);
+function onLoad() {
+	/*
+	 * Wait for device API libraries to load
+	 */
+	document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+// /*
+// * Wait for device API libraries to load
+// */
+// document.addEventListener("deviceready", onDeviceReady, false);
 
 /*
  * Device APIs are available
@@ -83,23 +93,25 @@ function onDeviceReady() {
 
 	// FastClick
 	FastClick.attach(document.body);
+	
+	pushRegister();
 
 	initiateDatabase();
 	getNewEvents();
 }
 
 /*
-* When leaving app
-*/
+ * When leaving app
+ */
 function onPause() {
-// Handle the pause event
+	// Handle the pause event
 }
 
 /*
-* When resuming app
-*/
+ * When resuming app
+ */
 function onResume() {
-// Handle the resume event
+	// Handle the resume event
 }
 
 /*

@@ -21,9 +21,9 @@ function getRemoteEvents() {
 
 var participantsArray;
 
-function getParArr () {
-  return participantsArray;
-}
+// function getParArr () {
+  // return participantsArray;
+// }
 
 /*
  * Webservice get participants by eventid

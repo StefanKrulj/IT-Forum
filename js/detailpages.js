@@ -5,7 +5,7 @@ function EventDetails(events) {
 		$("#pageDetailEvent #eventAttributes").empty();
 
 		$("#pageDetailEvent #eventAttributes").append("<h2 id='eventTitle'>" + event.title + "</h2>");
-		$("#pageDetailEvent #eventAttributes").append("<img id='eventImage' src=" + event.image + " alt='some_text'>");
+		$("#pageDetailEvent #eventAttributes").append("<img id='eventImage' src=" + event.image + ">");
 		$("#pageDetailEvent #eventAttributes").append("<h3 id='eventSubTitle'>" + event.subtitle + "</h3>");
 		$("#pageDetailEvent #eventAttributes").append(event.starttime);
 		$("#pageDetailEvent #eventAttributes").append(event.endtime);
@@ -53,10 +53,9 @@ function ProfileDetails() {
 
 function ParticipantDetails(participantsArray) {
 
-	var par = participantsArray[parseInt(sessionStorage.selectedId)];
+	var par = participantsArray[parseInt(sessionStorage.selectedParIndex)];
 	var participant = par;
-	
-	alert(par);
+
 
 	$("#pageParticipantsDetail #userAttributes").empty();
 

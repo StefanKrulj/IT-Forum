@@ -274,8 +274,9 @@ function getParticipants(participantsArray, eventid) {
 		$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'>" + participantsArray[i].firstname + ' ' + participantsArray[i].lastname + '</li>');
 
 		$('#ParticipantsList').children('li').bind('touchstart mousedown', function(e) {
-			sessionStorage.setItem("participant", JSON.stringify(participantsArray[i]));
-			sessionStorage.selectedId = $(this).attr('data-id');
+			// sessionStorage.setItem("participant", JSON.stringify(participantsArray[i]));
+			sessionStorage.selectedParIndex = $('#ParticipantsList').children('li').index(this);
+			// sessionStorage.selectedId2 = $(this).attr('data-id');
 		});
 		$("#ParticipantsList").trigger("create");
 		//$('#ParticipantsList').listview('refresh');
@@ -300,13 +301,14 @@ $(document).on('pagebeforeshow', '#pageDetailEvent', function() {
 });
 
 $(document).on('pageshow', '#pageDetailEvent', function() {
-	itForumDatabase.onReady(function() {
-		getRemoteParticipants(sessionStorage.selectedId);
-	});
+	// itForumDatabase.onReady(function() {
+	alert("" + sessionStorage.selectedId);
+	getRemoteParticipants(sessionStorage.selectedId);
+	// });
 });
 
 $(document).on('pagebeforeshow', '#pageParticipantsDetail', function() {
-	ParticipantDetails(getParArr());
+	ParticipantDetails(participantsArray);
 
 });
 
