@@ -429,16 +429,10 @@ function isPartisipantFav (userId) {
 	alert(userId);
 	
 	
-	if (itForumDatabase.Participants.filter( function(participant) {
-            return participant.id == userId; })) {
-            	
-         		alert(true);
-           
-            	
-            }else{
-            	alert(false);
-            	
-            }
+	itForumDatabase.Participants.filter( function(participant) {
+            return participant.id == userId; }).toArray(function(events) {
+		EventDetails(events);
+	});
         
 }
 
