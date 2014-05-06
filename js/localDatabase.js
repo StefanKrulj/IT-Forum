@@ -146,7 +146,7 @@ function createLocalDatabase() {
 		},
 		date : {
 			type : String,
-			maxLength : 20
+			maxLength : 50
 		},
 		messageText : {
 			type : String,
@@ -344,19 +344,17 @@ function getLocalEvents() {
 }
 
 function setMessage(toAlias, fromAlias, messageText) {
-	var message = new message;
+	var message = new Message();
 	message.toAlias = toAlias;
 	message.fromAlias = fromAlias;
 	message.date = new Date();
 	message.messageText = messageText;
-	itForumDatabase.Message.add(message);
-	
+	itForumDatabase.Messages.add(message);
+		alert(" ,touser: " + message.toAlias + " ,fromuser: " + message.fromAlias + " ,messege: " + message.messageText + " ,date: " + message.date );
+
 	itForumDatabase.saveChanges();
 }
 
-function getMessages() {
-	
-}
 
 function setFavoriteParticipant(participant) {
 	var participantFav = new Participant();
@@ -389,6 +387,12 @@ function getFavoriteParticipant() {
 			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='" + participant.imageurl + "'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
 		}
 
+		$('#favoriteParticipantList').children('li').bind('touchstart mousedown', function(e) {
+			
+			sessionStorage.selectedFavParIndex = $('#favoriteParticipantList').children('li').index(this);
+			
+		});
+		
 		// if (localStorage.getItem("user") != null) {
 			// var user = localStorage.getItem("user");
 			// var userEventArray = JSON.parse(user).events;
@@ -408,12 +412,37 @@ function getFavoriteParticipant() {
 	//$('#favoriteParticipantList').listview("refresh");
 }
 
+function Messages(participants) {
+	
+	
+	participants.forEach(function(participant) {
+			
+
+		alert(participant.id);
+		
+		localStorage.setItem("favPartisipant", JSON.stringify(participant.id));
+		
+		
+
+	
+	});
+	
+  
+}
+
 function getParticipants(participantsArray, eventid) {
 	$("#ParticipantsList").empty();
 	for (var i in participantsArray) {
 		alert(participantsArray[i].linkedinurl);
 
-		$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'>" + participantsArray[i].firstname + ' ' + participantsArray[i].lastname + '</li>');
+		if (participantsArray[i].imageurl == "") {
+
+			$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'><img src='img/person_icon.svg'><p><strong>" + participantsArray[i].firstname + " " + participantsArray[i].lastname + "</strong></p><p> " + participantsArray[i].title + "</p><p>" + participantsArray[i].company + '</p></li>');
+
+		} else {
+			$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'><img src='" + participantsArray[i].imageurl + "'><p><strong>" + participantsArray[i].firstname + " " + participantsArray[i].lastname + "</strong></p><p> " + participantsArray[i].title + "</p><p>" + participantsArray[i].company + '</p></li>');
+		}
+
 
 		$('#ParticipantsList').children('li').bind('touchstart mousedown', function(e) {
 			// sessionStorage.setItem("participant", JSON.stringify(participantsArray[i]));
@@ -426,25 +455,30 @@ function getParticipants(participantsArray, eventid) {
 	$('#ParticipantsList').listview('refresh');
 }
 
-function isPartisipantFav (userId) {
+function isParticipantFav (participantId) {
 	
-	var text = "id=" + userId + "";
-		
-	 itForumDatabase.Participants.filter(text)
-        .forEach( function(participants) {
-        	alert("test");
-            alert(participants.firstname);
-        });
+	/*
+	 * Søger alle igennem og finder hvis id matcher = yes
+	 */
+	var found = "no";
 	
+	itForumDatabase.Participants.forEach(function(participant) {
+		if(participant.id == participantId){
+			alert("yes");
+		}
+		else{
+			alert("no");
+		}
+	});
 	
-	 // itForumDatabase.Participants.filter( function(participant) {
-             // return participant.id == userId; }).toArray(function(part) {
-// 		 
-		 // alert(part.firstname);
-// 		 
-// 		 
-	 // });
-        
+	// if(found == "yes"){
+		// alert("yes");
+		// // $('#favoriteToggle').val('on');
+	// }
+	// else{
+		// alert("no");
+		// // $('#favoriteToggle').val('off');
+	// }
 }
 
 /*
@@ -479,5 +513,16 @@ $(document).on('pagebeforeshow', '#pageUser', function() {
 
 $('#networkingBtn').click( function() {
 	getFavoriteParticipant();
+});
+
+$(document).on('pagebeforeshow', '#pageMessages', function() {
+	itForumDatabase.Participants.filter(function(participant) {
+		return participant.id == sessionStorage.selectedId;
+	}).toArray(function(participant) {
+	
+		Messages(participant);
+	});
+	
+	
 });
 

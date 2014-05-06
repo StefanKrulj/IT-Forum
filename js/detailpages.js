@@ -39,18 +39,31 @@ function ProfileDetails() {
 	var user = localStorage.getItem("user");
 	var us = JSON.parse(user);
 
+
 	$("#pageUser #userAttributes").empty();
 
 	$("#pageUser #userAttributes").append("<a href='http://www.itforum.dk/' class='ui-btn ui-btn-inline ui-icon-gear ui-btn-icon-right'>Rediger bruger</a>");
 
-	$("#pageUser #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.firstname + " " + us.lastname + "</h2></td></tr></table>");
-	$("#pageUser #userAttributes").append("<table><tr><td><h3>Virksomhed:</h3></td><td><a href=" + us.company + "><h3 id='userCompany'>" + us.company + "</h3></a></td></tr></table>");
+	if (us.imageurl == "") {
+		$("#pageUser #userAttributes").append("<table><tr><td><img src='img/person_icon.svg'></td></tr></table>");
+	} else {
+		$("#pageUser #userAttributes").append("<table><tr><td><img src='" + us.imageurl + "'></td></tr></table>");
+	}
 
-	$("#pageUser #userAttributes").append("<table><tr><td><a href=" + us.linkedinurl + ">LinkedinUrl</a></td></tr></table>");
-	$("#pageUser #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + us.profile + "</p></h3></td></tr></table>");
-	$("#pageUser #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + us.mobile + "</p></td></tr></table>");
-	$("#pageUser #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + us.email + "</p></td></tr></table>");
+	 $("#pageUser #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.firstname + " " + us.lastname + "</h2></td></tr></table>");
+	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><p id='userProfileTitle'> " + us.title + "</p></h3></td></tr></table>");
+ 
+	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Firma:</h3></td><td><p id='userCompany'> " + us.company + "</p></h3></td></tr></table>");
+ 
+	 $("#pageUser #userAttributes").append("<table><tr><td><a href=" + us.companyurl + ">Firmas webadresse</a></td></tr></table>");
+ 
+	 $("#pageUser #userAttributes").append("<table><tr><td><a href=" + us.linkedinurl + ">LinkedinUrl</a></td></tr></table>");
+	 $("#pageUser #userAttributes").append("<table><tr><td>Firmas logo<img src='" + us.companyimageurl + "'></a></td></tr></table>");
+	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + us.profile + "</p></h3></td></tr></table>");
+	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + us.mobile + "</p></td></tr></table>");
+	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + us.email + "</p></td></tr></table>");
 }
+
 
 function ParticipantDetails(participantsArray) {
 
@@ -59,10 +72,19 @@ function ParticipantDetails(participantsArray) {
 
 
 	$("#pageParticipantsDetail #userAttributes").empty();
+	
+	if (participant.imageurl == "") {
+		$("#pageParticipantsDetail #userAttributes").append("<img src='img/person_icon.svg'>");
+	} else {
+		$("#pageParticipantsDetail #userAttributes").append("<img src='" + participant.imageurl + "'>");
+	}
+
 
 	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + participant.firstname + " " + participant.lastname + "</h2></td></tr></table>");
-	// De har ingen title
-	// $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + participant.title + "</h3></td></tr></table>");
+	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + participant.title + "</h3></td></tr></table>");
+
+	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Firma:</h3></td><td><h3 id='userTitle'>" + participant.company + "</h3></td></tr></table>");
+	
 	if (participant.linkedinurl != "") {
 		$("#pageParticipantsDetail #userAttributes").append("<a href=" + participant.linkedinurl + ">LinkedinUrl</a>");
 	}
@@ -70,32 +92,34 @@ function ParticipantDetails(participantsArray) {
 	
 	 $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
 	 
-	 var someCondition = true;
-	 if (someCondition) {
-         $('#favoriteToggle').val('off');
-     }
-     else {
-         $('#favoriteToggle').val('on');
-     }
-     try {
-         $('#favoriteToggle').slider("refresh");
-     }
-     catch (err) {
-         console.log ("Error occurred refreshing slider (probabily first time!)");
-     }
 	 
-	// alert("isPartisipantFav "+ isPartisipantFav(participant.id));	 
-	 $("#favoriteToggle").change(function() {
-	 	var state = $("#favoriteToggle").val();
-	 	// alert(state);
-	 	if(state == "on"){
-	 		setFavoriteParticipant(participant);
-	 		alert("set: " + participant.firstname);
-	 	}
-    
-    $('#togshow').text(state.toString());
-	});
-	 
+	 isParticipantFav(participant.id);
+	 // var someCondition = true;
+	 // if (someCondition) {
+         // $('#favoriteToggle').val('off');
+     // }
+     // else {
+         // $('#favoriteToggle').val('on');
+     // }
+     // try {
+         // $('#favoriteToggle').slider("refresh");
+     // }
+     // catch (err) {
+         // console.log ("Error occurred refreshing slider (probabily first time!)");
+     // }
+// 	 
+	// // alert("isPartisipantFav "+ isPartisipantFav(participant.id));	 
+	 // $("#favoriteToggle").change(function() {
+	 	// var state = $("#favoriteToggle").val();
+	 	// // alert(state);
+	 	// if(state == "on"){
+	 		// setFavoriteParticipant(participant);
+	 		// alert("set: " + participant.firstname);
+	 	// }
+//     
+    // $('#togshow').text(state.toString());
+	// });
+// 	 
 	 // MÅ IKKE VISES
 	// $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + participant.email + "</p></td></tr></table>");
 }
