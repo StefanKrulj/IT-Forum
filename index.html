@@ -32,7 +32,7 @@
 						<a onclick="getLocalEvents()" href="#">getLocalEvents</a>
 					</li>
 					<li>
-						<a href="#">Whatever ting</a>
+						<a href="#"></a>
 					</li>
 				</ul>
 			</div>
@@ -193,6 +193,10 @@
 				<div id="userAttributes">
 
 				</div>
+				<form>
+					<label for="flip-checkbox-2">Tilføj til favorit:</label>
+					<input type="checkbox" data-role="flipswitch" name="flip-checkbox-2" id="favoriteToggle" data-on-text="Fjern" data-off-text="Tilføj" data-wrapper-class="custom-label-flipswitch">
+				</form>
 			</div>
 		</div>
 
@@ -204,7 +208,7 @@
 			</div>
 
 			<div data-role="content">
-				<div id="networkingAttributes">
+				<div id="favoriteParticipantList">
 					<div data-role="footer" data-position="fixed"><textarea name="textarea" id="messageTextArea"></textarea><input type="submit" onclick="sendNotification()" value="TRYK!" class="search" /></div>
 				</div>
 			</div>
