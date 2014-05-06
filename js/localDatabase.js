@@ -137,19 +137,19 @@ function createLocalDatabase() {
 			computed : true
 		},
 		toAlias : {
-			type : string,
+			type : String,
 			maxLength : 50
 		},
 		fromAlias : {
-			type : string,
+			type : String,
 			maxLength : 50
 		},
 		date : {
-			type : string,
+			type : String,
 			maxLength : 20
 		},
 		messageText : {
-			type : string,
+			type : String,
 			maxLength : 200
 		}
 		
@@ -157,47 +157,47 @@ function createLocalDatabase() {
 	
 	$data.Entity.extend("Participant", {
 		id : {
-			type : string,
+			type : String,
 			maxLength : 20
 		},
 		firstname : {
-			type : string,
+			type : String,
 			maxLength : 40
 		},
 		lastname : {
-			type : string,
+			type : String,
 			maxLength : 40
 		},
 		title : {
-			type : string,
+			type : String,
 			maxLength : 40
 		},
 		imageurl : {
-			type : string,
+			type : String,
 			maxLength : 200
 		},
 		email : {
-			type : string,
+			type : String,
 			maxLength : 50
 		},
 		mobile : {
-			type : string,
+			type : String,
 			maxLength : 20
 		},
 		linkedinurl : {
-			type : string,
+			type : String,
 			maxLength : 200
 		},
 		company : {
-			type : string,
+			type : String,
 			maxLength : 40
 		},
 		companyurl : {
-			type : string,
+			type : String,
 			maxLength : 200
 		},
 		companyimageurl : {
-			type : string, 
+			type : String, 
 			maxLength : 200
 		}
 			
