@@ -70,7 +70,8 @@ function ParticipantDetails(participantsArray) {
 	 $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
 	 
 	 $("#favoriteToggle").change(function() {
-	 	state = $("#favoriteToggle").val();
+	 	var state = $("#favoriteToggle").val();
+	 	alert(state);
 	 	if(state == on){
 	 		setFavoriteParticipant(participant);
 	 	}
