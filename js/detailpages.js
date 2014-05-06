@@ -75,6 +75,7 @@ function ParticipantDetails(participantsArray) {
 	}
 	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + participant.profile + "</p></h3></td></tr></table>");
 
+
 	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
 
 	$("#favoriteToggle").change(function() {
@@ -86,6 +87,21 @@ function ParticipantDetails(participantsArray) {
 		}
 
 		$('#togshow').text(state.toString());
+
+	
+	 $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
+	 
+	alert("isPartisipantFav "+ isPartisipantFav(participant.id));	 
+	 $("#favoriteToggle").change(function() {
+	 	var state = $("#favoriteToggle").val();
+	 	alert(state);
+	 	if(state == "on"){
+	 		setFavoriteParticipant(participant);
+	 		alert("set: " + participant.firstname);
+	 	}
+    
+    $('#togshow').text(state.toString());
+
 	});
 
 	// MÅ IKKE VISES

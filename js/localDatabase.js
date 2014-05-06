@@ -404,9 +404,9 @@ function getFavoriteParticipant() {
 			sessionStorage.selectedId = $(this).attr('data-id');
 		});
 		
-		// $('#eventList').listview("refresh");
+		 $('#eventList').listview("refresh");
 	});
-	$('#favoriteParticipantList').listview("refresh");
+	//$('#favoriteParticipantList').listview("refresh");
 }
 
 function getParticipants(participantsArray, eventid) {
@@ -431,6 +431,17 @@ function getParticipants(participantsArray, eventid) {
 		//$('#ParticipantsList').listview('refresh');
 	}
 	$('#ParticipantsList').listview('refresh');
+}
+
+function isPartisipantFav (userId) {
+	alert(userId);
+	
+	
+	itForumDatabase.Participants.filter( function(participant) {
+            return participant.id == userId; }).toArray(function(events) {
+		EventDetails(events);
+	});
+        
 }
 
 /*
