@@ -378,7 +378,32 @@ function setFavoriteParticipant(participant) {
 }
 
 function getFavoriteParticipant() {
-	
+	$('#favoriteParticipantList').empty();
+
+	itForumDatabase.Participants.forEach(function(participant) {
+		if (!participant.image == "") {
+			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='" + participant.imageurl + "'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
+		} else {
+			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='img/imgArr.jpg'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
+		}
+
+		// if (localStorage.getItem("user") != null) {
+			// var user = localStorage.getItem("user");
+			// var userEventArray = JSON.parse(user).events;
+			// for (var i in userEventArray) {
+				// if (userEventArray[i] == Event.eventid) {
+					// $('#' + Event.eventid + '').html("Tilmeldt");
+				// }
+			// }
+		// }
+
+		$('#favoriteParticipantList').children('li').bind('touchstart mousedown', function(e) {
+			sessionStorage.selectedId = $(this).attr('data-id');
+		});
+		
+		// $('#eventList').listview("refresh");
+	});
+	$('#favoriteParticipantList').listview("refresh");
 }
 
 function getParticipants(participantsArray, eventid) {
