@@ -301,12 +301,10 @@ function setLocalEvents(eventsArray) {
 		// event.endtime = endTimeDate(eventsArray[i].starttime.match(numberPattern), eventsArray[i].endtime.match(numberPattern));
 		event.image = eventsArray[i].image;
 
-			
-					for (var j = 0; j < eventsArray[i].prices.length; j++) {
-						alert("Name " + eventsArray[i].prices[j].name + " Amount " + eventsArray[i].prices[j].amount);
-					}
-
-				
+		// for(var j = 0; j < eventsArray[i].prices.length; j++){
+			// alert("Name " + eventsArray[i].prices[j].name +
+			// " Amount " + eventsArray[i].prices[j].amount);			
+		// }
 		
 		itForumDatabase.Events.add(event);
 	}
@@ -412,16 +410,10 @@ function getFavoriteParticipant() {
 function getParticipants(participantsArray, eventid) {
 	$("#ParticipantsList").empty();
 	for (var i in participantsArray) {
-		//alert(participantsArray[i].linkedinurl);
-		if(participantsArray[i].imageurl == "") {
-			
-			$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'><img src='img/person_icon.svg'><p><strong>" + participantsArray[i].firstname + " "  + participantsArray[i].lastname + "</strong></p><p> " + participantsArray[i].title + "</p><p>" + participantsArray[i].company + '</p></li>');	
-		
-		}
-		else{
-		$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'><img src='" + participantsArray[i].imageurl + "'><p><strong>" + participantsArray[i].firstname + " "  + participantsArray[i].lastname + "</strong></p><p> " + participantsArray[i].title + "</p><p>" + participantsArray[i].company + '</p></li>');
-		}
-		
+		alert(participantsArray[i].linkedinurl);
+
+		$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'>" + participantsArray[i].firstname + ' ' + participantsArray[i].lastname + '</li>');
+
 		$('#ParticipantsList').children('li').bind('touchstart mousedown', function(e) {
 			// sessionStorage.setItem("participant", JSON.stringify(participantsArray[i]));
 			sessionStorage.selectedParIndex = $('#ParticipantsList').children('li').index(this);

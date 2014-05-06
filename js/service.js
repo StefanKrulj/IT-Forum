@@ -152,7 +152,7 @@ function online() {
 * TODO Dette er til test på browser, metoden ovenover er til mobile platformen
 */
 function getNewEvents() {
-getRemoteEvents();
+	getRemoteEvents();
 }
 
 /*

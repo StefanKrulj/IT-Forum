@@ -74,7 +74,7 @@
 						</div>
 					</div>
 					<div id="networking" class="ui-block-a">
-						<a id="networkingBtn" href='#pageNetworking'><img src='img/people_icon.svg' /></a>
+						<a id="networkingBtn" class="show-page-loading-msg" href='#pageNetworking'><img src='img/people_icon.svg' /></a>
 						<div class='imgCaption'>
 							Networking
 						</div>
@@ -208,12 +208,12 @@
 			</div>
 
 			<div data-role="content">
-				<div id="favoriteParticipantList">
-					<div data-role="footer" data-position="fixed"><textarea name="textarea" id="messageTextArea"></textarea><input type="submit" onclick="sendNotification()" value="TRYK!" class="search" /></div>
-				</div>
+				<ul id="favoriteParticipantList" data-role="listview" data-filter="true" data-filter-placeholder="Søg kontakter" data-inset="true"></ul>
+			</div>
+
 		</div>
 
-	<div data-role="page" id="pageMessages" data-title="pageMessages">
+		<div data-role="page" id="pageMessages" data-title="pageMessages">
 			<div data-role="header">
 				<h1>Conversations</h1>
 
@@ -221,11 +221,13 @@
 			</div>
 
 			<div data-role="content">
-				<div id="messagesAttributes">
-					<div data-role="footer" data-position="fixed"><div data-role="fieldcontain"><textarea name="textarea" id="messageTextArea"></textarea><input type="submit" onclick="sendNotification()" value="TRYK!" class="search" /></div></div>
-					
-					
-				</div>
+				<div id="messagesAttributes"></div>
+			</div>
+			<div data-role="footer" data-position="fixed">
+					<form id="messageForm">
+						<textarea id="messageText" required></textarea>
+						<input type="submit" onclick="sendNotification()" value="Send" class="search" />
+					</form>
 			</div>
 		</div>
 
