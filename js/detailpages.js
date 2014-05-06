@@ -12,6 +12,7 @@ function EventDetails(events) {
 		$("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + event.location + "</p>");
 		$("#pageDetailEvent #eventAttributes").append("<p id='eventDescription'>" + event.description + "</p>");
 		
+		
 		if (localStorage.getItem("user") != null) {
 			var user = localStorage.getItem("user");
 			var userEventArray = JSON.parse(user).events;
@@ -69,6 +70,7 @@ function ParticipantDetails(participantsArray) {
 	
 	 $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
 	 
+	alert("isPartisipantFav "+ isPartisipantFav(participant.id));	 
 	 $("#favoriteToggle").change(function() {
 	 	var state = $("#favoriteToggle").val();
 	 	alert(state);
