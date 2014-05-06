@@ -74,6 +74,7 @@ function ParticipantDetails(participantsArray) {
 	 	alert(state);
 	 	if(state == "on"){
 	 		setFavoriteParticipant(participant);
+	 		alert("set: " + participant.firstname);
 	 	}
     
     $('#togshow').text(state.toString());

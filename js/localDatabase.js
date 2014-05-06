@@ -360,6 +360,7 @@ function getMessages() {
 
 function setFavoriteParticipant(participant) {
 	var participantFav = new Participant();
+	alert("I method: " + participant.firstname);
 	participantFav.id = participant.id;
 	participantFav.firstname = participant.firstname;
 	participantFav.lastname = participant.lastname;
@@ -454,7 +455,7 @@ $(document).on('pagebeforeshow', '#pageUser', function() {
 	ProfileDetails();
 });
 
-$(document).on('pagebeforeshow', '#pageNetworking', function() {
+$('#networkingBtn').click( function() {
 	getFavoriteParticipant();
 });
 

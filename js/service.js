@@ -138,22 +138,22 @@ function online() {
 /*
  * getNewEvents is called from service when new eventlist is needed
  */
-function getNewEvents() {
-	if (online()) {
-		alert("online");
-		getRemoteEvents();
-	} else {
-		alert("offline");
-		getLocalEvents();
-	}
-}
+// function getNewEvents() {
+	// if (online()) {
+		// console.log("online");
+		// getRemoteEvents();
+	// } else {
+		// console.log("offline");
+		// getLocalEvents();
+	// }
+// }
 
 /*
 * TODO Dette er til test på browser, metoden ovenover er til mobile platformen
 */
-// function getNewEvents() {
-// getRemoteEvents();
-// }
+function getNewEvents() {
+getRemoteEvents();
+}
 
 /*
  * create Jaydata database.
@@ -172,3 +172,6 @@ function initiateDatabase() {
 // $('#eventList').listview();
 // }
 // });
+
+initiateDatabase();
+	getNewEvents();

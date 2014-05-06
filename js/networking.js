@@ -4,15 +4,15 @@
 function pushRegister(email) {
 	var pushConfig = {
 		pushServerURL : "https://aerogear-itforum.rhcloud.com/",
-		alias : "" + email,
+		alias : "Jakob",
 		android : {
 			senderID : "1002823794109",
 			variantID : "aa00132e-acaa-4070-ad49-0256d07a9329",
 			variantSecret : "93da4e63-426a-4f11-b715-6d53d6bc1d69"
 		},
 		ios : {
-			variantID : "aa00132e-acaa-4070-ad49-0256d07a9329",
-			variantSecret : "93da4e63-426a-4f11-b715-6d53d6bc1d69"
+			variantID : "<variantID e.g. 1234456-234320>",
+			variantSecret : "<variantSecret e.g. 1234456-234320>"
 		}
 	};
 	try {
@@ -24,13 +24,20 @@ function pushRegister(email) {
 	}
 }
 
+/*
+ * Unregister
+ */
+function pushUnregister () {
+  	push.unregister(successHandler, errorHandler);
+}
+
 
 
 /*
  * Success/error handlers
  */
 function successHandler(result) {
-	console.log("Success " + result);
+	console.log("Success ");
 }
 
 function errorHandler(error) {
@@ -44,11 +51,11 @@ function onNotification(e) {
 	/*
 	* if the notification contains a sound, play it.
 	*/
-	// if (e.sound) {
+	if (e.sound) {
 	// // install the media plugin to use this
 	// var media = new Media("/android_asset/www/" + e.sound);
 	// media.play();
-	// }
+	}
 
 	if (e.coldstart) {
 		// TODO Åbner app, den skal så redirect til anden side
