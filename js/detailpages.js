@@ -72,7 +72,7 @@ function ParticipantDetails(participantsArray) {
 	 $("#favoriteToggle").change(function() {
 	 	var state = $("#favoriteToggle").val();
 	 	alert(state);
-	 	if(state == on){
+	 	if(state == "on"){
 	 		setFavoriteParticipant(participant);
 	 	}
     

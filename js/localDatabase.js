@@ -78,12 +78,12 @@ function createLocalDatabase() {
 			//required : true,
 			maxLength : 1000
 		},
-		tags : {
-			type : Array,
-			elementType : String
+		// tags : {
+			// type : Array,
+			// elementType : String
 			//required : true,
 			//maxLength : 1000
-		},
+		// },
 		eventid : {
 			type : String,
 			key : true
@@ -113,20 +113,20 @@ function createLocalDatabase() {
 			type : String,
 			//required : true,
 			maxLength : 1000
-		},
-		lessons : {
-			type : Array,
-			elementType : String
-			//required : true,
-			//maxLength : 1000
-		},
-		// IKKE ET ARRAY
-		prices : {
-			type : Array,
-			elementType : String
-			//required : true,
-			//maxLength : 1000
 		}
+		// lessons : {
+			// type : Array,
+			// elementType : String
+			//required : true,
+			//maxLength : 1000
+		// },
+		// IKKE ET ARRAY
+		// prices : {
+			// type : Array,
+			// elementType : String
+			//required : true,
+			//maxLength : 1000
+		// }
 	});
 	
 	$data.Entity.extend("Message", {
@@ -301,10 +301,10 @@ function setLocalEvents(eventsArray) {
 		// event.endtime = endTimeDate(eventsArray[i].starttime.match(numberPattern), eventsArray[i].endtime.match(numberPattern));
 		event.image = eventsArray[i].image;
 
-		for(var j = 0; j < eventsArray[i].prices.length; j++){
-			alert("Name " + eventsArray[i].prices[j].name +
-			" Amount " + eventsArray[i].prices[j].amount);			
-		}
+		// for(var j = 0; j < eventsArray[i].prices.length; j++){
+			// alert("Name " + eventsArray[i].prices[j].name +
+			// " Amount " + eventsArray[i].prices[j].amount);			
+		// }
 		
 		itForumDatabase.Events.add(event);
 	}
@@ -359,18 +359,18 @@ function getMessages() {
 }
 
 function setFavoriteParticipant(participant) {
-	var participantFav = new participantFav;
+	var participantFav = new Participant();
 	participantFav.id = participant.id;
 	participantFav.firstname = participant.firstname;
 	participantFav.lastname = participant.lastname;
 	participantFav.title = participant.title;
-	participantFav.imageurl = participant.imageurl;
-	participantFav.email = participant.email;
-	participantFav.mobile = participant.mobile;
-	participantFav.linkedinurl = participant.linkedinurl;
-	participantFav.company = participant.company;
-	participantFav.companyurl = participant.companyurl;
-	participantFav.companyimageurl = participant.companyimageurl;
+	// participantFav.imageurl = participant.imageurl;
+	// participantFav.email = participant.email;
+	// participantFav.mobile = participant.mobile;
+	// participantFav.linkedinurl = participant.linkedinurl;
+	// participantFav.company = participant.company;
+	// participantFav.companyurl = participant.companyurl;
+	// participantFav.companyimageurl = participant.companyimageurl;
 	
 	itForumDatabase.Participants.add(participantFav);
 	
@@ -427,7 +427,6 @@ function getParticipants(participantsArray, eventid) {
 /*
 * TODO
 */
-
 $(document).on('pagebeforeshow', '#pageDetailEvent', function() {
 
 	// itForumDatabase.onReady(function() {
@@ -449,11 +448,13 @@ $(document).on('pageshow', '#pageDetailEvent', function() {
 
 $(document).on('pagebeforeshow', '#pageParticipantsDetail', function() {
 	ParticipantDetails(participantsArray);
-
 });
 
 $(document).on('pagebeforeshow', '#pageUser', function() {
 	ProfileDetails();
+});
 
+$(document).on('pagebeforeshow', '#pageNetworking', function() {
+	getFavoriteParticipant();
 });
 
