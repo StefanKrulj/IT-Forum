@@ -405,7 +405,7 @@ function getFavoriteParticipant() {
 		
 		 $('#favoriteParticipantList').listview("refresh");
 	});
-	$('#favoriteParticipantList').listview("refresh");
+	//$('#favoriteParticipantList').listview("refresh");
 }
 
 function getParticipants(participantsArray, eventid) {
