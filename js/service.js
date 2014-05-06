@@ -93,8 +93,6 @@ function onDeviceReady() {
 
 	// FastClick
 	FastClick.attach(document.body);
-	
-	pushRegister();
 
 	initiateDatabase();
 	getNewEvents();

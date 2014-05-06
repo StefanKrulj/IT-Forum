@@ -1,10 +1,10 @@
 /*
  * Register Push TODO Med eller uden email ? hvis ja, email parameter i function til alias
  */
-function pushRegister() {
+function pushRegister(email) {
 	var pushConfig = {
 		pushServerURL : "https://aerogear-itforum.rhcloud.com/",
-		alias : "User6",
+		alias : "" + email,
 		android : {
 			senderID : "1002823794109",
 			variantID : "aa00132e-acaa-4070-ad49-0256d07a9329",
@@ -63,18 +63,23 @@ function onNotification(e) {
 }
 
 /*
- * 
+ *
  */
-function sendNotification () {
-	var toUser = "User4";
-	
+// function sendNotification() {
+	// var toUser = "User4";
+// 
+	// var user = localStorage.getItem("user");
+	// var fromUser = JSON.parse(user).email;
+	// var msg = "Hej med dig";
+
+function sendNotification (toUser, msg) {
 	var user = localStorage.getItem("user");
 	var fromUser = JSON.parse(user).email;
-	var msg = "Hej med dig";
 	
-// function sendNotification (toUser, fromUser, msg) {
 	var result;
+
 	var anotherCustomKey = 'some other value';
+	
 	$.ajax({
 		type : "GET",
 

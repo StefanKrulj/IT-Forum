@@ -63,12 +63,23 @@ $(document).ready(function() {
 
 			$('#blivmedlem').show();
 			$('#networking').hide();
+			
+			
+			
 		} else {
 			$('#profil').show();
 			$('#logind').hide();
 
 			$('#networking').show();
 			$('#blivmedlem').hide();
+			
+			/*
+			 * Push Register
+			 */
+			// var user = localStorage.getItem("user");
+			// var userEmail = JSON.parse(user).email;
+			// pushRegister(userEmail);
+			
 			if (localStorage.getItem("autologincheckbox") == 'checked' && sessionStorage.gotNewChallenge != "yesWeDid") {
 				sessionStorage.gotNewChallenge = "yesWeDid";
 				getChallenge();
