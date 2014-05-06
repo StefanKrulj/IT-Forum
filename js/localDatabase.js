@@ -79,10 +79,10 @@ function createLocalDatabase() {
 			maxLength : 1000
 		},
 		// tags : {
-			// type : Array,
-			// elementType : String
-			//required : true,
-			//maxLength : 1000
+		// type : Array,
+		// elementType : String
+		//required : true,
+		//maxLength : 1000
 		// },
 		eventid : {
 			type : String,
@@ -115,20 +115,20 @@ function createLocalDatabase() {
 			maxLength : 1000
 		}
 		// lessons : {
-			// type : Array,
-			// elementType : String
-			//required : true,
-			//maxLength : 1000
+		// type : Array,
+		// elementType : String
+		//required : true,
+		//maxLength : 1000
 		// },
 		// IKKE ET ARRAY
 		// prices : {
-			// type : Array,
-			// elementType : String
-			//required : true,
-			//maxLength : 1000
+		// type : Array,
+		// elementType : String
+		//required : true,
+		//maxLength : 1000
 		// }
 	});
-	
+
 	$data.Entity.extend("Message", {
 		id : {
 			type : "int",
@@ -152,9 +152,9 @@ function createLocalDatabase() {
 			type : String,
 			maxLength : 200
 		}
-		
+
 	});
-	
+
 	$data.Entity.extend("Participant", {
 		id : {
 			type : String,
@@ -197,10 +197,10 @@ function createLocalDatabase() {
 			maxLength : 200
 		},
 		companyimageurl : {
-			type : String, 
+			type : String,
 			maxLength : 200
 		}
-			
+
 	});
 
 	$data.EntityContext.extend("ITForumDatabase", {
@@ -215,7 +215,7 @@ function createLocalDatabase() {
 		Participants : {
 			type : $data.EntitySet,
 			elementType : Participant
-		}		
+		}
 	});
 
 	if (isMobile.WP8()) {;
@@ -235,6 +235,7 @@ function createLocalDatabase() {
 
 		});
 	}
+	
 }
 
 /*
@@ -302,14 +303,13 @@ function setLocalEvents(eventsArray) {
 		event.image = eventsArray[i].image;
 
 		// for(var j = 0; j < eventsArray[i].prices.length; j++){
-			// alert("Name " + eventsArray[i].prices[j].name +
-			// " Amount " + eventsArray[i].prices[j].amount);			
+		// alert("Name " + eventsArray[i].prices[j].name +
+		// " Amount " + eventsArray[i].prices[j].amount);
 		// }
-		
+
 		itForumDatabase.Events.add(event);
 	}
 	itForumDatabase.saveChanges();
-
 	getLocalEvents();
 }
 
@@ -317,30 +317,35 @@ function getLocalEvents() {
 
 	$('#eventList').empty();
 
-	itForumDatabase.Events.forEach(function(Event) {
-		if (!Event.image == "") {
-			$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
-		} else {
-			$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
-		}
+	updatelist(function() {
+		$('#eventList').listview("refresh");
+	});
 
-		if (localStorage.getItem("user") != null) {
-			var user = localStorage.getItem("user");
-			var userEventArray = JSON.parse(user).events;
-			for (var i in userEventArray) {
-				if (userEventArray[i] == Event.eventid) {
-					$('#' + Event.eventid + '').html("Tilmeldt");
+	function updatelist() {
+		itForumDatabase.Events.forEach(function(Event) {
+			if (!Event.image == "") {
+				$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
+			} else {
+				$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
+			}
+
+			if (localStorage.getItem("user") != null) {
+				var user = localStorage.getItem("user");
+				var userEventArray = JSON.parse(user).events;
+				for (var i in userEventArray) {
+					if (userEventArray[i] == Event.eventid) {
+						$('#' + Event.eventid + '').html("Tilmeldt");
+					}
 				}
 			}
-		}
 
-		$('#eventList').children('li').bind('touchstart mousedown', function(e) {
-			sessionStorage.selectedId = $(this).attr('data-id');
+			$('#eventList').children('li').bind('touchstart mousedown', function(e) {
+				sessionStorage.selectedId = $(this).attr('data-id');
+			});
 		});
-		
-		// $('#eventList').listview("refresh");
-	});
-	$('#eventList').listview("refresh");
+	}
+	
+
 }
 
 function setMessage(toAlias, fromAlias, messageText) {
@@ -350,12 +355,12 @@ function setMessage(toAlias, fromAlias, messageText) {
 	message.date = new Date();
 	message.messageText = messageText;
 	itForumDatabase.Messages.add(message);
-	
+
 	itForumDatabase.saveChanges();
 }
 
 function getMessages() {
-	
+
 }
 
 function setFavoriteParticipant(participant) {
@@ -372,9 +377,9 @@ function setFavoriteParticipant(participant) {
 	// participantFav.company = participant.company;
 	// participantFav.companyurl = participant.companyurl;
 	// participantFav.companyimageurl = participant.companyimageurl;
-	
+
 	itForumDatabase.Participants.add(participantFav);
-	
+
 	itForumDatabase.saveChanges();
 }
 
@@ -389,20 +394,18 @@ function getFavoriteParticipant() {
 		}
 
 		// if (localStorage.getItem("user") != null) {
-			// var user = localStorage.getItem("user");
-			// var userEventArray = JSON.parse(user).events;
-			// for (var i in userEventArray) {
-				// if (userEventArray[i] == Event.eventid) {
-					// $('#' + Event.eventid + '').html("Tilmeldt");
-				// }
-			// }
+		// var user = localStorage.getItem("user");
+		// var userEventArray = JSON.parse(user).events;
+		// for (var i in userEventArray) {
+		// if (userEventArray[i] == Event.eventid) {
+		// $('#' + Event.eventid + '').html("Tilmeldt");
+		// }
+		// }
 		// }
 
 		$('#favoriteParticipantList').children('li').bind('touchstart mousedown', function(e) {
 			sessionStorage.selectedId = $(this).attr('data-id');
 		});
-		
-		// $('#eventList').listview("refresh");
 	});
 	$('#favoriteParticipantList').listview("refresh");
 }
@@ -410,7 +413,7 @@ function getFavoriteParticipant() {
 function getParticipants(participantsArray, eventid) {
 	$("#ParticipantsList").empty();
 	for (var i in participantsArray) {
-		alert(participantsArray[i].linkedinurl);
+		// alert(participantsArray[i].linkedinurl);
 
 		$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'>" + participantsArray[i].firstname + ' ' + participantsArray[i].lastname + '</li>');
 
@@ -426,8 +429,8 @@ function getParticipants(participantsArray, eventid) {
 }
 
 /*
-* TODO
-*/
+ * TODO
+ */
 $(document).on('pagebeforeshow', '#pageDetailEvent', function() {
 
 	// itForumDatabase.onReady(function() {
@@ -442,7 +445,6 @@ $(document).on('pagebeforeshow', '#pageDetailEvent', function() {
 
 $(document).on('pageshow', '#pageDetailEvent', function() {
 	// itForumDatabase.onReady(function() {
-	alert("" + sessionStorage.selectedId);
 	getRemoteParticipants(sessionStorage.selectedId);
 	// });
 });
@@ -455,7 +457,8 @@ $(document).on('pagebeforeshow', '#pageUser', function() {
 	ProfileDetails();
 });
 
-$('#networkingBtn').click( function() {
-	getFavoriteParticipant();
+$(document).on('pagebeforeshow', '#pageNetworking', function() {
+	if (loggedIn == "yes") {
+		getFavoriteParticipant();
+	}
 });
-

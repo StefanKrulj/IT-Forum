@@ -76,15 +76,15 @@ function checkLogin() {
 		$('#networking').show();
 		$('#blivmedlem').hide();
 
-		if (localStorage.getItem("user") != null) {
-			alert("Register!");
-			var user = localStorage.getItem("user");
-			var userEmail = JSON.parse(user).id;
-			/*
-			 * Push Register
-			 */
+		// if (localStorage.getItem("user") != null) {
+			// alert("Register!");
+			// var user = localStorage.getItem("user");
+			// var userEmail = JSON.parse(user).id;
+			// /*
+			 // * Push Register
+			 // */
 			// pushRegister(userEmail);
-		}
+		// }
 
 		if (localStorage.getItem("autologincheckbox") == 'checked' && sessionStorage.gotNewChallenge != "yesWeDid") {
 			sessionStorage.gotNewChallenge = "yesWeDid";
@@ -117,7 +117,7 @@ $('#loginBtn').on("click", function() {
 
 		getChallenge();
 	}
-	getLocalEvents();
+	getNewEvents();
 });
 
 $('#logoutBtn').on("click", function() {
@@ -125,6 +125,6 @@ $('#logoutBtn').on("click", function() {
 	localStorage.setItem("autologincheckbox", "NotChecked");
 	checkLogin();
 
-	getLocalEvents();
+	getNewEvents();
 });
 

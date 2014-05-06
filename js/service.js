@@ -152,7 +152,7 @@ function online() {
 * TODO Dette er til test på browser, metoden ovenover er til mobile platformen
 */
 function getNewEvents() {
-getRemoteEvents();
+	getRemoteEvents();
 }
 
 /*
@@ -163,6 +163,15 @@ function initiateDatabase() {
 		console.log("Database created");
 		getNewEvents();
 	});
+}
+
+function loggedIn () {
+  	if (localStorage.getItem("profile") != "loggedOut" || localStorage.getItem("profile") === null) {
+  		return "yes";
+  	}
+  	else{
+  		return "no";
+  	}
 }
 
 // $('#pageEvent').on('pageshow', function() {
