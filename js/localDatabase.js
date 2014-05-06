@@ -349,7 +349,7 @@ function setMessage(toAlias, fromAlias, messageText) {
 	message.fromAlias = fromAlias;
 	message.date = new Date();
 	message.messageText = messageText;
-	itForumDatabase.Messages.add(message);
+	itForumDatabase.Message.add(message);
 	
 	itForumDatabase.saveChanges();
 }
@@ -426,13 +426,23 @@ function getParticipants(participantsArray, eventid) {
 }
 
 function isPartisipantFav (userId) {
-	alert(userId);
+	
+	var text = "id=" + userId + "";
+		
+	 itForumDatabase.Participants.filter(text)
+        .forEach( function(participants) {
+        	alert("test");
+            alert(participants.firstname);
+        });
 	
 	
-	itForumDatabase.Participants.filter( function(participant) {
-            return participant.id == userId; }).toArray(function(events) {
-		EventDetails(events);
-	});
+	 // itForumDatabase.Participants.filter( function(participant) {
+             // return participant.id == userId; }).toArray(function(part) {
+// 		 
+		 // alert(part.firstname);
+// 		 
+// 		 
+	 // });
         
 }
 
