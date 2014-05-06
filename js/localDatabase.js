@@ -128,12 +128,94 @@ function createLocalDatabase() {
 			//maxLength : 1000
 		}
 	});
+	
+	$data.Entity.extend("Message", {
+		id : {
+			type : "int",
+			// required : true,
+			key : true,
+			computed : true
+		},
+		toAlias : {
+			type : string,
+			maxLength : 50
+		},
+		fromAlias : {
+			type : string,
+			maxLength : 50
+		},
+		date : {
+			type : string,
+			maxLength : 20
+		},
+		messageText : {
+			type : string,
+			maxLength : 200
+		}
+		
+	});
+	
+	$data.Entity.extend("Participant", {
+		id : {
+			type : string,
+			maxLength : 20
+		},
+		firstname : {
+			type : string,
+			maxLength : 40
+		},
+		lastname : {
+			type : string,
+			maxLength : 40
+		},
+		title : {
+			type : string,
+			maxLength : 40
+		},
+		imageurl : {
+			type : string,
+			maxLength : 200
+		},
+		email : {
+			type : string,
+			maxLength : 50
+		},
+		mobile : {
+			type : string,
+			maxLength : 20
+		},
+		linkedinurl : {
+			type : string,
+			maxLength : 200
+		},
+		company : {
+			type : string,
+			maxLength : 40
+		},
+		companyurl : {
+			type : string,
+			maxLength : 200
+		},
+		companyimageurl : {
+			type : string, 
+			maxLength : 200
+		}
+			
+	});
 
 	$data.EntityContext.extend("ITForumDatabase", {
 		Events : {
 			type : $data.EntitySet,
 			elementType : Event
-		}
+		},
+		Messages : {
+			type : $data.EntitySet,
+			elementType : Message
+		},
+		Participants : {
+			type : $data.EntitySet,
+			elementType : Participant
+		}		
 	});
 
 	if (isMobile.WP8()) {;
@@ -218,17 +300,12 @@ function setLocalEvents(eventsArray) {
 
 		// event.endtime = endTimeDate(eventsArray[i].starttime.match(numberPattern), eventsArray[i].endtime.match(numberPattern));
 		event.image = eventsArray[i].image;
-		// event.lessons = eventsArray[i].lessons;
-		// event.prices = eventsArray[i].prices;
 
-		// alert(JSON.stringify(eventsArray[i].prices));
-		// for (var price in eventsArray[i].prices) {
-			// priceObj = eventsArray[i].prices[price];
-			// for (var prop in priceObj) {
-				// alert("v: " + priceObj[prop]);
-			// }
-		// }
-
+		for(var j = 0; j < eventsArray[i].prices.length; j++){
+			alert("Name " + eventsArray[i].prices[j].name +
+			" Amount " + eventsArray[i].prices[j].amount);			
+		}
+		
 		itForumDatabase.Events.add(event);
 	}
 	itForumDatabase.saveChanges();
@@ -264,6 +341,69 @@ function getLocalEvents() {
 		// $('#eventList').listview("refresh");
 	});
 	$('#eventList').listview("refresh");
+}
+
+function setMessage(toAlias, fromAlias, messageText) {
+	var message = new message;
+	message.toAlias = toAlias;
+	message.fromAlias = fromAlias;
+	message.date = new Date();
+	message.messageText = messageText;
+	itForumDatabase.Messages.add(message);
+	
+	itForumDatabase.saveChanges();
+}
+
+function getMessages() {
+	
+}
+
+function setFavoriteParticipant(participant) {
+	var participantFav = new participantFav;
+	participantFav.id = participant.id;
+	participantFav.firstname = participant.firstname;
+	participantFav.lastname = participant.lastname;
+	participantFav.title = participant.title;
+	participantFav.imageurl = participant.imageurl;
+	participantFav.email = participant.email;
+	participantFav.mobile = participant.mobile;
+	participantFav.linkedinurl = participant.linkedinurl;
+	participantFav.company = participant.company;
+	participantFav.companyurl = participant.companyurl;
+	participantFav.companyimageurl = participant.companyimageurl;
+	
+	itForumDatabase.Participants.add(participantFav);
+	
+	itForumDatabase.saveChanges();
+}
+
+function getFavoriteParticipant() {
+	$('#favoriteParticipantList').empty();
+
+	itForumDatabase.Participants.forEach(function(participant) {
+		if (!participant.image == "") {
+			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='" + participant.imageurl + "'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
+		} else {
+			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='img/imgArr.jpg'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
+		}
+
+		// if (localStorage.getItem("user") != null) {
+			// var user = localStorage.getItem("user");
+			// var userEventArray = JSON.parse(user).events;
+			// for (var i in userEventArray) {
+				// if (userEventArray[i] == Event.eventid) {
+					// $('#' + Event.eventid + '').html("Tilmeldt");
+				// }
+			// }
+		// }
+
+		$('#favoriteParticipantList').children('li').bind('touchstart mousedown', function(e) {
+			sessionStorage.selectedId = $(this).attr('data-id');
+		});
+		
+		// $('#eventList').listview("refresh");
+	});
+	$('#favoriteParticipantList').listview("refresh");
 }
 
 function getParticipants(participantsArray, eventid) {

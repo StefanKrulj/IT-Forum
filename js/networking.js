@@ -24,6 +24,8 @@ function pushRegister(email) {
 	}
 }
 
+
+
 /*
  * Success/error handlers
  */
@@ -94,3 +96,9 @@ function sendNotification (toUser, msg) {
 		}
 	});
 }
+
+
+
+
+
+

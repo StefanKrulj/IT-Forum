@@ -66,7 +66,18 @@ function ParticipantDetails(participantsArray) {
 		$("#pageParticipantsDetail #userAttributes").append("<a href=" + participant.linkedinurl + ">LinkedinUrl</a>");
 	}
 	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + participant.profile + "</p></h3></td></tr></table>");
-	// MÅ IKKE VISES
-	// $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
+	
+	 $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
+	 
+	 $("#favoriteToggle").change(function() {
+	 	state = $("#favoriteToggle").val();
+	 	if(state == on){
+	 		setFavoriteParticipant(participant);
+	 	}
+    
+    $('#togshow').text(state.toString());
+	});
+	 
+	 // MÅ IKKE VISES
 	// $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + participant.email + "</p></td></tr></table>");
 }

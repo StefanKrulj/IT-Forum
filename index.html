@@ -32,7 +32,7 @@
 						<a onclick="getLocalEvents()" href="#">getLocalEvents</a>
 					</li>
 					<li>
-						<a href="#">Whatever ting</a>
+						<a href="#"></a>
 					</li>
 				</ul>
 			</div>
@@ -55,13 +55,13 @@
 						</div>
 					</div>
 					<div id="profil" class="ui-block-a">
-						<a href='#pageUser'><img src='img/imgprofile.jpg' /></a>
+						<a href='#pageUser'><img src='img/person_icon.svg' /></a>
 						<div class='imgCaption'>
 							Profil
 						</div>
 					</div>
 					<div class="ui-block-b">
-						<a href="#pageEvent"><img src="img/imgArr.jpg" /></a>
+						<a href="#pageEvent"><img src="img/cal_icon.svg" /></a>
 						<div class="imgCaption">
 							Arrangementer
 						</div>
@@ -74,13 +74,13 @@
 						</div>
 					</div>
 					<div id="networking" class="ui-block-a">
-						<a href='#pageNetworking'><img src='img/imgnetw.jpg' /></a>
+						<a href='#pageNetworking'><img src='img/people_icon.svg' /></a>
 						<div class='imgCaption'>
 							Networking
 						</div>
 					</div>
-					<div class="ui-block-b">
-						<a href="http://www.itforum.dk/kontakt.asp"><img src="img/imgCon.jpg" /></a>
+					<div class="ui-block-b" >
+						<a href="http://www.itforum.dk/kontakt.asp"><img src="img/phone_icon.svg" /></a>
 						<div class="imgCaption">
 							Kontakt
 						</div>
@@ -193,6 +193,10 @@
 				<div id="userAttributes">
 
 				</div>
+				<form>
+					<label for="flip-checkbox-2">Tilføj til favorit:</label>
+					<input type="checkbox" data-role="flipswitch" name="flip-checkbox-2" id="favoriteToggle" data-on-text="Fjern" data-off-text="Tilføj" data-wrapper-class="custom-label-flipswitch">
+				</form>
 			</div>
 		</div>
 
@@ -204,7 +208,23 @@
 			</div>
 
 			<div data-role="content">
-				<div id="networkingAttributes">
+				<div id="favoriteParticipantList">
+					<div data-role="footer" data-position="fixed"><textarea name="textarea" id="messageTextArea"></textarea><input type="submit" onclick="sendNotification()" value="TRYK!" class="search" /></div>
+				</div>
+		</div>
+
+	<div data-role="page" id="pageMessages" data-title="pageMessages">
+			<div data-role="header">
+				<h1>Conversations</h1>
+
+				<a href="#pageNetworking" data-direction="reverse" data-transition="slide" class="ui-btn ui-btn-inline ui-icon-arrow-l ui-btn-icon-left">Tilbage</a>
+			</div>
+
+			<div data-role="content">
+				<div id="messagesAttributes">
+					<div data-role="footer" data-position="fixed"><div data-role="fieldcontain"><textarea name="textarea" id="messageTextArea"></textarea><input type="submit" onclick="sendNotification()" value="TRYK!" class="search" /></div></div>
+					
+>>>>>>> 4f8cbf2d469d0c6312a82cc3d9c30ad9e3becdaa
 					
 				</div>
 			</div>
