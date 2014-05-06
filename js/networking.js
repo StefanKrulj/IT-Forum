@@ -88,6 +88,7 @@ function sendNotification (toUser, msg) {
 	var result;
 
 	var anotherCustomKey = 'some other value';
+	setMessage(user,fromUser,msg);
 	
 	$.ajax({
 		type : "GET",

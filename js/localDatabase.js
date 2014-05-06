@@ -383,9 +383,10 @@ function getFavoriteParticipant() {
 
 	itForumDatabase.Participants.forEach(function(participant) {
 		if (!participant.image == "") {
-			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='" + participant.imageurl + "'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
+			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='img/person_icon.svg'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
+		
 		} else {
-			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='img/imgArr.jpg'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
+			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='" + participant.imageurl + "'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
 		}
 
 		// if (localStorage.getItem("user") != null) {
@@ -402,9 +403,9 @@ function getFavoriteParticipant() {
 			sessionStorage.selectedId = $(this).attr('data-id');
 		});
 		
-		 $('#eventList').listview("refresh");
+		 $('#favoriteParticipantList').listview("refresh");
 	});
-	//$('#favoriteParticipantList').listview("refresh");
+	$('#favoriteParticipantList').listview("refresh");
 }
 
 function getParticipants(participantsArray, eventid) {

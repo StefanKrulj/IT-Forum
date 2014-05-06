@@ -70,6 +70,20 @@ function ParticipantDetails(participantsArray) {
 	
 	 $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
 	 
+	 var someCondition = true;
+	 if (someCondition) {
+         $('#favoriteToggle').val('off');
+     }
+     else {
+         $('#favoriteToggle').val('on');
+     }
+     try {
+         $('#favoriteToggle').slider("refresh");
+     }
+     catch (err) {
+         console.log ("Error occurred refreshing slider (probabily first time!)");
+     }
+	 
 	// alert("isPartisipantFav "+ isPartisipantFav(participant.id));	 
 	 $("#favoriteToggle").change(function() {
 	 	var state = $("#favoriteToggle").val();
