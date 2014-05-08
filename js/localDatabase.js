@@ -79,10 +79,10 @@ function createLocalDatabase() {
 			maxLength : 1000
 		},
 		// tags : {
-			// type : Array,
-			// elementType : String
-			//required : true,
-			//maxLength : 1000
+		// type : Array,
+		// elementType : String
+		//required : true,
+		//maxLength : 1000
 		// },
 		eventid : {
 			type : String,
@@ -115,20 +115,20 @@ function createLocalDatabase() {
 			maxLength : 1000
 		}
 		// lessons : {
-			// type : Array,
-			// elementType : String
-			//required : true,
-			//maxLength : 1000
+		// type : Array,
+		// elementType : String
+		//required : true,
+		//maxLength : 1000
 		// },
 		// IKKE ET ARRAY
 		// prices : {
-			// type : Array,
-			// elementType : String
-			//required : true,
-			//maxLength : 1000
+		// type : Array,
+		// elementType : String
+		//required : true,
+		//maxLength : 1000
 		// }
 	});
-	
+
 	$data.Entity.extend("Message", {
 		id : {
 			type : "int",
@@ -152,9 +152,9 @@ function createLocalDatabase() {
 			type : String,
 			maxLength : 200
 		}
-		
+
 	});
-	
+
 	$data.Entity.extend("Participant", {
 		id : {
 			type : String,
@@ -197,10 +197,10 @@ function createLocalDatabase() {
 			maxLength : 200
 		},
 		companyimageurl : {
-			type : String, 
+			type : String,
 			maxLength : 200
 		}
-			
+
 	});
 
 	$data.EntityContext.extend("ITForumDatabase", {
@@ -215,7 +215,7 @@ function createLocalDatabase() {
 		Participants : {
 			type : $data.EntitySet,
 			elementType : Participant
-		}		
+		}
 	});
 
 	if (isMobile.WP8()) {;
@@ -302,10 +302,10 @@ function setLocalEvents(eventsArray) {
 		event.image = eventsArray[i].image;
 
 		// for(var j = 0; j < eventsArray[i].prices.length; j++){
-			// alert("Name " + eventsArray[i].prices[j].name +
-			// " Amount " + eventsArray[i].prices[j].amount);			
+		// alert("Name " + eventsArray[i].prices[j].name +
+		// " Amount " + eventsArray[i].prices[j].amount);
 		// }
-		
+
 		itForumDatabase.Events.add(event);
 	}
 	itForumDatabase.saveChanges();
@@ -337,7 +337,7 @@ function getLocalEvents() {
 		$('#eventList').children('li').bind('touchstart mousedown', function(e) {
 			sessionStorage.selectedId = $(this).attr('data-id');
 		});
-		
+
 		// $('#eventList').listview("refresh");
 	});
 	$('#eventList').listview("refresh");
@@ -350,15 +350,14 @@ function setMessage(toAlias, fromAlias, messageText) {
 	message.date = new Date();
 	message.messageText = messageText;
 	itForumDatabase.Messages.add(message);
-		alert(" ,touser: " + message.toAlias + " ,fromuser: " + message.fromAlias + " ,messege: " + message.messageText + " ,date: " + message.date );
+	alert(" ,touser: " + message.toAlias + " ,fromuser: " + message.fromAlias + " ,messege: " + message.messageText + " ,date: " + message.date);
 
 	itForumDatabase.saveChanges();
 }
 
-
 function setFavoriteParticipant(participant) {
 	var participantFav = new Participant();
-	alert("I method: " + participant.firstname);
+	// alert("I method: " + participant.firstname);
 	participantFav.id = participant.id;
 	participantFav.firstname = participant.firstname;
 	participantFav.lastname = participant.lastname;
@@ -370,9 +369,9 @@ function setFavoriteParticipant(participant) {
 	// participantFav.company = participant.company;
 	// participantFav.companyurl = participant.companyurl;
 	// participantFav.companyimageurl = participant.companyimageurl;
-	
+
 	itForumDatabase.Participants.add(participantFav);
-	
+
 	itForumDatabase.saveChanges();
 }
 
@@ -382,58 +381,52 @@ function getFavoriteParticipant() {
 	itForumDatabase.Participants.forEach(function(participant) {
 		if (!participant.image == "") {
 			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='img/person_icon.svg'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
-		
+
 		} else {
 			$('#favoriteParticipantList').append("<li data-id='" + participant.id + "' ><a href='#pageMessages'><img src='" + participant.imageurl + "'><p><strong>" + participant.firstname + " " + participant.lastname + "</strong></p><p>" + participant.title + "</p></li>");
 		}
 
 		$('#favoriteParticipantList').children('li').bind('touchstart mousedown', function(e) {
-			
+
 			sessionStorage.selectedFavParIndex = $('#favoriteParticipantList').children('li').index(this);
-			
+
 		});
-		
+
 		// if (localStorage.getItem("user") != null) {
-			// var user = localStorage.getItem("user");
-			// var userEventArray = JSON.parse(user).events;
-			// for (var i in userEventArray) {
-				// if (userEventArray[i] == Event.eventid) {
-					// $('#' + Event.eventid + '').html("Tilmeldt");
-				// }
-			// }
+		// var user = localStorage.getItem("user");
+		// var userEventArray = JSON.parse(user).events;
+		// for (var i in userEventArray) {
+		// if (userEventArray[i] == Event.eventid) {
+		// $('#' + Event.eventid + '').html("Tilmeldt");
+		// }
+		// }
 		// }
 
 		$('#favoriteParticipantList').children('li').bind('touchstart mousedown', function(e) {
 			sessionStorage.selectedId = $(this).attr('data-id');
 		});
-		
-		 $('#favoriteParticipantList').listview("refresh");
+
+		$('#favoriteParticipantList').listview("refresh");
 	});
 	//$('#favoriteParticipantList').listview("refresh");
 }
 
 function Messages(participants) {
-	
-	
+
 	participants.forEach(function(participant) {
-			
 
-		alert(participant.id);
-		
+		// alert(participant.id);
+
 		localStorage.setItem("favPartisipant", JSON.stringify(participant.id));
-		
-		
 
-	
 	});
-	
-  
+
 }
 
 function getParticipants(participantsArray, eventid) {
 	$("#ParticipantsList").empty();
 	for (var i in participantsArray) {
-		alert(participantsArray[i].linkedinurl);
+		// alert(participantsArray[i].linkedinurl);
 
 		if (participantsArray[i].imageurl == "") {
 
@@ -442,7 +435,6 @@ function getParticipants(participantsArray, eventid) {
 		} else {
 			$('#ParticipantsList').append("<li data-id='" + participantsArray[i].id + "' ><a href='#pageParticipantsDetail'><img src='" + participantsArray[i].imageurl + "'><p><strong>" + participantsArray[i].firstname + " " + participantsArray[i].lastname + "</strong></p><p> " + participantsArray[i].title + "</p><p>" + participantsArray[i].company + '</p></li>');
 		}
-
 
 		$('#ParticipantsList').children('li').bind('touchstart mousedown', function(e) {
 			// sessionStorage.setItem("participant", JSON.stringify(participantsArray[i]));
@@ -455,35 +447,43 @@ function getParticipants(participantsArray, eventid) {
 	$('#ParticipantsList').listview('refresh');
 }
 
-function isParticipantFav (participantId) {
-	
+function isParticipantFav(participantId) {
+
 	/*
 	 * Søger alle igennem og finder hvis id matcher = yes
 	 */
 	var found = "no";
-	
+
+	alert(participantId);
+
 	itForumDatabase.Participants.forEach(function(participant) {
-		if(participant.id == participantId){
+		if (participant.id == participantId) {
+			found = "yes";
+
 			alert("yes");
-		}
-		else{
+		} else {
+			found = "no";
+
 			alert("no");
 		}
+
 	});
-	
+
+	return found;
+
 	// if(found == "yes"){
-		// alert("yes");
-		// // $('#favoriteToggle').val('on');
+	// alert("yes");
+	// // $('#favoriteToggle').val('on');
 	// }
 	// else{
-		// alert("no");
-		// // $('#favoriteToggle').val('off');
+	// alert("no");
+	// // $('#favoriteToggle').val('off');
 	// }
 }
 
 /*
-* TODO
-*/
+ * TODO
+ */
 $(document).on('pagebeforeshow', '#pageDetailEvent', function() {
 
 	// itForumDatabase.onReady(function() {
@@ -498,7 +498,7 @@ $(document).on('pagebeforeshow', '#pageDetailEvent', function() {
 
 $(document).on('pageshow', '#pageDetailEvent', function() {
 	// itForumDatabase.onReady(function() {
-	alert("" + sessionStorage.selectedId);
+	// alert("" + sessionStorage.selectedId);
 	getRemoteParticipants(sessionStorage.selectedId);
 	// });
 });
@@ -511,7 +511,7 @@ $(document).on('pagebeforeshow', '#pageUser', function() {
 	ProfileDetails();
 });
 
-$('#networkingBtn').click( function() {
+$('#networkingBtn').click(function() {
 	getFavoriteParticipant();
 });
 
@@ -519,10 +519,9 @@ $(document).on('pagebeforeshow', '#pageMessages', function() {
 	itForumDatabase.Participants.filter(function(participant) {
 		return participant.id == sessionStorage.selectedId;
 	}).toArray(function(participant) {
-	
+
 		Messages(participant);
 	});
-	
-	
+
 });
 

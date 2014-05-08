@@ -11,8 +11,7 @@ function EventDetails(events) {
 		$("#pageDetailEvent #eventAttributes").append(event.endtime);
 		$("#pageDetailEvent #eventAttributes").append("<p id='eventLocation'>" + event.location + "</p>");
 		$("#pageDetailEvent #eventAttributes").append("<p id='eventDescription'>" + event.description + "</p>");
-		
-		
+
 		if (localStorage.getItem("user") != null) {
 			var user = localStorage.getItem("user");
 			var userEventArray = JSON.parse(user).events;
@@ -24,11 +23,11 @@ function EventDetails(events) {
 					participating = "true";
 				}
 			}
-			if (participating == "false"){
-					$("#pageDetailEvent #eventAttributes").append("<a href='" + event.url2 + "&guid=" + login + "' class='ui-btn'>Deltag i arrangementet</a>");
+			if (participating == "false") {
+				$("#pageDetailEvent #eventAttributes").append("<a href='" + event.url2 + "&guid=" + login + "' class='ui-btn'>Deltag i arrangementet</a>");
 			}
-			
-		} else{
+
+		} else {
 			//TODO Hvad skal der sker hvis man ikke er logget ind overhovedet?
 		}
 
@@ -38,7 +37,6 @@ function EventDetails(events) {
 function ProfileDetails() {
 	var user = localStorage.getItem("user");
 	var us = JSON.parse(user);
-
 
 	$("#pageUser #userAttributes").empty();
 
@@ -50,76 +48,85 @@ function ProfileDetails() {
 		$("#pageUser #userAttributes").append("<table><tr><td><img src='" + us.imageurl + "'></td></tr></table>");
 	}
 
-	 $("#pageUser #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.firstname + " " + us.lastname + "</h2></td></tr></table>");
-	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><p id='userProfileTitle'> " + us.title + "</p></h3></td></tr></table>");
- 
-	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Firma:</h3></td><td><p id='userCompany'> " + us.company + "</p></h3></td></tr></table>");
- 
-	 $("#pageUser #userAttributes").append("<table><tr><td><a href=" + us.companyurl + ">Firmas webadresse</a></td></tr></table>");
- 
-	 $("#pageUser #userAttributes").append("<table><tr><td><a href=" + us.linkedinurl + ">LinkedinUrl</a></td></tr></table>");
-	 $("#pageUser #userAttributes").append("<table><tr><td>Firmas logo<img src='" + us.companyimageurl + "'></a></td></tr></table>");
-	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + us.profile + "</p></h3></td></tr></table>");
-	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + us.mobile + "</p></td></tr></table>");
-	 $("#pageUser #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + us.email + "</p></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + us.firstname + " " + us.lastname + "</h2></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><p id='userProfileTitle'> " + us.title + "</p></h3></td></tr></table>");
+
+	$("#pageUser #userAttributes").append("<table><tr><td><h3>Firma:</h3></td><td><p id='userCompany'> " + us.company + "</p></h3></td></tr></table>");
+
+	$("#pageUser #userAttributes").append("<table><tr><td><a href=" + us.companyurl + ">Firmas webadresse</a></td></tr></table>");
+
+	$("#pageUser #userAttributes").append("<table><tr><td><a href=" + us.linkedinurl + ">LinkedinUrl</a></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td>Firmas logo<img src='" + us.companyimageurl + "'></a></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + us.profile + "</p></h3></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + us.mobile + "</p></td></tr></table>");
+	$("#pageUser #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + us.email + "</p></td></tr></table>");
 }
 
+var participant;
 
 function ParticipantDetails(participantsArray) {
 
 	var par = participantsArray[parseInt(sessionStorage.selectedParIndex)];
-	var participant = par;
-
+	participant = par;
 
 	$("#pageParticipantsDetail #userAttributes").empty();
-	
+
 	if (participant.imageurl == "") {
 		$("#pageParticipantsDetail #userAttributes").append("<img src='img/person_icon.svg'>");
 	} else {
 		$("#pageParticipantsDetail #userAttributes").append("<img src='" + participant.imageurl + "'>");
 	}
 
-
 	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h2>Navn:</h2></td><td><h2  id='userFirstName'> " + participant.firstname + " " + participant.lastname + "</h2></td></tr></table>");
 	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Titel:</h3></td><td><h3 id='userTitle'>" + participant.title + "</h3></td></tr></table>");
 
 	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Firma:</h3></td><td><h3 id='userTitle'>" + participant.company + "</h3></td></tr></table>");
-	
+
 	if (participant.linkedinurl != "") {
 		$("#pageParticipantsDetail #userAttributes").append("<a href=" + participant.linkedinurl + ">LinkedinUrl</a>");
 	}
 	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Profiltekst:</h3></td><td><p id='userProfileText'> " + participant.profile + "</p></h3></td></tr></table>");
+
+	$("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
+
+	// $("#pageParticipantsDetail #userAttributes").append("<button class='ui-btn ui-corner-all' onclick='addFavPar()'>Add</button>");
 	
-	 $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Mobiltelefon:</h3></td><td><p id='userMobileNo'> " + participant.mobile + "</p></td></tr></table>");
-	 
-	 
-	 isParticipantFav(participant.id);
-	 // var someCondition = true;
-	 // if (someCondition) {
-         // $('#favoriteToggle').val('off');
-     // }
-     // else {
-         // $('#favoriteToggle').val('on');
-     // }
-     // try {
-         // $('#favoriteToggle').slider("refresh");
-     // }
-     // catch (err) {
-         // console.log ("Error occurred refreshing slider (probabily first time!)");
-     // }
-// 	 
-	// // alert("isPartisipantFav "+ isPartisipantFav(participant.id));	 
-	 // $("#favoriteToggle").change(function() {
-	 	// var state = $("#favoriteToggle").val();
-	 	// // alert(state);
-	 	// if(state == "on"){
-	 		// setFavoriteParticipant(participant);
-	 		// alert("set: " + participant.firstname);
-	 	// }
-//     
-    // $('#togshow').text(state.toString());
-	// });
-// 	 
-	 // MÅ IKKE VISES
+	alert("array lenght" + participantsArray.length);
+
+	alert(isParticipantFav(participant.id));
+	// // var someCondition = true;
+	if (isParticipantFav(participant.id) == "off") {
+		$('#favoriteToggle').val('off');
+	} else {
+		$('#favoriteToggle').val('on');
+	}
+	try {
+		$('#favoriteToggle').slider("refresh");
+	} catch (err) {
+		console.log("Error occurred refreshing slider (probabily first time!)");
+	}
+
+	// alert("isPartisipantFav "+ isPartisipantFav(participant.id));
+
+	$("#favoriteToggle").change(function() {
+		var state = $("#favoriteToggle").val();
+		alert(state);
+		if (state == "on") {
+			setFavoriteParticipant(participant);
+			alert("save participant");
+			//alert("set: " + participant.firstname);
+		} else {
+			alert("Delete participant");
+
+		}
+
+	});
+
+	// MÅ IKKE VISES
 	// $("#pageParticipantsDetail #userAttributes").append("<table><tr><td><h3>Email:</h3></td><td><p id='userEmail'> " + participant.email + "</p></td></tr></table>");
 }
+
+// function addFavPar(participant) {
+	// setFavoriteParticipant(participant);
+	// alert("efterset");
+// }

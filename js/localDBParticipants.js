@@ -343,10 +343,10 @@ function getLocalEvents(callback) {
  */
 
 function setLocalParticipants(participantsArray, eventid) {
-	alert("" + participantsArray);
-	alert("set" + eventid);
+	// alert("" + participantsArray);
+	// alert("set" + eventid);
 	for (var i in participantsArray) {
-		alert("setPar");
+		// alert("setPar");
 		var participant = new Participant();
 		participant.firstname = participantsArray[i].firstname;
 		participant.lastname = participantsArray[i].firstname;
@@ -360,10 +360,10 @@ function setLocalParticipants(participantsArray, eventid) {
 		itForumDatabase.Participants.add(participant);
 		itForumDatabase.saveChanges();
 	}
-	alert("ikkedone");
+	// alert("ikkedone");
 	itForumDatabase.saveChanges();
 	getLocalParticipants(eventid, function(){
-		alert("done");
+		// alert("done");
 	});
 }
 

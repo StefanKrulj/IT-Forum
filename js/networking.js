@@ -4,7 +4,7 @@
 function pushRegister(userid) {
 	var pushConfig = {
 		pushServerURL : "https://aerogear-itforum.rhcloud.com/",
-		alias : userid,
+		alias : userid + "",
 		android : {
 			senderID : "1002823794109",
 			variantID : "aa00132e-acaa-4070-ad49-0256d07a9329",
@@ -85,7 +85,7 @@ function sendNotification () {
 	var toUser = localStorage.getItem("favPartisipant");
 	var user = localStorage.getItem("user");
 	var fromUser = JSON.parse(user).id;
-	alert("userid" + fromUser);
+	// alert("userid" + fromUser);
 	var msg = $('#messageText').val();
 	var result;
 

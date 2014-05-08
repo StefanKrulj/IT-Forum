@@ -27,6 +27,9 @@ var participantsArray;
 function getRemoteParticipants(eventid) {
 	var user = localStorage.getItem("user");
 	var userLoginguid = JSON.parse(user).loginguid;
+	
+	participantsArray = [];
+	
 	$.ajax({
 		url : "http://www.itforum.dk/ws/appapi.asp?method=getparticipants&guid=" + userLoginguid + "&eventid=" + eventid + "",
 		dataType : "jsonp",
