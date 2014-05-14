@@ -25,7 +25,9 @@ function login(hash) {
 		success : function(parsed_json) {
 			localStorage.setItem("profile", parsed_json.loginguid);
 			localStorage.setItem("user", JSON.stringify(parsed_json));
-			var user = localStorage.getItem("user");
+			var user = JSON.parse(localStorage.getItem("user"));
+			
+			pushRegister(user.id);
 
 			checkLogin();
 
