@@ -82,7 +82,8 @@ function onNotification(e) {
 	// var msg = "Hej med dig";
 
 function sendNotification () {
-	var toUser = localStorage.getItem("favPartisipant");
+	var favpar = localStorage.getItem("favPartisipant");
+	var toUser = favpar; //.replace('"','');
 	var user = localStorage.getItem("user");
 	var fromUser = JSON.parse(user).id;
 	// alert("userid" + fromUser);

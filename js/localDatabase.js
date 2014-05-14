@@ -353,6 +353,45 @@ function setMessage(toAlias, fromAlias, messageText) {
 	alert(" ,touser: " + message.toAlias + " ,fromuser: " + message.fromAlias + " ,messege: " + message.messageText + " ,date: " + message.date);
 
 	itForumDatabase.saveChanges();
+	
+	showMessages (); 
+	
+}
+
+function showMessages () {
+	$('#messagesAttributes').empty();
+	// var favPartisipantID = localStorage.getItem("favPartisipant");
+	// alert(favPartisipantID);
+	// itForumDatabase.Messages
+        // .filter("message.toAlias == "+ favPartisipantID +" || message.fromAlias =="+ favPartisipantID +"" )
+        // .forEach( function(message) {
+        	// alert(message.id);
+           // $('#messagesAttributes').append("<li data-id='" + message.id + "' ><p><strong>" + message.messageText + "</strong></p><p>" + message.date + "</p><p>" + message.fromAlias + "</p></li>");
+        // });
+// 	
+	// $('#messagesAttributes').listview("refresh");
+// 	
+	
+	itForumDatabase.Messages.forEach(function(Message) {
+		
+			
+					$('#messagesAttributes').append("<li data-id='" + Message.id + "' ><p><strong>" + Message.messageText + "</strong></p><p>" + Message.date + "</p><p>" + Message.fromAlias + "</p></li>");
+	
+	
+	});
+	$('#messagesAttributes').listview("refresh");
+  
+}
+function Messages(participants) {
+
+	participants.forEach(function(participant) {
+
+		// alert(participant.id);
+
+		localStorage.setItem("favPartisipant", participant.id);
+
+	});
+
 }
 
 function setFavoriteParticipant(participant) {
@@ -411,17 +450,7 @@ function getFavoriteParticipant() {
 	//$('#favoriteParticipantList').listview("refresh");
 }
 
-function Messages(participants) {
 
-	participants.forEach(function(participant) {
-
-		// alert(participant.id);
-
-		localStorage.setItem("favPartisipant", JSON.stringify(participant.id));
-
-	});
-
-}
 
 function getParticipants(participantsArray, eventid) {
 	$("#ParticipantsList").empty();
@@ -521,6 +550,7 @@ $(document).on('pagebeforeshow', '#pageMessages', function() {
 	}).toArray(function(participant) {
 
 		Messages(participant);
+		showMessages(participant);
 	});
 
 });
