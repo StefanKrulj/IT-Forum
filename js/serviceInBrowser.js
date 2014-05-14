@@ -72,12 +72,12 @@ $.mobile.defaultPageTransition = "slide";
 /*
  * Is run as the last javascript = Starting the app method
  */
-function onLoad() {
-	/*
-	 * Wait for device API libraries to load
-	 */
-	document.addEventListener("deviceready", onDeviceReady, false);
-}
+// function onLoad() {
+	// /*
+	 // * Wait for device API libraries to load
+	 // */
+	// document.addEventListener("deviceready", onDeviceReady, false);
+// }
 
 // /*
 // * Wait for device API libraries to load
@@ -87,55 +87,55 @@ function onLoad() {
 /*
  * Device APIs are available
  */
-function onDeviceReady() {
-	document.addEventListener("pause", onPause, false);
-	document.addEventListener("resume", onResume, false);
-
-	// FastClick
-	FastClick.attach(document.body);
-	
-	pushRegister();
-
-	initiateDatabase();
-	getNewEvents();
-}
+// function onDeviceReady() {
+	// document.addEventListener("pause", onPause, false);
+	// document.addEventListener("resume", onResume, false);
+// 
+	// // FastClick
+	// FastClick.attach(document.body);
+// 	
+	// // pushRegister();
+// 
+	// initiateDatabase();
+	// getNewEvents();
+// }
 
 /*
  * When leaving app
  */
-function onPause() {
-	// Handle the pause event
-}
+// function onPause() {
+	// // Handle the pause event
+// }
 
 /*
  * When resuming app
  */
-function onResume() {
-	// Handle the resume event
-}
+// function onResume() {
+	// // Handle the resume event
+// }
 
 /*
  * returns true if any internet connection is available, false if not
  */
-function online() {
-	var networkState = navigator.connection.type;
-
-	var states = {};
-	states[Connection.UNKNOWN] = 'Unknown connection';
-	states[Connection.ETHERNET] = 'Ethernet connection';
-	states[Connection.WIFI] = 'WiFi connection';
-	states[Connection.CELL_2G] = 'Cell 2G connection';
-	states[Connection.CELL_3G] = 'Cell 3G connection';
-	states[Connection.CELL_4G] = 'Cell 4G connection';
-	states[Connection.CELL] = 'Cell generic connection';
-	states[Connection.NONE] = 'No network connection';
-
-	if (states[networkState] == 'No network connection') {
-		return false;
-	} else {
-		return true;
-	}
-}
+// function online() {
+	// var networkState = navigator.connection.type;
+// 
+	// var states = {};
+	// states[Connection.UNKNOWN] = 'Unknown connection';
+	// states[Connection.ETHERNET] = 'Ethernet connection';
+	// states[Connection.WIFI] = 'WiFi connection';
+	// states[Connection.CELL_2G] = 'Cell 2G connection';
+	// states[Connection.CELL_3G] = 'Cell 3G connection';
+	// states[Connection.CELL_4G] = 'Cell 4G connection';
+	// states[Connection.CELL] = 'Cell generic connection';
+	// states[Connection.NONE] = 'No network connection';
+// 
+	// if (states[networkState] == 'No network connection') {
+		// return false;
+	// } else {
+		// return true;
+	// }
+// }
 
 /*
  * getNewEvents is called from service when new eventlist is needed

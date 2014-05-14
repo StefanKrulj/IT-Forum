@@ -240,14 +240,14 @@ function createLocalDatabase() {
 /*
  * Date formatting for event starttime
  */
-function startTimeDate(time) {
+function onlyDate(time) {
 	var d = new Date(parseInt(time));
 	var formattedDate = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
 	var hours = (d.getHours() < 10) ? "0" + d.getHours() : d.getHours();
 	var minutes = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes();
 	var formattedTime = hours + ":" + minutes;
 
-	formattedDate = "<strong>Arrangement tidspunkt </strong>" + formattedDate + ", fra kl. " + formattedTime;
+	formattedDate = "Dato: " + formattedDate;
 	return formattedDate;
 }
 
@@ -294,11 +294,8 @@ function setLocalEvents(eventsArray) {
 		event.eventid = eventsArray[i].eventid;
 		event.organiser = eventsArray[i].organiser;
 		event.deadline = eventsArray[i].deadline;
-		//XX REGEX EXPRESSION XX
-		var numberPattern = /\d+/g;
-		// event.starttime = startTimeDate(eventsArray[i].starttime.match(numberPattern));
-
-		// event.endtime = endTimeDate(eventsArray[i].starttime.match(numberPattern), eventsArray[i].endtime.match(numberPattern));
+		// event.starttime = eventsArray[i].starttime;
+		event.endtime = eventsArray[i].endtime;							
 		event.image = eventsArray[i].image;
 
 		// for(var j = 0; j < eventsArray[i].prices.length; j++){
@@ -316,12 +313,21 @@ function setLocalEvents(eventsArray) {
 function getLocalEvents() {
 
 	$('#eventList').empty();
+	
+	
 
 	itForumDatabase.Events.forEach(function(Event) {
+		
+		
+				
+		Event.date = onlyDate(Event.date.substring(6,19));
+		
+		
 		if (!Event.image == "") {
-			$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
-		} else {
-			$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.starttime + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
+			$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='" + Event.image + "'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p>" + Event.date + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
+				
+			} else {
+			$('#eventList').append("<li data-id='" + Event.eventid + "' ><a href='#pageDetailEvent'><img src='img/imgArr.jpg'><p><strong>" + Event.title + "</strong></p><p>" + Event.subtitle + "</p><p class='ui-li-aside'><strong id='" + Event.eventid + "'></strong></p></a><a href='#sjernemarkering' data-theme='a' data-rel='popup' data-position-to='window' data-transition='pop'>Sjernemarkering</a></li>");
 		}
 
 		if (localStorage.getItem("user") != null) {
@@ -401,13 +407,13 @@ function setFavoriteParticipant(participant) {
 	participantFav.firstname = participant.firstname;
 	participantFav.lastname = participant.lastname;
 	participantFav.title = participant.title;
-	// participantFav.imageurl = participant.imageurl;
-	// participantFav.email = participant.email;
-	// participantFav.mobile = participant.mobile;
-	// participantFav.linkedinurl = participant.linkedinurl;
-	// participantFav.company = participant.company;
-	// participantFav.companyurl = participant.companyurl;
-	// participantFav.companyimageurl = participant.companyimageurl;
+	participantFav.imageurl = participant.imageurl;
+	participantFav.email = participant.email;
+	participantFav.mobile = participant.mobile;
+	participantFav.linkedinurl = participant.linkedinurl;
+	participantFav.company = participant.company;
+	participantFav.companyurl = participant.companyurl;
+	participantFav.companyimageurl = participant.companyimageurl;
 
 	itForumDatabase.Participants.add(participantFav);
 
@@ -483,17 +489,17 @@ function isParticipantFav(participantId) {
 	 */
 	var found = "no";
 
-	alert(participantId);
+	// alert(participantId);
 
 	itForumDatabase.Participants.forEach(function(participant) {
 		if (participant.id == participantId) {
 			found = "yes";
 
-			alert("yes");
+			// alert("yes");
 		} else {
 			found = "no";
-
-			alert("no");
+// 
+			// alert("no");
 		}
 
 	});

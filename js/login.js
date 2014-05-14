@@ -27,6 +27,18 @@ function login(hash) {
 			localStorage.setItem("user", JSON.stringify(parsed_json));
 			var user = JSON.parse(localStorage.getItem("user"));
 			
+			/*
+			 * Check if pushRegister exits, which it only does using serviceOnMobile, not serviceInBrowser
+			 */
+			// if (typeof pushRegister == 'function') { 
+  				// pushRegister(user.id);
+			// }
+			
+			// if (isMobile.Android || isMobile.iOS) { 
+				// alert("test");
+  				// pushRegister(user.id);
+			// }
+			
 			pushRegister(user.id);
 
 			checkLogin();
